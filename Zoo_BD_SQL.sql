@@ -75,3 +75,35 @@ CREATE TABLE Alimentacao (
     CONSTRAINT alimentacao_fkey FOREIGN KEY (id_animal) REFERENCES Animal(id)
 );
 
+CREATE TABLE Funcionario (
+    cpf INTEGER,
+    cpf_supervisor INTEGER,
+    email VARCHAR2(100),
+    nome VARCHAR2(100),
+    sobrenome VARCHAR(255),
+    num_cart_trabalho INTEGER,
+    idade INTEGER,
+    data_nascimento DATE,
+    CONSTRAINT funcionario_pkey PRIMARY KEY (cpf),
+    CONSTRAINT funcionario_fkey FOREIGN KEY (cpf_supervisor) REFERENCES Funcionario(cpf)
+);
+
+CREATE TABLE Telefone (
+    cpf_funcionario INTEGER,
+    ddd INTEGER,
+    numero INTEGER,
+    CONSTRAINT telefone_pkey PRIMARY KEY (ddd, numero),
+    CONSTRAINT telefone_fkey FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
+);
+
+CREATE TABLE Tratador (
+    cpf_funcionario INTEGER,
+    CONSTRAINT tratador_pkey PRIMARY KEY (cpf_funcionario),
+    CONSTRAINT tratador_fkey FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
+);
+
+CREATE TABLE Veterinario (
+    cpf_funcionario INTEGER,
+    CONSTRAINT veterinario_pkey PRIMARY KEY (cpf_funcionario),
+    CONSTRAINT veterinario_fkey FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
+);
