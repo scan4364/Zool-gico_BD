@@ -107,3 +107,30 @@ CREATE TABLE Veterinario (
     CONSTRAINT veterinario_pkey PRIMARY KEY (cpf_funcionario),
     CONSTRAINT veterinario_fkey FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
 );
+
+CREATE TABLE Medicamento (
+    dosagem VARCHAR2(20),
+    nome VARCHAR2(50),
+    CONSTRAINT medicamento_pkey PRIMARY KEY (dosagem, nome)
+);
+
+CREATE TABLE Consulta (
+    id_animal INTEGER,
+    cpf_veterinario INTEGER,
+    data_hora TIMESTAMP,
+    obs_medica VARCHAR2(100),
+    CONSTRAINT consulta_pkey PRIMARY KEY (id_animal, cpf_veterinario, data_hora),
+    CONSTRAINT consulta_fkey1 FOREIGN KEY (cpf_veterinario) REFERENCES Veterinario(cpf_funcionario),
+    CONSTRAINT consulta_fkey2 FOREIGN KEY (id_animal) REFERENCES Animal(id)
+);
+
+CREATE TABLE Tratamento (
+    id_animal INTEGER,
+    cpf_veterinario INTEGER,
+    data_hora TIMESTAMP,
+    dosagem VARCHAR2(20),
+    nome VARCHAR2(50),
+    CONSTRAINT tratamento_pkey PRIMARY KEY (id_animal, cpf_veterinario, data_hora, dosagem, nome),
+    CONSTRAINT tratamento_fkey1 FOREIGN KEY (cpf_veterinario, id_animal, data_hora) REFERENCES Consulta(cpf_veterinario, id_animal, data_hora),
+    CONSTRAINT tratamento_fkey2 FOREIGN KEY (dosagem, nome) REFERENCES Medicamento(dosagem, nome)
+);
