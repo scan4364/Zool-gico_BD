@@ -103,9 +103,9 @@ VALUES (1, 11122233344);
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
 VALUES (2, 22233344455);
 
--- Inserindo dados na tabela Alimentacao
+-- Inserindo dados na tabela Alimentacao (com HORARIO_REFEICAO no formato HH:MM)
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (1, TIMESTAMP '2024-03-01 08:00:00', 'Sem restrições', 5.00, 'Carne fresca'); -- Refeição do leão Simba
+VALUES (1, '08:00', 'Sem restrições', 5.00, 'Carne fresca'); -- Refeição do leão Simba
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (2, TIMESTAMP '2024-03-01 08:30:00', 'Dieta especial', 10.00, 'Frutas e vegetais'); -- Refeição do elefante Dumbo
+VALUES (2, '09:30', 'Dieta especial', 10.00, 'Frutas e vegetais'); -- Refeição do elefante Dumbo
