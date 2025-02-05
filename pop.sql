@@ -1,9 +1,27 @@
 -- Inserindo dados na tabela Habitat
 INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (500.00, TO_DATE('2024-01-01', 'YYYY-MM-DD'), 30, 10); -- Savana Africana
+VALUES (500, TO_DATE('2024-01-01', 'YYYY-MM-DD'), 30, 2); -- Leao
 
 INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (300.50, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 5); -- Floresta Tropical
+VALUES (300, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Zebra
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 30, 1); -- Girafa
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Hipopotamo
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 20, 2); -- Suricato 
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Onca
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Primatas
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 3); -- Aviario
 
 -- Inserindo dados na tabela Medicamento
 INSERT INTO Medicamento (dosagem, nome)
