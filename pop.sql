@@ -68,7 +68,7 @@ VALUES (22233344455);
 
 -- Inserindo dados na tabela Animal
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Macho', 'Simba', 1, NULL, TO_DATE('2020-07-01', 'YYYY-MM-DD')); -- Leão da Savana Africana
+VALUES ('Panthera leo', 'Leão', 'Masculino', 'Simba', 1, NULL, TO_DATE('2020-07-01', 'YYYY-MM-DD')); -- Leão da Savana Africana
 
 INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES ('Panthera leo', 'Leão', 'Masculino', 'Alex', 1, NULL, TO_DATE('2020-06-12','YYYY-MM-DD'));
