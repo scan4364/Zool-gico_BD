@@ -60,7 +60,7 @@ CREATE TABLE Animal (
     genero VARCHAR2(50),
     nome_proprio VARCHAR2(100),
     habitat INTEGER,
-    id_mae INTEGER,
+    id_mae INTEGER NULL,
     data_nascimento DATE,
     CONSTRAINT animal_pkey PRIMARY KEY (id),
     CONSTRAINT animal_habitat_fkey FOREIGN KEY (habitat) REFERENCES Habitat(id),
@@ -159,4 +159,3 @@ CREATE TABLE DATA_CONTRATO (
     data_contrato DATE NOT NULL,
     FOREIGN KEY (num_carteira_trabalho) REFERENCES Funcionario(num_cart_trabalho)
 );
-
