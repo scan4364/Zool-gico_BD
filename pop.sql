@@ -21,7 +21,7 @@ VALUES (TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD')
 
 -- Inserindo dados na tabela Visitante
 INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
-VALUES (12345678901, 'João', 'Silva', TO_DATE('2000-05-10', 'YYYY-MM-DD'));
+VALUES (12345678901, 'João', 'Silva', TO_DATE('2014-05-10', 'YYYY-MM-DD'));
 
 INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
 VALUES (98765432101, 'Maria', 'Santos', TO_DATE('1995-08-25', 'YYYY-MM-DD'));
@@ -44,13 +44,7 @@ VALUES (1002, TO_DATE('2022-05-15', 'YYYY-MM-DD'));
 INSERT INTO Tratador (cpf_funcionario)
 VALUES (11122233344);
 
-INSERT INTO Tratador (cpf_funcionario)
-VALUES (22233344455);
-
 -- Inserindo dados na tabela Veterinario
-INSERT INTO Veterinario (cpf_funcionario)
-VALUES (11122233344);
-
 INSERT INTO Veterinario (cpf_funcionario)
 VALUES (22233344455);
 
@@ -66,25 +60,25 @@ INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada)
 VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-03-01 10:00:00');
 
 INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada)
-VALUES (2, TO_DATE('2024-03-02', 'YYYY-MM-DD'), 'Família', TIMESTAMP '2024-03-02 14:30:00');
+VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 'Família', TIMESTAMP '2024-07-02 14:30:00');
 
 -- Inserindo dados na tabela Compra
 INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
 VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 12345678901, 1);
 
 INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
-VALUES (2, TO_DATE('2024-03-02', 'YYYY-MM-DD'), 98765432101, 2);
+VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 98765432101, 2);
 
 -- Inserindo dados na tabela Consulta
 INSERT INTO Consulta (id_animal, cpf_veterinario, data_hora, obs_medica)
-VALUES (1, 11122233344, TIMESTAMP '2024-03-01 09:00:00', 'Exame de rotina no leão Simba');
+VALUES (1, 22233344455, TIMESTAMP '2024-03-01 09:00:00', 'Exame de rotina no leão Simba');
 
 INSERT INTO Consulta (id_animal, cpf_veterinario, data_hora, obs_medica)
 VALUES (2, 22233344455, TIMESTAMP '2024-03-02 11:30:00', 'Verificação de ferimento no elefante Dumbo');
 
 -- Inserindo dados na tabela Tratamento
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
-VALUES (1, 11122233344, TIMESTAMP '2024-03-01 09:00:00', '5mg', 'Paracetamol'); -- Tratamento para o leão Simba
+VALUES (1, 22233344455, TIMESTAMP '2024-03-01 09:00:00', '5mg', 'Paracetamol'); -- Tratamento para o leão Simba
 
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
 VALUES (2, 22233344455, TIMESTAMP '2024-03-02 11:30:00', '10ml', 'Antibiótico X'); -- Tratamento para o elefante Dumbo
@@ -101,7 +95,7 @@ INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
 VALUES (1, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (2, 22233344455);
+VALUES (2, 11122233344);
 
 -- Inserindo dados na tabela Alimentacao (com HORARIO_REFEICAO no formato HH:MM)
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
