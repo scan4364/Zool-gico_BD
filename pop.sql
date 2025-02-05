@@ -70,8 +70,41 @@ VALUES (22233344455);
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES ('Panthera leo', 'Leão', 'Macho', 'Simba', 1, NULL, TO_DATE('2020-07-01', 'YYYY-MM-DD')); -- Leão da Savana Africana
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Elephas maximus', 'Elefante', 'Fêmea', 'Dumbo', 2, NULL, TO_DATE('2018-03-15', 'YYYY-MM-DD')); -- Elefante da Floresta Tropical
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Panthera leo', 'Leão', 'Masculino', 'Alex', 1, NULL, TO_DATE('2020-06-12','YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Equus quagga', 'Zebra', 'Masculino', 'Marty', 2, NULL, TO_DATE('2019-09-14', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Giraffa', 'Girafa', 'Masculino', 'Melman', 3, NULL, TO_DATE('2018-03-30', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Hippopotamus amphibius', 'Hipopótamo', 'Feminino', 'Glória', 4, NULL, TO_DATE('2017-12-06', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Suricata suricatta', 'Suricato', 'Masculino', 'Julian', 5, NULL, TO_DATE('2016-10-20', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Suricata suricatta', 'Suricato', 'Masculino', 'Mauricio', 5, NULL, TO_DATE('2020-09-22', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Panthera onca', 'Onça-pintada', 'Feminino', 'Isabela', 6, NULL, TO_DATE('2018-12-23', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Pongo pygmaeus', 'Orangotango-de-Bornéu', 'Feminino', 'Diva', 7, NULL, TO_DATE('2016-04-18', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Sapajus apella', 'Macaco-prego', 'Masculino', 'Thiago', 7, NULL, TO_DATE('2019-03-20', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Anodorhynchus hyacinthinus', 'Arara-azul-grande', 'Masculino', 'Blu', 8, NULL, TO_DATE('2022-02-27', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Anodorhynchus hyacinthinus', 'Arara-azul-grande', 'Feminino', 'Jade', 8, NULL, TO_DATE('2023-06-19', 'YYYY-MM-DD'));
+
+INSERT INTO Animal(nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES ('Ara chloropterus', 'Arara-vermelha', 'Feminino', 'Esmeralda', 8, NULL, TO_DATE('2021-08-16', 'YYYY-MM-DD'));    
 
 -- Inserindo dados na tabela Entrada
 INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada)
