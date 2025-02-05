@@ -24,7 +24,9 @@ CREATE TABLE Promocao(
     requisitos VARCHAR2(20),
     desconto DECIMAL(5,2),
     CONSTRAINT promocao_pkey 
-        PRIMARY KEY(id)
+        PRIMARY KEY(id),
+    CONSTRAINT chk_data_valida 
+        CHECK (data_termino > data_inicio)
 );
 
 CREATE TABLE Compra(
@@ -67,7 +69,7 @@ CREATE TABLE Animal (
 
 CREATE TABLE Alimentacao (
     id_animal INTEGER,
-    horario_refeicao TIMESTAMP,
+    horario_refeicao VARCHAR2(5),
     observacoes VARCHAR2(255),
     quantidade DECIMAL(10, 2),
     descricao VARCHAR2(255),
@@ -81,7 +83,7 @@ CREATE TABLE Funcionario (
     email VARCHAR2(100),
     nome VARCHAR2(100),
     sobrenome VARCHAR(255),
-    num_cart_trabalho INTEGER,
+    num_cart_trabalho INTEGER UNIQUE,
     idade INTEGER,
     data_nascimento DATE,
     CONSTRAINT funcionario_pkey PRIMARY KEY (cpf),
@@ -157,6 +159,4 @@ CREATE TABLE DATA_CONTRATO (
     data_contrato DATE NOT NULL,
     FOREIGN KEY (num_carteira_trabalho) REFERENCES Funcionario(num_cart_trabalho)
 );
-
-
 
