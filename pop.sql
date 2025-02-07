@@ -1,6 +1,6 @@
 -- Inserindo dados na tabela Habitat
 INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (500, TO_DATE('2024-01-01', 'YYYY-MM-DD'), 30, 2); -- Leao
+VALUES (500, TO_DATE('2024-01-15', 'YYYY-MM-DD'), 30, 3); -- Leao
 
 INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
 VALUES (300, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Zebra
@@ -21,7 +21,23 @@ INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_anima
 VALUES (500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Primatas
 
 INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 3); -- Aviario
+VALUES (900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 4); -- Aviario
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Elefante
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Cobra
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Tigre
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Urso
+
+INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (800, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Pinguim
+
 
 -- Inserindo dados na tabela Medicamento
 INSERT INTO Medicamento (dosagem, nome)
@@ -139,10 +155,10 @@ VALUES (77788899900);  -- Lucas Martins (Veterinário)
 
 -- Inserindo dados na tabela Animal
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Masculino', 'Simba', 1, NULL, TO_DATE('2020-07-01', 'YYYY-MM-DD')); 
+VALUES ('Panthera leo', 'Leão', 'Masculino', 'Simba', 1, 20, TO_DATE('2020-07-01', 'YYYY-MM-DD')); 
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Masculino', 'Alex', 1, NULL, TO_DATE('2020-06-12','YYYY-MM-DD'));
+VALUES ('Panthera leo', 'Leão', 'Masculino', 'Alex', 1, 20, TO_DATE('2020-06-12','YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES ('Equus quagga', 'Zebra', 'Masculino', 'Marty', 2, NULL, TO_DATE('2019-09-14', 'YYYY-MM-DD'));
