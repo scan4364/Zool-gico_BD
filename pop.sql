@@ -1,42 +1,42 @@
 -- Inserindo dados na tabela Habitat
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (500, TO_DATE('2024-01-15', 'YYYY-MM-DD'), 30, 3); -- Leao
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-01-15', 'YYYY-MM-DD'), 30, 3); -- Leao
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (300, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Zebra
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 300, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Zebra
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 30, 1); -- Girafa
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 30, 1); -- Girafa
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Hipopotamo
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Hipopotamo
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 20, 2); -- Suricato 
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 20, 2); -- Suricato 
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Onca
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Onca
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Primatas
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Primatas
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 4); -- Aviario
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 4); -- Aviario
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Elefante
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Elefante
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Cobra
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Cobra
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Tigre
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Tigre
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Urso
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Urso
 
-INSERT INTO Habitat (tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (800, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Pinguim
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 800, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Pinguim
 
 
 -- Inserindo dados na tabela Medicamento
@@ -50,11 +50,11 @@ INSERT INTO Medicamento (dosagem, nome)
 VALUES ('10mg', 'Ibuprofeno'); -- Remedio anti-inflamatório
 
 -- Inserindo dados na tabela Promocao
-INSERT INTO Promocao (data_inicio, data_termino, requisitos, desconto)
-VALUES (TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024-03-31', 'YYYY-MM-DD'), 'Idade < 12', 50.00);
+INSERT INTO Promocao (id, data_inicio, data_termino, requisitos, desconto)
+VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024-03-31', 'YYYY-MM-DD'), 'Idade < 12', 50.00);
 
-INSERT INTO Promocao (data_inicio, data_termino, requisitos, desconto)
-VALUES (TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 'Estudantes', 20.00);
+INSERT INTO Promocao (id, data_inicio, data_termino, requisitos, desconto)
+VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 'Estudantes', 20.00);
 
 
 -- Inserindo dados na tabela Visitante
@@ -154,65 +154,65 @@ INSERT INTO Veterinario (cpf_funcionario)
 VALUES (77788899900);  -- Lucas Martins (Veterinário)
 
 -- Inserindo dados na tabela Animal
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Masculino', 'Simba', 1, 20, TO_DATE('2020-07-01', 'YYYY-MM-DD')); 
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Panthera leo', 'Leão', 'Masculino', 'Simba', 1, 20, TO_DATE('2020-07-01', 'YYYY-MM-DD')); 
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Masculino', 'Alex', 1, 20, TO_DATE('2020-06-12','YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Panthera leo', 'Leão', 'Masculino', 'Alex', 1, 20, TO_DATE('2020-06-12','YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Equus quagga', 'Zebra', 'Masculino', 'Marty', 2, NULL, TO_DATE('2019-09-14', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Equus quagga', 'Zebra', 'Masculino', 'Marty', 2, NULL, TO_DATE('2019-09-14', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Giraffa', 'Girafa', 'Masculino', 'Melman', 3, NULL, TO_DATE('2018-03-30', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Giraffa', 'Girafa', 'Masculino', 'Melman', 3, NULL, TO_DATE('2018-03-30', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Hippopotamus amphibius', 'Hipopótamo', 'Feminino', 'Glória', 4, NULL, TO_DATE('2017-12-06', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Hippopotamus amphibius', 'Hipopótamo', 'Feminino', 'Glória', 4, NULL, TO_DATE('2017-12-06', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Suricata suricatta', 'Suricato', 'Masculino', 'Julian', 5, NULL, TO_DATE('2016-10-20', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Suricata suricatta', 'Suricato', 'Masculino', 'Julian', 5, NULL, TO_DATE('2016-10-20', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Suricata suricatta', 'Suricato', 'Masculino', 'Mauricio', 5, NULL, TO_DATE('2020-09-22', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Suricata suricatta', 'Suricato', 'Masculino', 'Mauricio', 5, NULL, TO_DATE('2020-09-22', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera onca', 'Onça-pintada', 'Feminino', 'Isabela', 6, NULL, TO_DATE('2018-12-23', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Panthera onca', 'Onça-pintada', 'Feminino', 'Isabela', 6, NULL, TO_DATE('2018-12-23', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Pongo pygmaeus', 'Orangotango-de-Bornéu', 'Feminino', 'Diva', 7, NULL, TO_DATE('2016-04-18', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Pongo pygmaeus', 'Orangotango-de-Bornéu', 'Feminino', 'Diva', 7, NULL, TO_DATE('2016-04-18', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Sapajus apella', 'Macaco-prego', 'Masculino', 'Thiago', 7, NULL, TO_DATE('2019-03-20', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Sapajus apella', 'Macaco-prego', 'Masculino', 'Thiago', 7, NULL, TO_DATE('2019-03-20', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Anodorhynchus hyacinthinus', 'Arara-azul-grande', 'Masculino', 'Blu', 8, NULL, TO_DATE('2022-02-27', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Anodorhynchus hyacinthinus', 'Arara-azul-grande', 'Masculino', 'Blu', 8, NULL, TO_DATE('2022-02-27', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Anodorhynchus hyacinthinus', 'Arara-azul-grande', 'Feminino', 'Jade', 8, NULL, TO_DATE('2023-06-19', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Anodorhynchus hyacinthinus', 'Arara-azul-grande', 'Feminino', 'Jade', 8, NULL, TO_DATE('2023-06-19', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Ara chloropterus', 'Arara-vermelha', 'Feminino', 'Esmeralda', 8, NULL, TO_DATE('2021-08-16', 'YYYY-MM-DD'));    
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Ara chloropterus', 'Arara-vermelha', 'Feminino', 'Esmeralda', 8, NULL, TO_DATE('2021-08-16', 'YYYY-MM-DD'));    
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Elephas maximus', 'Elefante-asiático', 'Feminino', 'Daisy', 9, NULL, TO_DATE('2015-08-10', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Elephas maximus', 'Elefante-asiático', 'Feminino', 'Daisy', 9, NULL, TO_DATE('2015-08-10', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Python regius', 'Píton-real', 'Feminino', 'Nala', 10, NULL, TO_DATE('2021-04-25', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Python regius', 'Píton-real', 'Feminino', 'Nala', 10, NULL, TO_DATE('2021-04-25', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera tigris', 'Tigre-de-bengala', 'Masculino', 'Rajah', 11, NULL, TO_DATE('2019-11-15', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Panthera tigris', 'Tigre-de-bengala', 'Masculino', 'Rajah', 11, NULL, TO_DATE('2019-11-15', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Ursus arctos', 'Urso-pardo', 'Feminino', 'Masha', 12, NULL, TO_DATE('2014-07-03', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Ursus arctos', 'Urso-pardo', 'Feminino', 'Masha', 12, NULL, TO_DATE('2014-07-03', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Spheniscus demersus', 'Pinguim-do-cabo', 'Masculino', 'Pingu', 13, NULL, TO_DATE('2022-02-14', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Spheniscus demersus', 'Pinguim-do-cabo', 'Masculino', 'Pingu', 13, NULL, TO_DATE('2022-02-14', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Bubo bubo', 'Bufo-real', 'Feminino', 'Luna', 8, NULL, TO_DATE('2020-10-31', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Bubo bubo', 'Bufo-real', 'Feminino', 'Luna', 8, NULL, TO_DATE('2020-10-31', 'YYYY-MM-DD'));
 
-INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Feminino', 'Kiara', 1, NULL, TO_DATE('2023-05-10', 'YYYY-MM-DD'));
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (animal_seq.NEXTVAL, 'Panthera leo', 'Leão', 'Feminino', 'Kiara', 1, NULL, TO_DATE('2023-05-10', 'YYYY-MM-DD'));
 
 
 -- Inserindo dados na tabela Entrada
@@ -264,20 +264,20 @@ VALUES (5, 44455566677, TIMESTAMP '2024-03-05 16:30:00', '10mg', 'Ibuprofeno');
 
 
 -- Inserindo dados na tabela Manutencao
-INSERT INTO Manutencao (habitat_id, tipo_manutencao, data_manutencao, descricao)
-VALUES (1, 'Limpeza', TO_DATE('2024-03-01', 'YYYY-MM-DD'), 'Limpeza geral do habitat da Savana Africana');
+INSERT INTO Manutencao (id_manutencao, habitat_id, tipo_manutencao, data_manutencao, descricao)
+VALUES (manutencao_seq.NEXTVAL, 1, 'Limpeza', TO_DATE('2024-03-01', 'YYYY-MM-DD'), 'Limpeza geral do habitat da Savana Africana');
 
-INSERT INTO Manutencao (habitat_id, tipo_manutencao, data_manutencao, descricao)
-VALUES (2, 'Reparo', TO_DATE('2024-03-05', 'YYYY-MM-DD'), 'Reparo na cerca do habitat da Floresta Tropical');
+INSERT INTO Manutencao (id_manutencao, habitat_id, tipo_manutencao, data_manutencao, descricao)
+VALUES (manutencao_seq.NEXTVAL, 2, 'Reparo', TO_DATE('2024-03-05', 'YYYY-MM-DD'), 'Reparo na cerca do habitat da Floresta Tropical');
 
-INSERT INTO Manutencao (habitat_id, tipo_manutencao, data_manutencao, descricao)
-VALUES (3, 'Alimentação', TO_DATE('2024-03-06', 'YYYY-MM-DD'), 'Reabastecimento de feno para girafas');
+INSERT INTO Manutencao (id_manutencao, habitat_id, tipo_manutencao, data_manutencao, descricao)
+VALUES (manutencao_seq.NEXTVAL, 3, 'Alimentação', TO_DATE('2024-03-06', 'YYYY-MM-DD'), 'Reabastecimento de feno para girafas');
 
-INSERT INTO Manutencao (habitat_id, tipo_manutencao, data_manutencao, descricao)
-VALUES (4, 'Segurança', TO_DATE('2024-03-07', 'YYYY-MM-DD'), 'Inspeção de sistemas de refrigeração para pinguins');
+INSERT INTO Manutencao (id_manutencao, habitat_id, tipo_manutencao, data_manutencao, descricao)
+VALUES (manutencao_seq.NEXTVAL, 4, 'Segurança', TO_DATE('2024-03-07', 'YYYY-MM-DD'), 'Inspeção de sistemas de refrigeração para pinguins');
 
-INSERT INTO Manutencao (habitat_id, tipo_manutencao, data_manutencao, descricao)
-VALUES (5, 'Limpeza', TO_DATE('2024-03-08', 'YYYY-MM-DD'), 'Higienização do viveiro das araras');
+INSERT INTO Manutencao (id_manutencao, habitat_id, tipo_manutencao, data_manutencao, descricao)
+VALUES (manutencao_seq.NEXTVAL, 5, 'Limpeza', TO_DATE('2024-03-08', 'YYYY-MM-DD'), 'Higienização do viveiro das araras');
 
 -- Inserindo dados na tabela Manutencao_Tratadores
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
