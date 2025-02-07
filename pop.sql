@@ -295,12 +295,18 @@ VALUES (10, 11122233344);
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
 VALUES (11, 33344455566);
 
--- Inserindo dados na tabela Alimentacao
+--Inserindo dados na tabela Alimentação
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (1, '08:00', 'Sem restrições', 7.00, 'Carne fresca'); -- Refeição do leão Simba
+VALUES (1, '08:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Simba
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (2, '08:00', 'Sem restrições', 7.00, 'Carne fresca'); -- Refeição do leão Alex
+VALUES (1, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Simba
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (2, '08:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Alex
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (2, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Alex
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
 VALUES (3, '09:00', 'Sem restrições', 25.00, 'Gramíneas, folhas, galhos e ervas'); -- Refeição zebra
@@ -318,7 +324,10 @@ INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, d
 VALUES (7, '10:00', 'Sem restrições', 0.30, 'Insetos'); -- Refeição suricato Mauricio
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (8, '11:00', 'Sem restrições', 5.00, 'Carne fresca'); -- Refeição onça 
+VALUES (8, '11:00', 'Sem restrições', 2.50, 'Carne fresca'); -- Refeição onça 
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (8, '19:00', 'Sem restrições', 2.50, 'Carne fresca'); -- Refeição onça 
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
 VALUES (9, '08:00', 'Sem restrições', 5.00, 'Figos selvagens, duriões, sementes, iogurte, semente de linhaça, mel'); -- Refeição orangotango
@@ -334,6 +343,36 @@ VALUES (12, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verdura
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
 VALUES (13, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes'); -- Refeição arara Esmeralda
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (14, '11:00', 'Sem restrições', 50.00, 'Gramíneas, folhas, frutas, raízes, cascas de árvores e galhos'); -- Refeição elefante
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (14, '21:00', 'Sem restrições', 50.00, 'Gramíneas, folhas, frutas, raízes, cascas de árvores e galhos'); -- Refeição elefante
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (15, '10:00', 'Comer a cada 2 dias', 0.50, 'Pequenos roedores'); -- Refeição piton
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (16, '11:00', 'Sem restrições', 13.50, 'Carne fresca'); -- Refeição tigre de bengala
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (16, '20:00', 'Sem restrições', 13.50, 'Carne fresca'); -- Refeição tigre de bengala
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (17, '10:00', 'Sem restrições', 30.00, 'Salmão e frutas'); -- Refeição urso pardo
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (18, '11:00', 'Sem restrições', 0.50, 'Ração, peixes, lulas e crustáceos'); -- Refeição pinguim
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (19, '21:00', 'Sem restrições', 0.50, 'Pequenos roedores'); -- Refeição bufo real
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (20, '08:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição leão kiara
+
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (20, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição leão kiara
 
 -- Inserindo dados na tabela Telefone
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
