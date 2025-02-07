@@ -48,6 +48,24 @@ VALUES (12345678901, 'João', 'Silva', TO_DATE('2014-05-10', 'YYYY-MM-DD'));
 INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
 VALUES (98765432101, 'Maria', 'Santos', TO_DATE('1995-08-25', 'YYYY-MM-DD'));
 
+INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
+VALUES (38517646589, 'Timoteo', 'Carvalho', TO_DATE('1995-12-27', 'YYYY-MM-DD'));
+
+INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
+VALUES (69561898258, 'Talita', 'Silva', TO_DATE('1989-12-13', 'YYYY-MM-DD'));
+
+INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
+VALUES (86969751416, 'Olivia', 'Rodrigues', TO_DATE('2003-02-20', 'YYYY-MM-DD'));
+
+INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
+VALUES (63845561739, 'Rosa', 'Ferreira', TO_DATE('1998-02-19', 'YYYY-MM-DD'));
+
+INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
+VALUES (61464843054, 'Benjamin', 'Barros', TO_DATE('1995-08-16', 'YYYY-MM-DD'));
+
+INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
+VALUES (01834472805, 'Natasha', 'Carneiro', TO_DATE('2004-12-06', 'YYYY-MM-DD'));
+
 
 -- Inserindo dados na tabela Funcionario
 INSERT INTO Funcionario (cpf, cpf_supervisor, email, nome, sobrenome, num_cart_trabalho, idade, data_nascimento)
