@@ -47,7 +47,7 @@ INSERT INTO Medicamento (dosagem, nome)
 VALUES ('10ml', 'Antibiótico X'); -- Antibiótico veterinário
 
 INSERT INTO Medicamento (dosagem, nome)
-VALUES ('10mg', 'Ibuprofeno');
+VALUES ('10mg', 'Ibuprofeno'); -- Remedio anti-inflamatório
 
 -- Inserindo dados na tabela Promocao
 INSERT INTO Promocao (data_inicio, data_termino, requisitos, desconto)
@@ -248,10 +248,10 @@ VALUES (5, 44455566677, TIMESTAMP '2024-03-05 16:30:00', 'Check-up pós-operató
 
 -- Inserindo dados na tabela Tratamento
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
-VALUES (1, 22233344455, TIMESTAMP '2024-03-01 09:00:00', '5mg', 'Paracetamol'); -- Tratamento para o leão Simba
+VALUES (1, 22233344455, TIMESTAMP '2024-03-01 09:00:00', '5mg', 'Paracetamol');
 
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
-VALUES (2, 22233344455, TIMESTAMP '2024-03-02 11:30:00', '10ml', 'Antibiótico X'); -- Tratamento para o elefante Dumbo
+VALUES (2, 22233344455, TIMESTAMP '2024-03-02 11:30:00', '10ml', 'Antibiótico X');
 
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
 VALUES (3, 44455566677, TIMESTAMP '2024-03-03 14:00:00', '10ml', 'Antibiótico X' );
@@ -336,17 +336,36 @@ INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, d
 VALUES (13, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes'); -- Refeição arara Esmeralda
 
 -- Inserindo dados na tabela Telefone
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(11122233344, 01, 123456);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(11122233344, 01, 123456);
 
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(22233344455, 01, 234567);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(11122233344, 03, 987654);
 
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(33344455566, 01, 345678);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(22233344455, 01, 234567);
 
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(44455566677, 01, 456789);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(22233344455, 01, 322332);
 
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(55566677788, 02, 213245);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(33344455566, 01, 345678);
 
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(66677788899, 02, 546789);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(44455566677, 01, 456789);
 
-insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(77788899900, 02, 267134);
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(44455566677, 01, 976532);
+
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(55566677788, 02, 213245);
+
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(66677788899, 02, 546789);
+
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(77788899900, 02, 267134);
+
+INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
+VALUES(77788899900, 02, 231444);
 
