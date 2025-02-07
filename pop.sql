@@ -56,6 +56,8 @@ VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024
 INSERT INTO Promocao (id, data_inicio, data_termino, requisitos, desconto)
 VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 'Estudantes', 20.00);
 
+INSERT INTO Promocao (ID, DATA_INICIO, DATA_TERMINO, REQUISITOS, DESCONTOS) 
+VALUES (3, TO_DATE('2024-01-01', 'YYYY-MM-DD'), TO_DATE('2030-01-01', 'YYYY-MM-DD'), 'nenhum requisito', 0.00);
 
 -- Inserindo dados na tabela Visitante
 INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
@@ -222,12 +224,50 @@ VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-03
 INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada)
 VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 'Família', TIMESTAMP '2024-07-02 14:30:00');
 
+INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada) 
+VALUES (3, TO_DATE('2024-05-01', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-05-01 10:00:00'); 
+
+INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada) 
+VALUES (4, TO_DATE('2024-05-01', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-05-01 10:00:00');
+
+INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada) 
+VALUES (5, TO_DATE('2024-06-05', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-06-05 13:00:00');
+
+INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada)
+VALUES (6, TO_DATE('2024-06-05', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-06-05 15:00:00');
+
+INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada) 
+VALUES (7, TO_DATE('2024-08-01', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-08-01 12:00:00');
+
+INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada) 
+VALUES (8, TO_DATE('2024-09-05', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-09-05 18:00:00');
+
+
 -- Inserindo dados na tabela Compra
 INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
 VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 12345678901, 1);
 
 INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
 VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 98765432101, 2);
+
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (3, TO_DATE('2024-05-01', 'YYYY-MM-DD'), 98765432101, 3);
+
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (4, TO_DATE('2024-05-01', 'YYYY-MM-DD'), 69561898258, 3);
+
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (5, TO_DATE('2024-06-05', 'YYYY-MM-DD'), 86969751416, 2);
+
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (6, TO_DATE('2024-06-05', 'YYYY-MM-DD'), 63845561739, 3);
+
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (7, TO_DATE('2024-08-01', 'YYYY-MM-DD'), 61464843054, 3);
+
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (8, TO_DATE('2024-09-05', 'YYYY-MM-DD'), 01834472805, 3);
+
 
 -- Inserindo dados na tabela Consulta
 INSERT INTO Consulta (id_animal, cpf_veterinario, data_hora, obs_medica)
@@ -376,22 +416,22 @@ VALUES (20, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição le
 
 -- Inserindo dados na tabela Telefone
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
-VALUES(11122233344, 01, 123456);
+VALUES (11122233344, 01, 123456);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
-VALUES(11122233344, 03, 987654);
+VALUES (11122233344, 03, 987654);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
-VALUES(22233344455, 01, 234567);
+VALUES (22233344455, 01, 234567);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
-VALUES(22233344455, 01, 322332);
+VALUES (22233344455, 01, 322332);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
-VALUES(33344455566, 01, 345678);
+VALUES (33344455566, 01, 345678);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
-VALUES(44455566677, 01, 456789);
+VALUES (44455566677, 01, 456789);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
 VALUES(44455566677, 01, 976532);
@@ -407,4 +447,8 @@ VALUES(77788899900, 02, 267134);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
 VALUES(77788899900, 02, 231444);
+
+
+
+
 
