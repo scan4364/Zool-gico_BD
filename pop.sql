@@ -194,19 +194,19 @@ INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat
 VALUES ('Ara chloropterus', 'Arara-vermelha', 'Feminino', 'Esmeralda', 8, NULL, TO_DATE('2021-08-16', 'YYYY-MM-DD'));    
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Elephas maximus', 'Elefante-asiático', 'Feminino', 'Daisy', 2, NULL, TO_DATE('2015-08-10', 'YYYY-MM-DD'));
+VALUES ('Elephas maximus', 'Elefante-asiático', 'Feminino', 'Daisy', 9, NULL, TO_DATE('2015-08-10', 'YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Python regius', 'Píton-real', 'Feminino', 'Nala', 6, NULL, TO_DATE('2021-04-25', 'YYYY-MM-DD'));
+VALUES ('Python regius', 'Píton-real', 'Feminino', 'Nala', 10, NULL, TO_DATE('2021-04-25', 'YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera tigris', 'Tigre-de-bengala', 'Masculino', 'Rajah', 1, NULL, TO_DATE('2019-11-15', 'YYYY-MM-DD'));
+VALUES ('Panthera tigris', 'Tigre-de-bengala', 'Masculino', 'Rajah', 11, NULL, TO_DATE('2019-11-15', 'YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Ursus arctos', 'Urso-pardo', 'Feminino', 'Masha', 3, NULL, TO_DATE('2014-07-03', 'YYYY-MM-DD'));
+VALUES ('Ursus arctos', 'Urso-pardo', 'Feminino', 'Masha', 12, NULL, TO_DATE('2014-07-03', 'YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Spheniscus demersus', 'Pinguim-do-cabo', 'Masculino', 'Pingu', 4, NULL, TO_DATE('2022-02-14', 'YYYY-MM-DD'));
+VALUES ('Spheniscus demersus', 'Pinguim-do-cabo', 'Masculino', 'Pingu', 13, NULL, TO_DATE('2022-02-14', 'YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES ('Bubo bubo', 'Bufo-real', 'Feminino', 'Luna', 8, NULL, TO_DATE('2020-10-31', 'YYYY-MM-DD'));
