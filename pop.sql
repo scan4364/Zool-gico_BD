@@ -238,13 +238,13 @@ INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
 VALUES (2, 22233344455, TIMESTAMP '2024-03-02 11:30:00', '10ml', 'Antibiótico X'); -- Tratamento para o elefante Dumbo
 
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
-VALUES (3, 44455566677, TIMESTAMP '2024-03-03 14:30:00', '2mg', 'Vitamina B12');
+VALUES (3, 44455566677, TIMESTAMP '2024-03-03 14:00:00', '10ml', 'Antibiótico X' );
 
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
-VALUES (4, 22233344455, TIMESTAMP '2024-03-04 10:45:00', '3ml', 'Anti-inflamatório');
+VALUES (8, 22233344455, TIMESTAMP '2024-03-04 10:15:00', '10mg', 'Ibuprofeno');
 
 INSERT INTO Tratamento (id_animal, cpf_veterinario, data_hora, dosagem, nome)
-VALUES (5, 44455566677, TIMESTAMP '2024-03-05 17:00:00', '500mg', 'Analgésico');
+VALUES (5, 44455566677, TIMESTAMP '2024-03-05 16:30:00', '10mg', 'Ibuprofeno');
 
 
 -- Inserindo dados na tabela Manutencao
@@ -265,19 +265,19 @@ VALUES (5, 'Limpeza', TO_DATE('2024-03-08', 'YYYY-MM-DD'), 'Higienização do vi
 
 -- Inserindo dados na tabela Manutencao_Tratadores
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (1, 11122233344);
+VALUES (7, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (2, 11122233344);
+VALUES (8, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (3, 33344455566);
+VALUES (9, 33344455566);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (4, 11122233344);
+VALUES (10, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (5, 33344455566);
+VALUES (11, 33344455566);
 
 -- Inserindo dados na tabela Alimentacao
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
