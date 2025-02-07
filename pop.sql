@@ -318,3 +318,19 @@ VALUES (12, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verdura
 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
 VALUES (13, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes'); -- Refeição arara Esmeralda
+
+-- Inserindo dados na tabela Telefone
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(11122233344, 01, 123456);
+
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(22233344455, 01, 234567);
+
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(33344455566, 01, 345678);
+
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(44455566677, 01, 456789);
+
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(55566677788, 02, 213245);
+
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(66677788899, 02, 546789);
+
+insert into Telefone (CPF_FUNCIONARIO, DDD, NUMERO) VALUES(77788899900, 02, 267134);
+
