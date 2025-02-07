@@ -73,10 +73,10 @@ VALUES (77788899900, 11122233344, 'lucas.martins@zoo.com', 'Lucas', 'Martins', 1
 
 -- Inserindo dados na tabela Data_Contrato
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1001, TO_DATE('2023-01-10', 'YYYY-MM-DD'));
+VALUES (1001, TO_DATE('2023-01-10', 'YYYY-MM-DD')); -- João Ferreira
 
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1002, TO_DATE('2022-05-15', 'YYYY-MM-DD'));
+VALUES (1002, TO_DATE('2022-05-15', 'YYYY-MM-DD')); -- Carlos Oliveira
 
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
 VALUES (1003, TO_DATE('2021-08-20', 'YYYY-MM-DD'));  -- Carlos Oliveira
@@ -102,6 +102,8 @@ VALUES (11122233344);  -- João Ferreira (Tratador)
 INSERT INTO Tratador (cpf_funcionario)
 VALUES (33344455566);  -- Carlos Oliveira (Tratador)
 
+INSERT INTO Tratador (cpf_funcionario)
+VALUES (55566677788);  -- Pedro Costa (Tratador)
 
 -- Inserindo dados na tabela Veterinario
 
@@ -111,10 +113,15 @@ VALUES (22233344455);  -- Maria Silva (Veterinário)
 INSERT INTO Veterinario (cpf_funcionario)
 VALUES (44455566677);  -- Ana Santos (Veterinário)
 
+INSERT INTO Veterinario (cpf_funcionario)
+VALUES (66677788899);  -- Julia Fernandes (Veterinário)
+
+INSERT INTO Veterinario (cpf_funcionario)
+VALUES (77788899900);  -- Lucas Martins (Veterinário)
 
 -- Inserindo dados na tabela Animal
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Masculino', 'Simba', 1, NULL, TO_DATE('2020-07-01', 'YYYY-MM-DD')); -- Leão da Savana Africana
+VALUES ('Panthera leo', 'Leão', 'Masculino', 'Simba', 1, NULL, TO_DATE('2020-07-01', 'YYYY-MM-DD')); 
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES ('Panthera leo', 'Leão', 'Masculino', 'Alex', 1, NULL, TO_DATE('2020-06-12','YYYY-MM-DD'));
@@ -171,7 +178,7 @@ INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat
 VALUES ('Bubo bubo', 'Bufo-real', 'Feminino', 'Luna', 8, NULL, TO_DATE('2020-10-31', 'YYYY-MM-DD'));
 
 INSERT INTO Animal (nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES ('Panthera leo', 'Leão', 'Feminino', 'Kiara', 1, 1, TO_DATE('2023-05-10', 'YYYY-MM-DD'));
+VALUES ('Panthera leo', 'Leão', 'Feminino', 'Kiara', 1, NULL, TO_DATE('2023-05-10', 'YYYY-MM-DD'));
 
 
 -- Inserindo dados na tabela Entrada
@@ -181,12 +188,12 @@ VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 'Individual', TIMESTAMP '2024-03
 INSERT INTO Entrada (numero_entrada, dia_entrada, tipo_entrada, hora_entrada)
 VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 'Família', TIMESTAMP '2024-07-02 14:30:00');
 
--- -- Inserindo dados na tabela Compra
--- INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
--- VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 12345678901, 1);
+-- Inserindo dados na tabela Compra
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (1, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 12345678901, 1);
 
--- INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
--- VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 98765432101, 2);
+INSERT INTO Compra (numero_entrada, dia_entrada, cpf, id_promocao)
+VALUES (2, TO_DATE('2024-07-02', 'YYYY-MM-DD'), 98765432101, 2);
 
 -- Inserindo dados na tabela Consulta
 INSERT INTO Consulta (id_animal, cpf_veterinario, data_hora, obs_medica)
