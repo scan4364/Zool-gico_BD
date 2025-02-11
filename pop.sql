@@ -74,8 +74,8 @@ VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024
 INSERT INTO Promocao (id, data_inicio, data_termino, requisitos, desconto)
 VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 'Estudantes', 20.00);
 
-INSERT INTO Promocao (ID, DATA_INICIO, DATA_TERMINO, REQUISITOS, DESCONTOS) 
-VALUES (3, TO_DATE('2024-01-01', 'YYYY-MM-DD'), TO_DATE('2030-01-01', 'YYYY-MM-DD'), 'nenhum requisito', 0.00);
+INSERT INTO Promocao (id, data_inicio, data_termino, requisitos, desconto) 
+VALUES (promocao_seq.NEXTVAL, TO_DATE('2024-01-01', 'YYYY-MM-DD'), TO_DATE('2030-01-01', 'YYYY-MM-DD'), 'nenhum requisito', 0.00);
 
 -- Inserindo dados na tabela Visitante
 INSERT INTO Visitante (cpf, nome, sobrenome, data_nascimento)
