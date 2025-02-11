@@ -1,53 +1,71 @@
 -- Inserindo dados na tabela Habitat
-INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-01-15', 'YYYY-MM-DD'), 30, 3); -- Leao
 
+-- Leao
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 300, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Zebra
+VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-01-15', 'YYYY-MM-DD'), 30, 3);
 
+-- Zebra
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 30, 1); -- Girafa
+VALUES (habitat_seq.NEXTVAL, 300, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1);
 
+-- Girafa
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1); -- Hipopotamo
+VALUES (habitat_seq.NEXTVAL, 600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 30, 1);
 
+-- Hipopotamo
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 20, 2); -- Suricato 
+VALUES (habitat_seq.NEXTVAL, 600, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 45, 1);
 
+-- Suricato 
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Onca
+VALUES (habitat_seq.NEXTVAL, 200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 20, 2);
 
+-- Onca
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1); -- Primatas
+VALUES (habitat_seq.NEXTVAL, 400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1);
 
+-- Primatas
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 4); -- Aviario
+VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 1);
 
+-- Aviario
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Elefante
+VALUES (habitat_seq.NEXTVAL, 900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 50, 4);
 
+-- Elefante
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Cobra
+VALUES (habitat_seq.NEXTVAL, 900, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1);
 
+-- Cobra
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Tigre
+VALUES (habitat_seq.NEXTVAL, 200, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1);
 
+-- Tigre
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Urso
+VALUES (habitat_seq.NEXTVAL, 400, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1);
 
+-- Urso
 INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
-VALUES (habitat_seq.NEXTVAL, 800, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1); -- Pinguim
+VALUES (habitat_seq.NEXTVAL, 500, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1);
+
+-- Pinguim
+INSERT INTO Habitat (id, tamanho, ultima_manutencao, intervalo_manutencao, qtd_animais)
+VALUES (habitat_seq.NEXTVAL, 800, TO_DATE('2024-02-15', 'YYYY-MM-DD'), 90, 1);
 
 
 -- Inserindo dados na tabela Medicamento
-INSERT INTO Medicamento (dosagem, nome)
-VALUES ('5mg', 'Paracetamol'); -- Medicamento genérico
 
+-- Medicamento genérico
 INSERT INTO Medicamento (dosagem, nome)
-VALUES ('10ml', 'Antibiótico X'); -- Antibiótico veterinário
+VALUES ('5mg', 'Paracetamol');
 
+-- Antibiótico veterinário
 INSERT INTO Medicamento (dosagem, nome)
-VALUES ('10mg', 'Ibuprofeno'); -- Remedio anti-inflamatório
+VALUES ('10ml', 'Antibiótico X');
+
+-- Remedio anti-inflamatório
+INSERT INTO Medicamento (dosagem, nome)
+VALUES ('10mg', 'Ibuprofeno');
 
 -- Inserindo dados na tabela Promocao
 INSERT INTO Promocao (id, data_inicio, data_termino, requisitos, desconto)
@@ -107,53 +125,71 @@ VALUES (66677788899, 11122233344, 'julia.fernandes@zoo.com', 'Julia', 'Fernandes
 INSERT INTO Funcionario (cpf, cpf_supervisor, email, nome, sobrenome, num_cart_trabalho, idade, data_nascimento)
 VALUES (77788899900, 11122233344, 'lucas.martins@zoo.com', 'Lucas', 'Martins', 1007, 29, TO_DATE('1994-05-14', 'YYYY-MM-DD'));
 
+
 -- Inserindo dados na tabela Data_Contrato
-INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1001, TO_DATE('2023-01-10', 'YYYY-MM-DD')); -- João Ferreira
 
+-- João Ferreira
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1002, TO_DATE('2022-05-15', 'YYYY-MM-DD')); -- Carlos Oliveira
+VALUES (1001, TO_DATE('2023-01-10', 'YYYY-MM-DD'));
 
+-- Carlos Oliveira
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1003, TO_DATE('2021-08-20', 'YYYY-MM-DD'));  -- Carlos Oliveira
+VALUES (1002, TO_DATE('2022-05-15', 'YYYY-MM-DD'));
 
+-- Carlos Oliveira
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1004, TO_DATE('2020-03-12', 'YYYY-MM-DD'));  -- Ana Santos
+VALUES (1003, TO_DATE('2021-08-20', 'YYYY-MM-DD')); 
 
+-- Ana Santos
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1005, TO_DATE('2023-02-25', 'YYYY-MM-DD'));  -- Pedro Costa
+VALUES (1004, TO_DATE('2020-03-12', 'YYYY-MM-DD')); 
 
+-- Pedro Costa
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1006, TO_DATE('2019-11-30', 'YYYY-MM-DD'));  -- Julia Fernandes
+VALUES (1005, TO_DATE('2023-02-25', 'YYYY-MM-DD')); 
 
+-- Julia Fernandes
 INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
-VALUES (1007, TO_DATE('2022-07-05', 'YYYY-MM-DD'));  -- Lucas Martins
+VALUES (1006, TO_DATE('2019-11-30', 'YYYY-MM-DD')); 
+
+-- Lucas Martins
+INSERT INTO Data_Contrato (num_carteira_trabalho, data_contrato)
+VALUES (1007, TO_DATE('2022-07-05', 'YYYY-MM-DD')); 
 
 
 -- Inserindo dados na tabela Tratador
 
+-- João Ferreira (Tratador)
 INSERT INTO Tratador (cpf_funcionario)
-VALUES (11122233344);  -- João Ferreira (Tratador)
+VALUES (11122233344); 
 
+-- Carlos Oliveira (Tratador)
 INSERT INTO Tratador (cpf_funcionario)
-VALUES (33344455566);  -- Carlos Oliveira (Tratador)
+VALUES (33344455566); 
 
+-- Pedro Costa (Tratador)
 INSERT INTO Tratador (cpf_funcionario)
-VALUES (55566677788);  -- Pedro Costa (Tratador)
+VALUES (55566677788); 
+
 
 -- Inserindo dados na tabela Veterinario
 
+-- Maria Silva (Veterinário)
 INSERT INTO Veterinario (cpf_funcionario)
-VALUES (22233344455);  -- Maria Silva (Veterinário)
+VALUES (22233344455); 
 
+-- Ana Santos (Veterinário)
 INSERT INTO Veterinario (cpf_funcionario)
-VALUES (44455566677);  -- Ana Santos (Veterinário)
+VALUES (44455566677); 
 
+-- Julia Fernandes (Veterinário)
 INSERT INTO Veterinario (cpf_funcionario)
-VALUES (66677788899);  -- Julia Fernandes (Veterinário)
+VALUES (66677788899); 
 
+-- Lucas Martins (Veterinário)
 INSERT INTO Veterinario (cpf_funcionario)
-VALUES (77788899900);  -- Lucas Martins (Veterinário)
+VALUES (77788899900); 
+
 
 -- Inserindo dados na tabela Animal
 INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
@@ -319,6 +355,7 @@ VALUES (manutencao_seq.NEXTVAL, 4, 'Segurança', TO_DATE('2024-03-07', 'YYYY-MM-
 INSERT INTO Manutencao (id_manutencao, habitat_id, tipo_manutencao, data_manutencao, descricao)
 VALUES (manutencao_seq.NEXTVAL, 5, 'Limpeza', TO_DATE('2024-03-08', 'YYYY-MM-DD'), 'Higienização do viveiro das araras');
 
+
 -- Inserindo dados na tabela Manutencao_Tratadores
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
 VALUES (7, 11122233344);
@@ -335,84 +372,113 @@ VALUES (10, 11122233344);
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
 VALUES (11, 33344455566);
 
---Inserindo dados na tabela Alimentação
-INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (1, '08:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Simba
 
-INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (1, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Simba
+-- Inserindo dados na tabela Alimentação
 
+-- Refeição 1 do leão Simba 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (2, '08:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Alex
+VALUES (1, '08:00', 'Sem restrições', 3.50, 'Carne fresca');
 
+-- Refeição 2 do leão Simba
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (2, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição do leão Alex
+VALUES (1, '16:00', 'Sem restrições', 3.50, 'Carne fresca');
 
+-- Refeição 1 do leão Alex
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (3, '09:00', 'Sem restrições', 25.00, 'Gramíneas, folhas, galhos e ervas'); -- Refeição zebra
+VALUES (2, '08:00', 'Sem restrições', 3.50, 'Carne fresca');
 
+-- Refeição 2 do leão Alex
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (4, '08:00', 'Sem restrições', 34.00, 'Folhas, caules, flores e frutos'); -- Refeição girafa
+VALUES (2, '16:00', 'Sem restrições', 3.50, 'Carne fresca');
 
+-- Refeição zebra
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (5, '09:30', 'Sem restrições', 36.00, 'Folhas, gramíneas, brotos e juncos'); -- Refeição hipopótamo
+VALUES (3, '09:00', 'Sem restrições', 25.00, 'Gramíneas, folhas, galhos e ervas');
 
+-- Refeição girafa
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (6, '10:00', 'Sem restrições', 0.30, 'Insetos'); -- Refeição suricato Julian
+VALUES (4, '08:00', 'Sem restrições', 34.00, 'Folhas, caules, flores e frutos');
 
+-- Refeição hipopótamo
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (7, '10:00', 'Sem restrições', 0.30, 'Insetos'); -- Refeição suricato Mauricio
+VALUES (5, '09:30', 'Sem restrições', 36.00, 'Folhas, gramíneas, brotos e juncos');
 
+-- Refeição suricato Julian
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (8, '11:00', 'Sem restrições', 2.50, 'Carne fresca'); -- Refeição onça 
+VALUES (6, '10:00', 'Sem restrições', 0.30, 'Insetos');
 
+-- Refeição suricato Mauricio
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (8, '19:00', 'Sem restrições', 2.50, 'Carne fresca'); -- Refeição onça 
+VALUES (7, '10:00', 'Sem restrições', 0.30, 'Insetos');
 
+-- Refeição 1 da onça 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (9, '08:00', 'Sem restrições', 5.00, 'Figos selvagens, duriões, sementes, iogurte, semente de linhaça, mel'); -- Refeição orangotango
+VALUES (8, '11:00', 'Sem restrições', 2.50, 'Carne fresca');
 
+-- Refeição 2 da onça 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (10, '08:00', 'Sem restrições', 0.50, 'Frutas, verduras, legumes, sementes, ovos, peixe, frango e arroz cozido'); -- Refeição macaco prego
+VALUES (8, '19:00', 'Sem restrições', 2.50, 'Carne fresca');
 
+-- Refeição orangotango
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (11, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes'); -- Refeição arara Blu
+VALUES (9, '08:00', 'Sem restrições', 5.00, 'Figos selvagens, duriões, sementes, iogurte, semente de linhaça, mel');
 
+-- Refeição macaco prego
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (12, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes'); -- Refeição arara Jade 
+VALUES (10, '08:00', 'Sem restrições', 0.50, 'Frutas, verduras, legumes, sementes, ovos, peixe, frango e arroz cozido');
 
+-- Refeição arara Blu
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (13, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes'); -- Refeição arara Esmeralda
+VALUES (11, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes');
 
+-- Refeição arara Jade 
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (14, '11:00', 'Sem restrições', 50.00, 'Gramíneas, folhas, frutas, raízes, cascas de árvores e galhos'); -- Refeição elefante
+VALUES (12, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes');
 
+-- Refeição arara Esmeralda
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (14, '21:00', 'Sem restrições', 50.00, 'Gramíneas, folhas, frutas, raízes, cascas de árvores e galhos'); -- Refeição elefante
+VALUES (13, '10:30', 'Sem restrições', 0.30, 'Frutas frescas, legumes, verduras, ração específica para aves exóticas e sementes');
 
+-- Refeição 1 do elefante
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (15, '10:00', 'Comer a cada 2 dias', 0.50, 'Pequenos roedores'); -- Refeição piton
+VALUES (14, '11:00', 'Sem restrições', 50.00, 'Gramíneas, folhas, frutas, raízes, cascas de árvores e galhos');
 
+-- Refeição 2 do elefante
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (16, '11:00', 'Sem restrições', 13.50, 'Carne fresca'); -- Refeição tigre de bengala
+VALUES (14, '21:00', 'Sem restrições', 50.00, 'Gramíneas, folhas, frutas, raízes, cascas de árvores e galhos');
 
+-- Refeição piton
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (16, '20:00', 'Sem restrições', 13.50, 'Carne fresca'); -- Refeição tigre de bengala
+VALUES (15, '10:00', 'Comer a cada 2 dias', 0.50, 'Pequenos roedores');
 
+-- Refeição 1 do tigre de bengala
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (17, '10:00', 'Sem restrições', 30.00, 'Salmão e frutas'); -- Refeição urso pardo
+VALUES (16, '11:00', 'Sem restrições', 13.50, 'Carne fresca');
 
+-- Refeição 2 do tigre de bengala
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (18, '11:00', 'Sem restrições', 0.50, 'Ração, peixes, lulas e crustáceos'); -- Refeição pinguim
+VALUES (16, '20:00', 'Sem restrições', 13.50, 'Carne fresca');
 
+-- Refeição urso pardo
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (19, '21:00', 'Sem restrições', 0.50, 'Pequenos roedores'); -- Refeição bufo real
+VALUES (17, '10:00', 'Sem restrições', 30.00, 'Salmão e frutas');
 
+-- Refeição pinguim
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (20, '08:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição leão kiara
+VALUES (18, '11:00', 'Sem restrições', 0.50, 'Ração, peixes, lulas e crustáceos');
 
+-- Refeição bufo real
 INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
-VALUES (20, '16:00', 'Sem restrições', 3.50, 'Carne fresca'); -- Refeição leão kiara
+VALUES (19, '21:00', 'Sem restrições', 0.50, 'Pequenos roedores');
+
+-- Refeição 1 da leõa kiara
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (20, '08:00', 'Sem restrições', 3.50, 'Carne fresca');
+
+-- Refeição 2 da leõa kiara
+INSERT INTO Alimentacao (id_animal, horario_refeicao, observacoes, quantidade, descricao)
+VALUES (20, '16:00', 'Sem restrições', 3.50, 'Carne fresca');
+
 
 -- Inserindo dados na tabela Telefone
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
@@ -447,7 +513,6 @@ VALUES(77788899900, 02, 267134);
 
 INSERT INTO Telefone (CPF_FUNCIONARIO, DDD, NUMERO) 
 VALUES(77788899900, 02, 231444);
-
 
 
 
