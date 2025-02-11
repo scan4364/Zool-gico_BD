@@ -193,6 +193,9 @@ VALUES (77788899900);
 
 -- Inserindo dados na tabela Animal
 INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
+VALUES (20, 'Panthera leo', 'Leão', 'Feminino', 'Kiara', 1, NULL, TO_DATE('2023-05-10', 'YYYY-MM-DD'));
+
+INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES (animal_seq.NEXTVAL, 'Panthera leo', 'Leão', 'Masculino', 'Simba', 1, 20, TO_DATE('2020-07-01', 'YYYY-MM-DD')); 
 
 INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
@@ -248,9 +251,6 @@ VALUES (animal_seq.NEXTVAL, 'Spheniscus demersus', 'Pinguim-do-cabo', 'Masculino
 
 INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
 VALUES (animal_seq.NEXTVAL, 'Bubo bubo', 'Bufo-real', 'Feminino', 'Luna', 8, NULL, TO_DATE('2020-10-31', 'YYYY-MM-DD'));
-
-INSERT INTO Animal (id, nome_cientifico, nome_popular, genero, nome_proprio, habitat, id_mae, data_nascimento)
-VALUES (animal_seq.NEXTVAL, 'Panthera leo', 'Leão', 'Feminino', 'Kiara', 1, NULL, TO_DATE('2023-05-10', 'YYYY-MM-DD'));
 
 
 -- Inserindo dados na tabela Entrada
