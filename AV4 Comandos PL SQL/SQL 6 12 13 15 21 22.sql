@@ -1,0 +1,16 @@
+-- SELECT-FROM-WHERE
+
+
+-- MAX
+
+
+-- MIN
+
+
+-- COUNT
+
+
+-- ORDER BY
+
+
+-- GROUP BY
