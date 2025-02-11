@@ -177,8 +177,8 @@ CREATE TABLE Manutencao (
     tipo_manutencao   VARCHAR2(100) NOT NULL,
     data_manutencao   DATE NOT NULL,
     descricao         VARCHAR2(255),
-    CONSTRAINT manuntencao_tratadores_fkey PRIMARY KEY (id_manutencao),
-    CONSTRAINT manuntencao_tratadores_fkey FOREIGN KEY (habitat_id) REFERENCES HABITAT(id) 
+    CONSTRAINT manuntencao_fkey PRIMARY KEY (id_manutencao),
+    CONSTRAINT manuntencao_fkey FOREIGN KEY (habitat_id) REFERENCES HABITAT(id) 
 );
 
 -- Criação da tabela Manutencao_tratadores
