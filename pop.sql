@@ -358,19 +358,19 @@ VALUES (manutencao_seq.NEXTVAL, 5, 'Limpeza', TO_DATE('2024-03-08', 'YYYY-MM-DD'
 
 -- Inserindo dados na tabela Manutencao_Tratadores
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (7, 11122233344);
+VALUES (1, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (8, 11122233344);
+VALUES (2, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (9, 33344455566);
+VALUES (3, 33344455566);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (10, 11122233344);
+VALUES (4, 11122233344);
 
 INSERT INTO Manutencao_Tratadores (id_manutencao, id_tratador)
-VALUES (11, 33344455566);
+VALUES (5, 33344455566);
 
 
 -- Inserindo dados na tabela Alimentação
