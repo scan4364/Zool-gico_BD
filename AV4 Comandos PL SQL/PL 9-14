@@ -1,6 +1,6 @@
 
 --------------------------------------------------------------------------------
-CASE WHEN
+--CASE WHEN
 --------------------------------------------------------------------------------
 -- de acordo com a entrada, saber se foi um visitante solitario ou visitantes em famila/grupo
 DECLARE
@@ -25,7 +25,7 @@ END;
 /
 
 --------------------------------------------------------------------------------
-LOOP EXIT WHEN
+--LOOP EXIT WHEN
 -------------------------------------------------------------------------------------
 --Você está verificando todos os animais no zoológico até encontrar um animal do gênero "Feminino"
 DECLARE
@@ -46,7 +46,7 @@ END;
 
 
 --------------------------------------------------------------------------------
-WHILE LOOP
+--WHILE LOOP
 -------------------------------------------------------------------------------------
 --calcula o total de animais em todos os habitats
 DECLARE
@@ -84,7 +84,7 @@ END;
 /
 
 ----------------------------------------------------------------------------------------
-FOR IN LOOP
+--FOR IN LOOP
 ----------------------------------------------------------------------------------------
 --listar todos os funcionários e seus telefones para criar um diretório
 BEGIN
@@ -99,7 +99,7 @@ END;
 /
 
 ----------------------------------------------------------------------------------------
-SELECT ... INTO
+--SELECT ... INTO
 ---------------------------------------------------------------------------------------
 -- buscar o nome completo de um visitante específico para personalizar uma mensagem de boas-vindas
 DECLARE
@@ -116,7 +116,7 @@ END;
 
 
 ----------------------------------------------------------------------------------------
-CURSOR
+--CURSOR
 -----------------------------------------------------------------------------------------
 -- verificar os animais que estão em idade reprodutiva, nesse caso de 2 a 10 anos
 DECLARE
