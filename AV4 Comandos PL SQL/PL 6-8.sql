@@ -24,3 +24,21 @@ BEGIN
     CLOSE habitat_cursor;
 END;
 /
+
+--declarar datas de nascimento dos funcionários usando %rowtype
+DECLARE 
+    CURSOR aniversario_cursor IS
+        SELECT nome, data_nascimento
+        FROM Funcionario;
+
+    aniversario aniversario_cursor%ROWTYPE;
+    BEGIN
+        OPEN aniversario_cursor;
+        LOOP
+            FETCH aniversario_cursor into aniversario;
+            EXIT WHEN aniversario_cursor%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('A data de nascimento do funcionário '|| aniversario.nome || ' é no dia ' || aniversario.data_nascimento );
+        END LOOP;
+        CLOSE aniversario_cursor;
+    END;
+/
