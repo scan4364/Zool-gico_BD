@@ -177,7 +177,7 @@ CREATE TABLE Manutencao (
     tipo_manutencao   VARCHAR2(100) NOT NULL,
     data_manutencao   DATE NOT NULL,
     descricao         VARCHAR2(255),
-    CONSTRAINT manuntencao_tratadores_fkey PRIMARY KEY (id_manutencao)
+    CONSTRAINT manuntencao_tratadores_fkey PRIMARY KEY (id_manutencao),
     CONSTRAINT manuntencao_tratadores_fkey FOREIGN KEY (habitat_id) REFERENCES HABITAT(id) 
 );
 
@@ -194,6 +194,6 @@ CREATE TABLE Manutencao_Tratadores (
 CREATE TABLE Data_Contrato (
     num_carteira_trabalho INTEGER,
     data_contrato DATE NOT NULL,
-    CONSTRAINT data_contrato_pkey PRIMARY KEY (num_carteira_trabalho)
+    CONSTRAINT data_contrato_pkey PRIMARY KEY (num_carteira_trabalho),
     CONSTRAINT data_contrato_fkey FOREIGN KEY (num_carteira_trabalho) REFERENCES Funcionario(num_cart_trabalho)
 );
