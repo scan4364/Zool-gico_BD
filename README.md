@@ -9,5 +9,5 @@ Equipe 4
 - Samuel Celso Anjos Neto
 
 Conteúdo
-- Arquivo Zoo_BD_SQL.sql contem os scripts da criação das tabelas em SQL
-- Arquivo pop.sql contem os scripts para a população do banco de dados
+- Arquivo Zoo_BD_SQL.sql contem os scripts da criação das tabelas e população das mesmas em SQL
+- A pasta AV4 Comandos PL SQL contem arquivos que são executados individualmente imediatamente após a criação e população das tabelas usando o arquivo Zoo_BD_SQL.sql
