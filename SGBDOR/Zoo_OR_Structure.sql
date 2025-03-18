@@ -130,6 +130,13 @@ CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
     data_hora TIMESTAMP
 )
 
+CREATE OR REPLACE TYPE tp_manutencao AS OBJECT (
+    id INTEGER,
+    habitat REF tp_habitat,
+    tipo VARCHAR2(100),
+    data_manutencao DATE,
+    descricao VARCHAR2(255)
+)
 
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
@@ -185,7 +192,11 @@ CREATE TABLE tratamento OF tp_veterinario (
     data_hora PRIMARY KEY
 )
 
-create table alimentacao of tp_alimentacao;
+CREATE TABLE manutencao OF tp_manutencao (
+    id PRIMARY KEY
+)
+
+CREATE TABLE alimentacao OF tp_alimentacao;
 
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
     STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
