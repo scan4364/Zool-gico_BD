@@ -120,7 +120,7 @@ CREATE OR REPLACE TYPE tp_animal AS OBJECT (
         nomes_populares varray_nome_popular, 
         nome_proprio VARCHAR2, 
         genero VARCHAR2,
-        habitat REF tp_habitat,
+        habitat REF tp_habitat
     ) RETURN SELF AS RESULT
 );
 
@@ -248,7 +248,7 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
 );
 
 CREATE TABLE data_contrato OF tp_contrato (
-    CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira)
+    CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira),
     CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES funcionario(num_carteira_trabalho)
 );
 
