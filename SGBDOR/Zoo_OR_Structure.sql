@@ -1,6 +1,29 @@
 --------------------------------------------------------------------------------
 -- Criação de Objetos
 --------------------------------------------------------------------------------
+CREATE SEQUENCE promocao_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE habitat_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE animal_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE manutencao_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
 
 create or replace TYPE tp_visitante AS OBJECT (
     nome VARCHAR2(40),
