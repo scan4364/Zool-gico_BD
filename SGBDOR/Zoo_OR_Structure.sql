@@ -1,6 +1,29 @@
 --------------------------------------------------------------------------------
 -- Criação de Objetos
 --------------------------------------------------------------------------------
+CREATE SEQUENCE promocao_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE habitat_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE animal_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE manutencao_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
 
 create or replace TYPE tp_visitante AS OBJECT (
     nome VARCHAR2(40),
@@ -24,9 +47,10 @@ create or replace TYPE tp_entrada AS OBJECT (
 );
 
 create or replace TYPE tp_compra AS OBJECT (
-    visitante REF tp_visitante,  
-    entrada REF tp_entrada,  
-    promocao REF tp_promocao 
+    cpf_visitante VARCHAR2(11),  
+    data_visita DATE,
+    numero_entrada VARCHAR2(15),  
+    id_promocao VARCHAR2(12) 
 );
 
 create or replace TYPE tp_fone AS OBJECT (
@@ -34,7 +58,7 @@ create or replace TYPE tp_fone AS OBJECT (
     numero VARCHAR2(9)
 );
 
-create or replace TYPE tp_fones AS VARRAY(5) OF tp_fone;
+create or replace TYPE nt_fones AS table OF tp_fone;
 
 
 create or replace TYPE tp_funcionario AS OBJECT (
@@ -45,7 +69,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
     num_carteira_trabalho INTEGER,
     idade INTEGER,
     data_nascimento DATE,
-    telefones tp_fones,
+    telefones nt_fones,
     email VARCHAR2(150),
     CONSTRUCTOR FUNCTION tp_funcionario (
         cpf VARCHAR2,
@@ -54,7 +78,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
         num_carteira_trabalho INTEGER,
         idade INTEGER,
         data_nascimento DATE,
-        telefone tp_fones,
+        telefones nt_fones,
         email VARCHAR2
     ) RETURN SELF AS RESULT
 ) NOT FINAL;
@@ -80,19 +104,28 @@ create or replace type tp_nome_popular as object (
     regiao varchar2 (30)
 );
 
-create or replace type nt_nome_popular as table of tp_nome_popular;
+create or replace type varray_nome_popular as VARRAY(5) of tp_nome_popular;
 
 CREATE OR REPLACE TYPE tp_animal AS OBJECT (
-    id INTEGER,           
+    id INTEGER,
+    mae REF tp_animal,           
     nome_cientifico VARCHAR2(100), 
-    nomes_populares nt_nome_popular, 
+    nomes_populares varray_nome_popular, 
     nome_proprio VARCHAR2(100), 
     genero VARCHAR2(10),
-    habitat REF tp_habitat        
+    habitat REF tp_habitat,
+    CONSTRUCTOR FUNCTION tp_animal (
+        id INTEGER,           
+        nome_cientifico VARCHAR2, 
+        nomes_populares varray_nome_popular, 
+        nome_proprio VARCHAR2, 
+        genero VARCHAR2,
+        habitat REF tp_habitat,
+    ) RETURN SELF AS RESULT
 );
 
 CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
-    id_animal REF tp_animal,     
+    id_animal INTEGER,     
     descricao VARCHAR2(255),
     horario_refeicao VARCHAR2(5),
     observacoes VARCHAR2(255),
@@ -102,12 +135,10 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
 );
 
 create or replace TYPE tp_consulta AS OBJECT (
-    animal REF tp_animal,       
-    veterinario REF tp_veterinario, 
-    data_consulta DATE,            
-    diagnostico VARCHAR2(255),     
+    id_animal INTEGER,       
+    cpf_veterinario VARCHAR2(11), 
+    data_consulta DATE,     
     observacoes VARCHAR2(255),     
-
     MAP MEMBER FUNCTION get_observacoes RETURN VARCHAR2
 );
 
@@ -124,18 +155,21 @@ CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
 )
 
 CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
-    animal REF tp_animal,
-    veterinario REF tp_veterinario,
-    medicamento REF tp_medicamento,
+    id_animal INTEGER,       
+    cpf_veterinario VARCHAR2(11),
+    nome VARCHAR2(50),
+    dosagem VARCHAR2(20),
     data_hora TIMESTAMP
 )
 
 CREATE OR REPLACE TYPE tp_manutencao AS OBJECT (
-    id INTEGER,
-    habitat REF tp_habitat,
-    tipo VARCHAR2(100),
-    data_manutencao DATE,
-    descricao VARCHAR2(255)
+    id_habitat INTEGER,
+    tipo VARCHAR2(100)
+)
+
+CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
+    id_habitat INTEGER,
+    cpf_tratador VARCHAR2(11)
 )
 
 --------------------------------------------------------------------------------
@@ -146,57 +180,72 @@ CREATE TABLE visitante OF tp_visitante;
 ALTER TABLE visitante ADD CONSTRAINT pk_visitante PRIMARY KEY (cpf);
 
 CREATE TABLE entrada OF tp_entrada;
-ALTER TABLE entrada ADD CONSTRAINT pk_entrada PRIMARY KEY (numero_entrada);
+ALTER TABLE entrada ADD CONSTRAINT pk_entrada PRIMARY KEY (numero_entrada, data_visita);
 
 CREATE TABLE promocao OF tp_promocao;
 ALTER TABLE promocao ADD CONSTRAINT pk_promocao PRIMARY KEY (id);
 
-CREATE TABLE compra (
-    cpf_visitante REF tp_visitante SCOPE IS visitante,
-    num_entrada REF tp_entrada SCOPE IS entrada,
-    id_promocao REF tp_promocao SCOPE IS promocao
+CREATE TABLE compra OF tp_compra(
+    CONSTRAINT pk_compra PRIMARY KEY (cpf_visitante, numero_entrada, data_visita, id_promocao),
+    CONSTRAINT fk1_compra FOREIGN KEY (cpf_visitante) REFERENCES visitante(cpf),
+    CONSTRAINT fk2_compra FOREIGN KEY (numero_entrada, data_visita) REFERENCES entrada(numero_entrada, data_visita),
+    CONSTRAINT fk3_compra FOREIGN KEY (id_promocao) REFERENCES promocao(id)
 );
 
 CREATE TABLE funcionario OF tp_funcionario (
     cpf PRIMARY KEY,
-    supervisor WITH ROWID REFERENCES tp_funcionario
-) OBJECT IDENTIFIER IS SYSTEM GENERATED;
+    supervisor WITH ROWID REFERENCES funcionario
+) NESTED TABLE telefones STORE AS tabela_telefones;
 
 
 CREATE TABLE tratadores OF tp_tratador (
     cpf PRIMARY KEY
-);
+) NESTED TABLE telefones STORE AS tabela_telefones_tratadores;
 
 CREATE TABLE veterinarios OF tp_veterinario (
     cpf PRIMARY KEY
-);
+) NESTED TABLE telefones STORE AS tabela_telefones_veterinarios;
 
 CREATE TABLE habitat OF tp_habitat (
     id PRIMARY KEY
 );
 
 CREATE TABLE animal OF tp_animal (
-    id PRIMARY KEY
-)
-NESTED TABLE nomes_populares STORE AS nomes_populares_table;
+    id PRIMARY KEY,
+    mae SCOPE IS animal
+);
 
 CREATE TABLE medicamento OF tp_medicamento(
-    nome PRIMARY KEY,
-    dosagem PRIMARY KEY
-)
+    CONSTRAINT pk_medicamento PRIMARY KEY (nome, dosagem)
+);
 
-CREATE TABLE tratamento OF tp_veterinario (
-    id_animal REF tp_animal SCOPE IS animal,
-    cpf_veterinario REF tp_veterinario SCOPE IS veterinario,
-    nome_dose_medicamento REF tp_medicamento SCOPE IS medicamento,
-    data_hora PRIMARY KEY
-)
+CREATE TABLE consulta OF tp_consulta (
+    CONSTRAINT pk_consulta PRIMARY KEY (id_animal, cpf_veterinario, data_consulta),
+    CONSTRAINT fk1_consulta FOREIGN KEY (id_animal) REFERENCES animal(id),
+    CONSTRAINT fk2_consulta FOREIGN KEY (cpf_veterinario) REFERENCES veterinarios(cpf)
+);
+
+CREATE TABLE tratamento OF tp_tratamento (
+    CONSTRAINT pk_tratamento PRIMARY KEY (id_animal, cpf_veterinario, nome, dosagem, data_hora),
+    CONSTRAINT fk1_tratamento FOREIGN KEY (nome, dosagem) REFERENCES medicamento(nome, dosagem),
+    CONSTRAINT fk2_tratamento FOREIGN KEY (id_animal, cpf_veterinario, data_hora) REFERENCES consulta(id_animal, cpf_veterinario, data_hora)
+);
 
 CREATE TABLE manutencao OF tp_manutencao (
-    id PRIMARY KEY
-)
+    id_habitat PRIMARY KEY,
+    CONSTRAINT fk_manutencao FOREIGN KEY (id_habitat) REFERENCES habitat(id)
+);
 
-CREATE TABLE alimentacao OF tp_alimentacao;
+CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
+    CONSTRAINT pk_man_trat PRIMARY KEY (id_habitat, cpf_tratador),
+    CONSTRAINT fk1_man_trat FOREIGN KEY (id_habitat) REFERENCES habitat(id),
+    CONSTRAINT fk2_man_trat FOREIGN KEY (cpf_tratador) REFERENCES tratadores(cpf)
+);
+
+CREATE TABLE alimentacao OF tp_alimentacao(
+    CONSTRAINT pk_alimentacao PRIMARY KEY (id_animal, horario_refeicao),
+    CONSTRAINT fk_alimentecao FOREIGN KEY (id_animal) REFERENCES animal(id)
+);
 
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
     STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
