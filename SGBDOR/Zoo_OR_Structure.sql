@@ -2,147 +2,184 @@
 -- Criação de Objetos
 --------------------------------------------------------------------------------
 
-create or replace type tp_email as object (
-   email varchar2(100)
+create or replace TYPE tp_email AS OBJECT (
+    email VARCHAR2(100)
 );
 
-create or replace type varray_email as
-   varray(50) of tp_email;
+create or replace type varray_email as varray(50) of tp_email;
 
-create or replace type tp_visitante as object (
-      nome           varchar2(40),
-      cpf            varchar2(11),
-      data_de_visita date,
-      email          varray_email
-) final;
+create or replace TYPE tp_visitante AS OBJECT (
+    nome VARCHAR2(40),
+    cpf VARCHAR2(11),
+    data_de_visita date,
+    email varray_email
+)FINAL;
 
-create or replace type tp_promocao as object (
-      id              varchar2(12),
-      requisito       varchar2(50),
-      data_de_inicio  date,
-      data_de_termino date,
-      desconto        number
+create or replace TYPE tp_promocao AS OBJECT (
+    id VARCHAR2(12),
+    requisito VARCHAR2(50),  
+    data_de_inicio DATE,
+    data_de_termino DATE,
+    desconto NUMBER
 );
 
-create or replace type tp_entrada as object (
-      data           date,
-      numero_entrada varchar2(15),
-      tipo_entrada   number,
-      hora_entrada   varchar2(50)
+create or replace TYPE tp_entrada AS OBJECT (
+    data DATE,
+    numero_entrada VARCHAR2(15),
+    tipo_entrada NUMBER,
+    hora_entrada VARCHAR2(50)
 );
 
-create or replace type tp_compra as object (
-      cpf_visitante varchar2(11),
-      num_entrada   varchar2(15),
-      id_promocao   varchar2(12)
+create or replace TYPE tp_compra AS OBJECT (
+    cpf_visitante VARCHAR2(11),  
+    num_entrada VARCHAR2(15),  
+    id_promocao VARCHAR2(12) 
 );
 
-create or replace type tp_funcionario as object (
-      oid           ref tp_funcionario,
-      cpf           varchar2(11),
-      nome          varchar2(100),
-      sobrenome     varchar2(100),
-      data_contrato date,
-      idade         number,
-      telefone      varchar2(15),
-      email         varchar2(150),
-      constructor function tp_funcionario (
-           cpf           varchar2,
-           nome          varchar2,
-           sobrenome     varchar2,
-           data_contrato date,
-           idade         number,
-           telefone      varchar2,
-           email         varchar2
-        ) return self as result
-) not final;
+create or replace TYPE tp_funcionario AS OBJECT (
+    oid REF tp_funcionario,
+    cpf VARCHAR2(11),
+    nome VARCHAR2(100),
+    sobrenome VARCHAR2(100),
+    data_contrato DATE,
+    idade NUMBER,
+    telefone VARCHAR2(15),
+    email VARCHAR2(150),
+    CONSTRUCTOR FUNCTION tp_funcionario (
+        cpf VARCHAR2,
+        nome VARCHAR2,
+        sobrenome VARCHAR2,
+        data_contrato DATE,
+        idade NUMBER,
+        telefone VARCHAR2,
+        email VARCHAR2
+    ) RETURN SELF AS RESULT
+) NOT FINAL;
 
-create or replace type tp_tratador under tp_funcionario ( );
+create or replace TYPE tp_tratador UNDER tp_funcionario (
+);
+    
+create or replace TYPE tp_veterinario UNDER tp_funcionario (
+);
 
-create or replace type tp_veterinario under tp_funcionario ( );
-
-create type tp_habitat as object (
-    id INTEGER,
-    tamanho DECIMAL(10,2),
-    ultima_manutencao DATE,
+create or replace TYPE tp_habitat AS OBJECT (
+    id VARCHAR2(12),
+    tamanho DECIMAL(10, 2),
+    data_da_ultima_manutencao DATE,
     intervalo_manutencao INTEGER,
-    qtd_animais INTEGER
-) final;
+    qtd_animais NUMBER,
 
-create or replace type tp_animais as object (
-    id INTEGER,
-    nome_cientifico VARCHAR2(255),
-    nome_popular VARCHAR2(100),
-    genero VARCHAR2(50),
-    nome_proprio VARCHAR2(100),
-    habitat ref tp_habitat,
-    id_mae ref tp_animais,
-    data_nascimento DATE
-) final;
+    MEMBER FUNCTION calcular_intervalo_manutencao RETURN INTEGER
+);
 
-create or replace type tp_alimentacao as object (
-    id_animal ref tp_animais,
+create or replace type tp_nome_popular as object (
+    nome varchar2 (20),
+    regiao varchar2 (30)
+);
+
+create or replace type nt_nome_popular as table of tp_nome_popular;
+
+CREATE OR REPLACE TYPE tp_animal AS OBJECT (
+    id VARCHAR2(12),           
+    nome_cientifico VARCHAR2(100), 
+    nomes_populares nt_nome_popular, 
+    nome_proprio VARCHAR2(100), 
+    genero VARCHAR2(50)        
+);
+
+CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
+    id_animal REF tp_animal,     
+    descricao VARCHAR2(255),
     horario_refeicao VARCHAR2(5),
     observacoes VARCHAR2(255),
     quantidade DECIMAL(10, 2),
-    descricao VARCHAR2(255)
-) final;
+
+    MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2)
+);
+
+CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
+    id_animal REF tp_animal,        
+    descricao VARCHAR2(255),
+    horario_refeicao VARCHAR2(5),
+    observacoes VARCHAR2(255),
+    quantidade DECIMAL(10, 2),
+
+    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2)
+);
 
 
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
 --------------------------------------------------------------------------------
 
-create table visitante of tp_visitante;
-alter table visitante add constraint pk_visitante primary key ( cpf );
+CREATE TABLE visitante OF tp_visitante;
+ALTER TABLE visitante ADD CONSTRAINT pk_visitante PRIMARY KEY (cpf);
 
-create table entrada of tp_entrada;
-alter table entrada add constraint pk_entrada primary key ( numero_entrada );
+CREATE TABLE entrada OF tp_entrada;
+ALTER TABLE entrada ADD CONSTRAINT pk_entrada PRIMARY KEY (numero_entrada);
 
-create table promocao of tp_promocao;
-alter table promocao add constraint pk_promocao primary key ( id );
+CREATE TABLE promocao OF tp_promocao;
+ALTER TABLE promocao ADD CONSTRAINT pk_promocao PRIMARY KEY (id);
 
-create table compra (
-   cpf_visitante ref tp_visitante
-      scope is visitantes,
-   num_entrada   ref tp_entrada
-      scope is entrada,
-   id_promocao   ref tp_promocao
-      scope is promocao
+CREATE TABLE compra (
+    cpf_visitante REF tp_visitante SCOPE IS visitantes,
+    num_entrada REF tp_entrada SCOPE IS entrada,
+    id_promocao REF tp_promocao SCOPE IS promocao
 );
 
-create table funcionario of tp_funcionario (
-   cpf primary key,
-   oid
-      with rowid
-      references tp_funcionario
-) object identifier is system generated;
+CREATE TABLE funcionario OF tp_funcionario (
+    cpf PRIMARY KEY,
+    oid WITH ROWID REFERENCES tp_funcionario
+) OBJECT IDENTIFIER IS SYSTEM GENERATED;
 
 
--- Tabela para armazenar objetos do tipo tp_tratador
-create table tratadores of tp_tratador (
-   cpf primary key
+CREATE TABLE tratadores OF tp_tratador (
+    cpf PRIMARY KEY
 );
 
--- Tabela para armazenar objetos do tipo tp_veterinario
-create table veterinarios of tp_veterinario (
-   cpf primary key
+CREATE TABLE veterinarios OF tp_veterinario (
+    cpf PRIMARY KEY
 );
 
--- Tabela para armazenar objetos do tipo tp_habitat
-    
-create table habitat of tp_habitat (
+CREATE TABLE habitat OF tp_habitat (
     id PRIMARY KEY
 );
 
--- Tabela para armazenar objetos do tipo tp_animais
+declare v_habitat tp_habitat;
+begin 
+    select value(h) into v_habitat 
+    from habitat h
+    where h.id = 'habt003';
+    update habitat
+    set INTERVALO_MANUTENCAO = v_habitat.calcular_intervalo_manutencao()
+    where id = 'habt003';
+end;
 
-create table animais of tp_animais (
-    id primary key
+CREATE TABLE animal OF tp_animal (
+    id PRIMARY KEY
 )
+NESTED TABLE nomes_populares STORE AS nomes_populares_table;
 
--- Tabela para armazenar objetos do tipo tp_alimentacao
 
-create table alimentacao of tp_alimentacao (
-    primary key (id_animal, horario_refeicao)
-)
+create TABLE alimentacao of tp_alimentacao;
+
+
+create table alimentacao of tp_alimentacao;
+
+CREATE OR REPLACE TYPE BODY tp_alimentacao AS
+    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
+        v_horario VARCHAR2(5);
+    BEGIN
+        SELECT MAX(horario_refeicao)
+        INTO v_horario
+        FROM alimentacao a
+        WHERE DEREF(a.id_animal).id = p_id_animal;
+
+        IF v_horario IS NOT NULL THEN
+            DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || p_id_animal || ': ' || v_horario);
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('Nenhuma refeição encontrada para o animal ' || p_id_animal);
+        END IF;
+    END;
+END;
+/
