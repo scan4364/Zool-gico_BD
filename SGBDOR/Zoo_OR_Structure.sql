@@ -24,9 +24,10 @@ create or replace TYPE tp_entrada AS OBJECT (
 );
 
 create or replace TYPE tp_compra AS OBJECT (
-    visitante REF tp_visitante,  
-    entrada REF tp_entrada,  
-    promocao REF tp_promocao 
+    cpf_visitante VARCHAR2(11),  
+    data_visita DATE,
+    numero_entrada VARCHAR2(15),  
+    id_promocao VARCHAR2(12) 
 );
 
 create or replace TYPE tp_fone AS OBJECT (
@@ -101,7 +102,7 @@ CREATE OR REPLACE TYPE tp_animal AS OBJECT (
 );
 
 CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
-    id_animal REF tp_animal,     
+    id_animal INTEGER,     
     descricao VARCHAR2(255),
     horario_refeicao VARCHAR2(5),
     observacoes VARCHAR2(255),
@@ -111,8 +112,8 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
 );
 
 create or replace TYPE tp_consulta AS OBJECT (
-    id_animal REF tp_animal,       
-    cpf_veterinario REF tp_veterinario, 
+    id_animal INTEGER,       
+    cpf_veterinario VARCHAR2(11), 
     data_consulta DATE,            
     diagnostico VARCHAR2(255),     
     observacoes VARCHAR2(255),     
@@ -133,9 +134,10 @@ CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
 )
 
 CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
-    animal REF tp_animal,
-    veterinario REF tp_veterinario,
-    medicamento REF tp_medicamento,
+    id_animal INTEGER,       
+    cpf_veterinario VARCHAR2(11),
+    nome VARCHAR2(50),
+    dosagem VARCHAR2(20),
     data_hora TIMESTAMP
 )
 
@@ -148,15 +150,16 @@ CREATE TABLE visitante OF tp_visitante;
 ALTER TABLE visitante ADD CONSTRAINT pk_visitante PRIMARY KEY (cpf);
 
 CREATE TABLE entrada OF tp_entrada;
-ALTER TABLE entrada ADD CONSTRAINT pk_entrada PRIMARY KEY (numero_entrada);
+ALTER TABLE entrada ADD CONSTRAINT pk_entrada PRIMARY KEY (numero_entrada, data_visita);
 
 CREATE TABLE promocao OF tp_promocao;
 ALTER TABLE promocao ADD CONSTRAINT pk_promocao PRIMARY KEY (id);
 
 CREATE TABLE compra (
-    cpf_visitante REF tp_visitante SCOPE IS visitante,
-    num_entrada REF tp_entrada SCOPE IS entrada,
-    id_promocao REF tp_promocao SCOPE IS promocao
+    CONSTRAINT pk_compra PRIMARY KEY (cpf_visitante, num_entrada, data_visita, id_promocao),
+    CONSTRAINT fk1_compra FOREIGN KEY (cpf_visitante) REFERENCES visitante(cpf),
+    CONSTRAINT fk2_compra FOREIGN KEY (num_entrada, data_visita) REFERENCES entrada(num_entrada, data_visita),
+    CONSTRAINT fk3_compra FOREIGN KEY (id_promocao) REFERENCES promocao(id)
 );
 
 CREATE TABLE funcionario OF tp_funcionario (
@@ -178,10 +181,14 @@ CREATE TABLE habitat OF tp_habitat (
 );
 
 CREATE TABLE animal OF tp_animal (
-    id PRIMARY KEY
+    id PRIMARY KEY,
+    mae REF tp_animal SCOPE IS animal
 );
 
-create table alimentacao of tp_alimentacao;
+create table alimentacao of tp_alimentacao(
+    CONSTRAINT pk_alimentacao PRIMARY KEY (id_animal, horario_refeicao),
+    CONSTRAINT fk_alimentecao FOREIGN KEY (id_animal) REFERENCES animal(id)
+);
 
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
     STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
