@@ -6,24 +6,21 @@ insert into visitante
 values (tp_visitante(
     'João', 
     '12345678901', 
-    TO_DATE('2013-05-10', 'YYYY-MM-DD'), 
-    varray_email(tp_email('joao@email.com'))  
+    TO_DATE('2013-05-10', 'YYYY-MM-DD')
 ));
 
 insert into visitante 
 values (tp_visitante(
     'Timoteo', 
     '38517646589', 
-    TO_DATE('1995-12-27', 'YYYY-MM-DD'),
-    varray_email(tp_email('timoteo@email.com'))  
+    TO_DATE('1995-12-27', 'YYYY-MM-DD')
 ));
 
 insert into visitante (cpf,nome, data_de_visita, email)
 values (
     '98765432101',
     'Maria',
-    TO_DATE('1995-08-25', 'YYYY-MM-DD'),
-    varray_email(tp_email('maria@email.com'))
+    TO_DATE('1995-08-25', 'YYYY-MM-DD')
 );
 
 --------------------------------------------------------------------------------
