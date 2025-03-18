@@ -2,32 +2,25 @@
 -- Criação de Objetos
 --------------------------------------------------------------------------------
 
-create or replace TYPE tp_email AS OBJECT (
-    email VARCHAR2(100)
-);
-
-create or replace type varray_email as varray(50) of tp_email;
-
 create or replace TYPE tp_visitante AS OBJECT (
     nome VARCHAR2(40),
     cpf VARCHAR2(11),
-    data_de_visita date,
-    email varray_email
+    data_nascimento date
 )FINAL;
 
 create or replace TYPE tp_promocao AS OBJECT (
     id VARCHAR2(12),
     requisito VARCHAR2(50),  
-    data_de_inicio DATE,
-    data_de_termino DATE,
-    desconto NUMBER
+    data_inicio DATE,
+    data_termino DATE,
+    desconto DECIMAL(5,2)
 );
 
 create or replace TYPE tp_entrada AS OBJECT (
-    data DATE,
-    numero_entrada VARCHAR2(15),
-    tipo_entrada NUMBER,
-    hora_entrada VARCHAR2(50)
+    num_entrada INTEGER,
+    data_visita DATE,
+    tipo_entrada INTEGER,
+    hora_entrada VARCHAR2(5)
 );
 
 create or replace TYPE tp_compra AS OBJECT (
@@ -37,20 +30,22 @@ create or replace TYPE tp_compra AS OBJECT (
 );
 
 create or replace TYPE tp_funcionario AS OBJECT (
-    oid REF tp_funcionario,
+    supervisor REF tp_funcionario,
     cpf VARCHAR2(11),
     nome VARCHAR2(100),
     sobrenome VARCHAR2(100),
-    data_contrato DATE,
-    idade NUMBER,
+    num_carteira_trabalho INTEGER,
+    idade INTEGER,
+    data_nascimento DATE,
     telefone VARCHAR2(15),
     email VARCHAR2(150),
     CONSTRUCTOR FUNCTION tp_funcionario (
         cpf VARCHAR2,
         nome VARCHAR2,
         sobrenome VARCHAR2,
-        data_contrato DATE,
-        idade NUMBER,
+        num_carteira_trabalho INTEGER,
+        idade INTEGER,
+        data_nascimento DATE,
         telefone VARCHAR2,
         email VARCHAR2
     ) RETURN SELF AS RESULT
@@ -63,11 +58,11 @@ create or replace TYPE tp_veterinario UNDER tp_funcionario (
 );
 
 create or replace TYPE tp_habitat AS OBJECT (
-    id VARCHAR2(12),
+    id INTEGER,
     tamanho DECIMAL(10, 2),
-    data_da_ultima_manutencao DATE,
+    data_ultima_manutencao DATE,
     intervalo_manutencao INTEGER,
-    qtd_animais NUMBER,
+    qtd_animais INTEGER,
 
     MEMBER FUNCTION calcular_intervalo_manutencao RETURN INTEGER
 );
@@ -80,11 +75,11 @@ create or replace type tp_nome_popular as object (
 create or replace type nt_nome_popular as table of tp_nome_popular;
 
 CREATE OR REPLACE TYPE tp_animal AS OBJECT (
-    id VARCHAR2(12),           
+    id INTEGER,           
     nome_cientifico VARCHAR2(100), 
     nomes_populares nt_nome_popular, 
     nome_proprio VARCHAR2(100), 
-    genero VARCHAR2(50)        
+    genero VARCHAR2(10)        
 );
 
 CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
@@ -95,16 +90,6 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
     quantidade DECIMAL(10, 2),
 
     MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2)
-);
-
-CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
-    id_animal REF tp_animal,        
-    descricao VARCHAR2(255),
-    horario_refeicao VARCHAR2(5),
-    observacoes VARCHAR2(255),
-    quantidade DECIMAL(10, 2),
-
-    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2)
 );
 
 
@@ -129,7 +114,7 @@ CREATE TABLE compra (
 
 CREATE TABLE funcionario OF tp_funcionario (
     cpf PRIMARY KEY,
-    oid WITH ROWID REFERENCES tp_funcionario
+    supervisor WITH ROWID REFERENCES tp_funcionario
 ) OBJECT IDENTIFIER IS SYSTEM GENERATED;
 
 
@@ -163,8 +148,6 @@ NESTED TABLE nomes_populares STORE AS nomes_populares_table;
 
 create TABLE alimentacao of tp_alimentacao;
 
-
-create table alimentacao of tp_alimentacao;
 
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
     STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
