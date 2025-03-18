@@ -126,6 +126,20 @@ CREATE OR REPLACE TYPE BODY tp_consulta AS
         RETURN SELF.observacoes; 
     END;
 END;
+
+CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
+    nome VARCHAR2(50),
+    dosagem VARCHAR2(20)
+)
+
+CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
+    animal REF tp_animal,
+    veterinario REF tp_veterinario,
+    medicamento REF tp_medicamento,
+    data_hora TIMESTAMP
+)
+
+
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
 --------------------------------------------------------------------------------
