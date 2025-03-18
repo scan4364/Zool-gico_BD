@@ -200,11 +200,11 @@ CREATE TABLE funcionario OF tp_funcionario (
 
 CREATE TABLE tratadores OF tp_tratador (
     cpf PRIMARY KEY
-);
+) NESTED TABLE telefones STORE AS tabela_telefones_tratadores;
 
 CREATE TABLE veterinarios OF tp_veterinario (
     cpf PRIMARY KEY
-);
+) NESTED TABLE telefones STORE AS tabela_telefones_veterinarios;
 
 CREATE TABLE habitat OF tp_habitat (
     id PRIMARY KEY
