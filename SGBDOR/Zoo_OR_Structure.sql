@@ -137,7 +137,7 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
 create or replace TYPE tp_consulta AS OBJECT (
     id_animal INTEGER,       
     cpf_veterinario VARCHAR2(11), 
-    data_consulta DATE,     
+    data_hora TIMESTAMP,     
     observacoes VARCHAR2(255),     
     MAP MEMBER FUNCTION get_observacoes RETURN VARCHAR2
 );
@@ -170,6 +170,11 @@ CREATE OR REPLACE TYPE tp_manutencao AS OBJECT (
 CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
     id_habitat INTEGER,
     cpf_tratador VARCHAR2(11)
+)
+
+CREATE OR REPLACE TYPE tp_contrato AS OBJECT (
+    num_carteira INTEGER,
+    data_contrato DATE
 )
 
 --------------------------------------------------------------------------------
@@ -220,7 +225,7 @@ CREATE TABLE medicamento OF tp_medicamento(
 );
 
 CREATE TABLE consulta OF tp_consulta (
-    CONSTRAINT pk_consulta PRIMARY KEY (id_animal, cpf_veterinario, data_consulta),
+    CONSTRAINT pk_consulta PRIMARY KEY (id_animal, cpf_veterinario, data_hora),
     CONSTRAINT fk1_consulta FOREIGN KEY (id_animal) REFERENCES animal(id),
     CONSTRAINT fk2_consulta FOREIGN KEY (cpf_veterinario) REFERENCES veterinarios(cpf)
 );
@@ -228,7 +233,7 @@ CREATE TABLE consulta OF tp_consulta (
 CREATE TABLE tratamento OF tp_tratamento (
     CONSTRAINT pk_tratamento PRIMARY KEY (id_animal, cpf_veterinario, nome, dosagem, data_hora),
     CONSTRAINT fk1_tratamento FOREIGN KEY (nome, dosagem) REFERENCES medicamento(nome, dosagem),
-    CONSTRAINT fk2_tratamento FOREIGN KEY (id_animal, cpf_veterinario, data_hora) REFERENCES consulta(id_animal, cpf_veterinario, data_hora)
+    CONSTRAINT fk2_tratamento FOREIGN KEY (id_animal, cpf_veterinario, data_hora) REFERENCES Consulta(id_animal, cpf_veterinario, data_hora)
 );
 
 CREATE TABLE manutencao OF tp_manutencao (
@@ -240,6 +245,11 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
     CONSTRAINT pk_man_trat PRIMARY KEY (id_habitat, cpf_tratador),
     CONSTRAINT fk1_man_trat FOREIGN KEY (id_habitat) REFERENCES habitat(id),
     CONSTRAINT fk2_man_trat FOREIGN KEY (cpf_tratador) REFERENCES tratadores(cpf)
+);
+
+CREATE TABLE data_contrato OF tp_contrato (
+    CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira)
+    CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES funcionario(num_carteira_trabalho)
 );
 
 CREATE TABLE alimentacao OF tp_alimentacao(
