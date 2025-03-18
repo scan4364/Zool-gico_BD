@@ -80,15 +80,24 @@ create or replace type tp_nome_popular as object (
     regiao varchar2 (30)
 );
 
-create or replace type nt_nome_popular as table of tp_nome_popular;
+create or replace type varray_nome_popular as VARRAY(5) of tp_nome_popular;
 
 CREATE OR REPLACE TYPE tp_animal AS OBJECT (
     id INTEGER,           
+    mae REF tp_animal,           
     nome_cientifico VARCHAR2(100), 
-    nomes_populares nt_nome_popular, 
+    nomes_populares varray_nome_popular, 
     nome_proprio VARCHAR2(100), 
     genero VARCHAR2(10),
-    habitat REF tp_habitat        
+    habitat REF tp_habitat,
+    CONSTRUCTOR FUNCTION tp_funcionario (
+        id INTEGER,           
+        nome_cientifico VARCHAR2(100), 
+        nomes_populares varray_nome_popular, 
+        nome_proprio VARCHAR2(100), 
+        genero VARCHAR2(10),
+        habitat REF tp_habitat,
+    ) RETURN SELF AS RESULT        
 );
 
 CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
@@ -138,8 +147,8 @@ CREATE TABLE compra (
 
 CREATE TABLE funcionario OF tp_funcionario (
     cpf PRIMARY KEY,
-    supervisor WITH ROWID REFERENCES tp_funcionario
-) OBJECT IDENTIFIER IS SYSTEM GENERATED;
+    supervisor WITH ROWID REFERENCES funcionario
+) NESTED TABLE telefones STORE AS nt_fones;
 
 
 CREATE TABLE tratadores OF tp_tratador (
@@ -156,8 +165,7 @@ CREATE TABLE habitat OF tp_habitat (
 
 CREATE TABLE animal OF tp_animal (
     id PRIMARY KEY
-)
-NESTED TABLE nomes_populares STORE AS nomes_populares_table;
+);
 
 create table alimentacao of tp_alimentacao;
 
