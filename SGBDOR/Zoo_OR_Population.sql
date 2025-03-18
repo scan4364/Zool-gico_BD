@@ -140,3 +140,17 @@ INSERT INTO alimentacao VALUES (
 BEGIN
     tp_alimentacao.obter_ultima_refeicao('ANIM001');
 END;
+
+--------------------------------------------------------------------------------
+-- Inserindo dados na tabela consulta
+--------------------------------------------------------------------------------
+INSERT INTO consulta VALUES (
+    tp_consulta(
+        (SELECT REF(a) FROM animal a WHERE a.id = 'ANIM001'), 
+        (SELECT REF(v) FROM veterinario v WHERE v.cpf = '12345678901'), 
+        TO_DATE('2023-10-10', 'YYYY-MM-DD'), 
+        'Infecção respiratória', 
+        'Prescrever antibióticos' 
+    )
+)
+
