@@ -27,18 +27,21 @@ values (
 -- Inserindo dados na tabela promoção
 --------------------------------------------------------------------------------
 
-CREATE SEQUENCE promocao_seq START WITH 1 INCREMENT BY 1
+CREATE SEQUENCE promocao_seq START WITH 1 INCREMENT BY 1;
 
-insert into promocao values (
-    tp_promocao(promocao_seq.NEXTVAL, 'estudantes', to_date('2024-07-01', 'yyyy-mm-dd'), to_date('2024-07-15', 'yyyy-mm-dd'), 20.00)
+INSERT INTO promocao (id, requisito, data_de_inicio, data_de_termino, desconto) 
+VALUES (
+    promocao_seq.NEXTVAL, 'estudantes', TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 20
 );
 
-insert into promocao values (
-     tp_promocao(promocao_seq.NEXTVAL, 'Nenhum requisito', TO_DATE('2024-01-01', 'YYYY-MM-DD'), TO_DATE('2030-01-01', 'YYYY-MM-DD'), 0.00)
+INSERT INTO promocao (id, requisito, data_de_inicio, data_de_termino, desconto) 
+VALUES (
+    promocao_seq.NEXTVAL, 'Nenhum requisito', TO_DATE('2024-01-01', 'YYYY-MM-DD'), TO_DATE('2030-01-01', 'YYYY-MM-DD'), 0
 );
 
-insert into promocao values (
-    tp_promocao(promocao_seq.NEXTVAL, 'Idade < 12', TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024-03-31', 'YYYY-MM-DD'), 50.00)
+INSERT INTO promocao (id, requisito, data_de_inicio, data_de_termino, desconto) 
+VALUES (
+    promocao_seq.NEXTVAL, 'Idade < 12', TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024-03-31', 'YYYY-MM-DD'), 50
 );
 
 --------------------------------------------------------------------------------
