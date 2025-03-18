@@ -228,7 +228,7 @@ CREATE TABLE consulta OF tp_consulta (
 CREATE TABLE tratamento OF tp_tratamento (
     CONSTRAINT pk_tratamento PRIMARY KEY (id_animal, cpf_veterinario, nome, dosagem, data_hora),
     CONSTRAINT fk1_tratamento FOREIGN KEY (nome, dosagem) REFERENCES medicamento(nome, dosagem),
-    CONSTRAINT fk2_tratamento FOREIGN KEY (id_animal, cpf_veterinario, data_hora) REFERENCES consulta(id_animal, cpf_veterinario, data_hora)
+    CONSTRAINT fk2_tratamento FOREIGN KEY (id_animal, cpf_veterinario, data_hora) REFERENCES Consulta(id_animal, cpf_veterinario, data_consulta)
 );
 
 CREATE TABLE manutencao OF tp_manutencao (
