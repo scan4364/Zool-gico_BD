@@ -172,6 +172,11 @@ CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
     cpf_tratador VARCHAR2(11)
 )
 
+CREATE OR REPLACE TYPE tp_contrato AS OBJECT (
+    num_carteira INTEGER,
+    data_contrato DATE
+)
+
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
 --------------------------------------------------------------------------------
@@ -240,6 +245,11 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
     CONSTRAINT pk_man_trat PRIMARY KEY (id_habitat, cpf_tratador),
     CONSTRAINT fk1_man_trat FOREIGN KEY (id_habitat) REFERENCES habitat(id),
     CONSTRAINT fk2_man_trat FOREIGN KEY (cpf_tratador) REFERENCES tratadores(cpf)
+);
+
+CREATE TABLE data_contrato OF tp_contrato (
+    CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira)
+    CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES funcionario(num_carteira_trabalho)
 );
 
 CREATE TABLE alimentacao OF tp_alimentacao(
