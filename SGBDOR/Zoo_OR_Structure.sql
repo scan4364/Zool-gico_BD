@@ -102,8 +102,8 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
 );
 
 create or replace TYPE tp_consulta AS OBJECT (
-    id_animal REF tp_animal,       
-    cpf_veterinario REF tp_veterinario, 
+    animal REF tp_animal,       
+    veterinario REF tp_veterinario, 
     data_consulta DATE,            
     diagnostico VARCHAR2(255),     
     observacoes VARCHAR2(255),     
@@ -117,6 +117,20 @@ CREATE OR REPLACE TYPE BODY tp_consulta AS
         RETURN SELF.observacoes; 
     END;
 END;
+
+CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
+    nome VARCHAR2(50),
+    dosagem VARCHAR2(20)
+)
+
+CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
+    animal REF tp_animal,
+    veterinario REF tp_veterinario,
+    medicamento REF tp_medicamento,
+    data_hora TIMESTAMP
+)
+
+
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
 --------------------------------------------------------------------------------
@@ -131,7 +145,7 @@ CREATE TABLE promocao OF tp_promocao;
 ALTER TABLE promocao ADD CONSTRAINT pk_promocao PRIMARY KEY (id);
 
 CREATE TABLE compra (
-    cpf_visitante REF tp_visitante SCOPE IS visitantes,
+    cpf_visitante REF tp_visitante SCOPE IS visitante,
     num_entrada REF tp_entrada SCOPE IS entrada,
     id_promocao REF tp_promocao SCOPE IS promocao
 );
@@ -158,6 +172,18 @@ CREATE TABLE animal OF tp_animal (
     id PRIMARY KEY
 )
 NESTED TABLE nomes_populares STORE AS nomes_populares_table;
+
+CREATE TABLE medicamento OF tp_medicamento(
+    nome PRIMARY KEY,
+    dosagem PRIMARY KEY
+)
+
+CREATE TABLE tratamento OF tp_veterinario (
+    id_animal REF tp_animal SCOPE IS animal,
+    cpf_veterinario REF tp_veterinario SCOPE IS veterinario,
+    nome_dose_medicamento REF tp_medicamento SCOPE IS medicamento,
+    data_hora PRIMARY KEY
+)
 
 create table alimentacao of tp_alimentacao;
 
