@@ -185,17 +185,17 @@ ALTER TABLE entrada ADD CONSTRAINT pk_entrada PRIMARY KEY (numero_entrada, data_
 CREATE TABLE promocao OF tp_promocao;
 ALTER TABLE promocao ADD CONSTRAINT pk_promocao PRIMARY KEY (id);
 
-CREATE TABLE compra (
-    CONSTRAINT pk_compra PRIMARY KEY (cpf_visitante, num_entrada, data_visita, id_promocao),
+CREATE TABLE compra OF tp_compra(
+    CONSTRAINT pk_compra PRIMARY KEY (cpf_visitante, numero_entrada, data_visita, id_promocao),
     CONSTRAINT fk1_compra FOREIGN KEY (cpf_visitante) REFERENCES visitante(cpf),
-    CONSTRAINT fk2_compra FOREIGN KEY (num_entrada, data_visita) REFERENCES entrada(num_entrada, data_visita),
+    CONSTRAINT fk2_compra FOREIGN KEY (numero_entrada, data_visita) REFERENCES entrada(numero_entrada, data_visita),
     CONSTRAINT fk3_compra FOREIGN KEY (id_promocao) REFERENCES promocao(id)
 );
 
 CREATE TABLE funcionario OF tp_funcionario (
     cpf PRIMARY KEY,
     supervisor WITH ROWID REFERENCES funcionario
-) NESTED TABLE telefones STORE AS nt_fones;
+) NESTED TABLE telefones STORE AS tabela_telefones;
 
 
 CREATE TABLE tratadores OF tp_tratador (
