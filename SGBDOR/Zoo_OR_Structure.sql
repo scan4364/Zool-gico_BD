@@ -61,6 +61,33 @@ create or replace type tp_tratador under tp_funcionario ( );
 
 create or replace type tp_veterinario under tp_funcionario ( );
 
+create type tp_habitat as object (
+    id INTEGER,
+    tamanho DECIMAL(10,2),
+    ultima_manutencao DATE,
+    intervalo_manutencao INTEGER,
+    qtd_animais INTEGER
+) final;
+
+create or replace type tp_animais as object (
+    id INTEGER,
+    nome_cientifico VARCHAR2(255),
+    nome_popular VARCHAR2(100),
+    genero VARCHAR2(50),
+    nome_proprio VARCHAR2(100),
+    habitat ref tp_habitat,
+    id_mae ref tp_animais,
+    data_nascimento DATE
+) final;
+
+create or replace type tp_alimentacao as object (
+    id_animal ref tp_animais,
+    horario_refeicao VARCHAR2(5),
+    observacoes VARCHAR2(255),
+    quantidade DECIMAL(10, 2),
+    descricao VARCHAR2(255)
+) final;
+
 
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
@@ -101,3 +128,21 @@ create table tratadores of tp_tratador (
 create table veterinarios of tp_veterinario (
    cpf primary key
 );
+
+-- Tabela para armazenar objetos do tipo tp_habitat
+    
+create table habitat of tp_habitat (
+    id PRIMARY KEY
+);
+
+-- Tabela para armazenar objetos do tipo tp_animais
+
+create table animais of tp_animais (
+    id primary key
+)
+
+-- Tabela para armazenar objetos do tipo tp_alimentacao
+
+create table alimentacao of tp_alimentacao (
+    primary key (id_animal, horario_refeicao)
+)
