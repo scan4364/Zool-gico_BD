@@ -140,7 +140,7 @@ CREATE TABLE promocao OF tp_promocao;
 ALTER TABLE promocao ADD CONSTRAINT pk_promocao PRIMARY KEY (id);
 
 CREATE TABLE compra (
-    cpf_visitante REF tp_visitante SCOPE IS visitantes,
+    cpf_visitante REF tp_visitante SCOPE IS visitante,
     num_entrada REF tp_entrada SCOPE IS entrada,
     id_promocao REF tp_promocao SCOPE IS promocao
 );
