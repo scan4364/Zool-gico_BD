@@ -142,6 +142,21 @@ BEGIN
 END;
 
 --------------------------------------------------------------------------------
+-- Inserindo dados na tabela veterinario
+--------------------------------------------------------------------------------
+INSERT INTO veterinarios VALUES (
+    tp_veterinario(
+        NULL, 
+        '12345678901', 
+        'Carlos', 
+        'Silva', 
+        TO_DATE('2022-06-15', 'YYYY-MM-DD'),
+        35, 
+        '11987654321',
+        'carlos.silva@email.com' 
+    )
+);
+--------------------------------------------------------------------------------
 -- Inserindo dados na tabela consulta
 --------------------------------------------------------------------------------
 INSERT INTO consulta VALUES (
