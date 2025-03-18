@@ -34,7 +34,7 @@ create or replace TYPE tp_fone AS OBJECT (
     numero VARCHAR2(9)
 );
 
-create or replace TYPE tp_fones AS VARRAY(5) OF tp_fone;
+create or replace TYPE nt_fones AS table OF tp_fone;
 
 
 create or replace TYPE tp_funcionario AS OBJECT (
@@ -45,7 +45,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
     num_carteira_trabalho INTEGER,
     idade INTEGER,
     data_nascimento DATE,
-    telefones tp_fones,
+    telefones nt_fones,
     email VARCHAR2(150),
     CONSTRUCTOR FUNCTION tp_funcionario (
         cpf VARCHAR2,
@@ -54,7 +54,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
         num_carteira_trabalho INTEGER,
         idade INTEGER,
         data_nascimento DATE,
-        telefone tp_fones,
+        telefone nt_fones,
         email VARCHAR2
     ) RETURN SELF AS RESULT
 ) NOT FINAL;
@@ -83,7 +83,7 @@ create or replace type tp_nome_popular as object (
 create or replace type varray_nome_popular as VARRAY(5) of tp_nome_popular;
 
 CREATE OR REPLACE TYPE tp_animal AS OBJECT (
-    id INTEGER,           
+    id INTEGER,
     mae REF tp_animal,           
     nome_cientifico VARCHAR2(100), 
     nomes_populares varray_nome_popular, 
