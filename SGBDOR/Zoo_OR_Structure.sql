@@ -55,7 +55,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
         num_carteira_trabalho INTEGER,
         idade INTEGER,
         data_nascimento DATE,
-        telefone nt_fones,
+        telefones nt_fones,
         email VARCHAR2
     ) RETURN SELF AS RESULT
 ) NOT FINAL;
@@ -91,14 +91,14 @@ CREATE OR REPLACE TYPE tp_animal AS OBJECT (
     nome_proprio VARCHAR2(100), 
     genero VARCHAR2(10),
     habitat REF tp_habitat,
-    CONSTRUCTOR FUNCTION tp_funcionario (
+    CONSTRUCTOR FUNCTION tp_animal (
         id INTEGER,           
-        nome_cientifico VARCHAR2(100), 
+        nome_cientifico VARCHAR2, 
         nomes_populares varray_nome_popular, 
-        nome_proprio VARCHAR2(100), 
-        genero VARCHAR2(10),
+        nome_proprio VARCHAR2, 
+        genero VARCHAR2,
         habitat REF tp_habitat,
-    ) RETURN SELF AS RESULT        
+    ) RETURN SELF AS RESULT
 );
 
 CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
@@ -114,10 +114,8 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
 create or replace TYPE tp_consulta AS OBJECT (
     id_animal INTEGER,       
     cpf_veterinario VARCHAR2(11), 
-    data_consulta DATE,            
-    diagnostico VARCHAR2(255),     
+    data_consulta DATE,     
     observacoes VARCHAR2(255),     
-
     MAP MEMBER FUNCTION get_observacoes RETURN VARCHAR2
 );
 
@@ -141,6 +139,15 @@ CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
     data_hora TIMESTAMP
 )
 
+CREATE OR REPLACE TYPE tp_manutencao AS OBJECT (
+    id_habitat INTEGER,
+    tipo VARCHAR2(100)
+)
+
+CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
+    id_habitat INTEGER,
+    cpf_tratador VARCHAR2(11)
+)
 
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
@@ -182,10 +189,37 @@ CREATE TABLE habitat OF tp_habitat (
 
 CREATE TABLE animal OF tp_animal (
     id PRIMARY KEY,
-    mae REF tp_animal SCOPE IS animal
+    mae SCOPE IS animal
 );
 
-create table alimentacao of tp_alimentacao(
+CREATE TABLE medicamento OF tp_medicamento(
+    CONSTRAINT pk_medicamento PRIMARY KEY (nome, dosagem)
+);
+
+CREATE TABLE consulta OF tp_consulta (
+    CONSTRAINT pk_consulta PRIMARY KEY (id_animal, cpf_veterinario, data_consulta),
+    CONSTRAINT fk1_consulta FOREIGN KEY (id_animal) REFERENCES animal(id),
+    CONSTRAINT fk2_consulta FOREIGN KEY (cpf_veterinario) REFERENCES veterinarios(cpf)
+);
+
+CREATE TABLE tratamento OF tp_tratamento (
+    CONSTRAINT pk_tratamento PRIMARY KEY (id_animal, cpf_veterinario, nome, dosagem, data_hora),
+    CONSTRAINT fk1_tratamento FOREIGN KEY (nome, dosagem) REFERENCES medicamento(nome, dosagem),
+    CONSTRAINT fk2_tratamento FOREIGN KEY (id_animal, cpf_veterinario, data_hora) REFERENCES consulta(id_animal, cpf_veterinario, data_hora)
+);
+
+CREATE TABLE manutencao OF tp_manutencao (
+    id_habitat PRIMARY KEY,
+    CONSTRAINT fk_manutencao FOREIGN KEY (id_habitat) REFERENCES habitat(id)
+);
+
+CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
+    CONSTRAINT pk_man_trat PRIMARY KEY (id_habitat, cpf_tratador),
+    CONSTRAINT fk1_man_trat FOREIGN KEY (id_habitat) REFERENCES habitat(id),
+    CONSTRAINT fk2_man_trat FOREIGN KEY (cpf_tratador) REFERENCES tratadores(cpf)
+);
+
+CREATE TABLE alimentacao OF tp_alimentacao(
     CONSTRAINT pk_alimentacao PRIMARY KEY (id_animal, horario_refeicao),
     CONSTRAINT fk_alimentecao FOREIGN KEY (id_animal) REFERENCES animal(id)
 );
