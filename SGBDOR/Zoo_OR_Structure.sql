@@ -101,7 +101,22 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
     MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2)
 );
 
+create or replace TYPE tp_consulta AS OBJECT (
+    id_animal REF tp_animal,       
+    cpf_veterinario REF tp_veterinario, 
+    data_consulta DATE,            
+    diagnostico VARCHAR2(255),     
+    observacoes VARCHAR2(255),     
 
+    MAP MEMBER FUNCTION get_observacoes RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY tp_consulta AS
+    MAP MEMBER FUNCTION get_observacoes RETURN VARCHAR2 IS
+    BEGIN
+        RETURN SELF.observacoes; 
+    END;
+END;
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
 --------------------------------------------------------------------------------
