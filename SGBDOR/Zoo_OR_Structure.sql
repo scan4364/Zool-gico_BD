@@ -11,23 +11,31 @@ create or replace TYPE tp_visitante AS OBJECT (
 create or replace TYPE tp_promocao AS OBJECT (
     id VARCHAR2(12),
     requisito VARCHAR2(50),  
-    data_inicio DATE,
-    data_termino DATE,
-    desconto DECIMAL(5,2)
+    data_de_inicio DATE,
+    data_de_termino DATE,
+    desconto INTEGER
 );
 
 create or replace TYPE tp_entrada AS OBJECT (
-    num_entrada INTEGER,
     data_visita DATE,
+    numero_entrada VARCHAR2(15),
     tipo_entrada INTEGER,
     hora_entrada VARCHAR2(5)
 );
 
 create or replace TYPE tp_compra AS OBJECT (
-    cpf_visitante VARCHAR2(11),  
-    num_entrada VARCHAR2(15),  
-    id_promocao VARCHAR2(12) 
+    visitante REF tp_visitante,  
+    entrada REF tp_entrada,  
+    promocao REF tp_promocao 
 );
+
+create or replace TYPE tp_fone AS OBJECT (
+    ddd VARCHAR2(2),
+    numero VARCHAR2(9)
+);
+
+create or replace TYPE tp_fones AS VARRAY(5) OF tp_fone;
+
 
 create or replace TYPE tp_funcionario AS OBJECT (
     supervisor REF tp_funcionario,
@@ -37,7 +45,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
     num_carteira_trabalho INTEGER,
     idade INTEGER,
     data_nascimento DATE,
-    telefone VARCHAR2(15),
+    telefones tp_fones,
     email VARCHAR2(150),
     CONSTRUCTOR FUNCTION tp_funcionario (
         cpf VARCHAR2,
@@ -46,7 +54,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
         num_carteira_trabalho INTEGER,
         idade INTEGER,
         data_nascimento DATE,
-        telefone VARCHAR2,
+        telefone tp_fones,
         email VARCHAR2
     ) RETURN SELF AS RESULT
 ) NOT FINAL;
@@ -79,7 +87,8 @@ CREATE OR REPLACE TYPE tp_animal AS OBJECT (
     nome_cientifico VARCHAR2(100), 
     nomes_populares nt_nome_popular, 
     nome_proprio VARCHAR2(100), 
-    genero VARCHAR2(10)        
+    genero VARCHAR2(10),
+    habitat REF tp_habitat        
 );
 
 CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
@@ -130,24 +139,12 @@ CREATE TABLE habitat OF tp_habitat (
     id PRIMARY KEY
 );
 
-declare v_habitat tp_habitat;
-begin 
-    select value(h) into v_habitat 
-    from habitat h
-    where h.id = 'habt003';
-    update habitat
-    set INTERVALO_MANUTENCAO = v_habitat.calcular_intervalo_manutencao()
-    where id = 'habt003';
-end;
-
 CREATE TABLE animal OF tp_animal (
     id PRIMARY KEY
 )
 NESTED TABLE nomes_populares STORE AS nomes_populares_table;
 
-
-create TABLE alimentacao of tp_alimentacao;
-
+create table alimentacao of tp_alimentacao;
 
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
     STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
