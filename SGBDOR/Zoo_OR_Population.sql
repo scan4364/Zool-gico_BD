@@ -48,11 +48,24 @@ VALUES (
 -- Inserindo dados na tabela entrada
 --------------------------------------------------------------------------------
 
-insert into entrada (data, numero_entrada, tipo_entrada, hora_entrada) values (
+CREATE SEQUENCE entrada_seq START WITH 1 INCREMENT BY 1;
+
+insert into entrada (data_visita, numero_entrada, tipo_entrada, hora_entrada) values (
     TO_DATE('2024-03-01', 'YYYY-MM-DD'),
-    '1',
+    entrada_seq.NEXTVAL,
     1,
-    '10:00:00'
+    '10:00'
+);
+
+--------------------------------------------------------------------------------
+-- Inserindo dados na tabela compra
+--------------------------------------------------------------------------------
+
+insert into compra (cpf_visitante, numero_entrada, id_promocao) values (
+    (SELECT REF(v) FROM visitante v WHERE v.cpf = '12345678901'),
+    (SELECT REF(e) FROM entrada e WHERE e.data_visita = TO_DATE('2024-03-01', 'YYYY-MM-DD') 
+      AND e.numero_entrada = (SELECT MAX(numero_entrada) FROM entrada WHERE data_visita = TO_DATE('2024-03-01', 'YYYY-MM-DD'))),
+    NULL
 );
 
 

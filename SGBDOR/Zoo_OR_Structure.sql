@@ -41,7 +41,7 @@ create or replace TYPE tp_promocao AS OBJECT (
 
 create or replace TYPE tp_entrada AS OBJECT (
     data_visita DATE,
-    numero_entrada VARCHAR2(15),
+    numero_entrada INTEGER,
     tipo_entrada INTEGER,
     hora_entrada VARCHAR2(5)
 );
