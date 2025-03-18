@@ -70,39 +70,80 @@ insert into compra (cpf_visitante, numero_entrada, id_promocao) values (
 
 
 --------------------------------------------------------------------------------
--- Inserindo dados na funcionario
+-- Inserindo dados na tabela funcionario
 --------------------------------------------------------------------------------
 
--- Inserir joao (sem supervisor)
-insert into funcionarios
-values (
+-- Inserir João (sem supervisor)
+INSERT INTO funcionario
+VALUES (
     tp_funcionario(
-        NULL, -- NULL significa que não tem supervisor
+        NULL,
         '11122233344',
         'João',
         'Ferreira',
-        TO_DATE('1993-06-15', 'YYYY-MM-DD'),
+        123456,
         30,
-        '(11) 99999-1111',
+        TO_DATE('1993-06-15', 'YYYY-MM-DD'),
+        nt_fones(tp_fone('11', '999991111')),
         'joao.funcionario@zoo.com'
     )
 );
 
--- Inserir ana (supervisionado por joao)
-insert into funcionarios
-values (
+-- Inserir Maria (supervisionada por João)
+INSERT INTO funcionario
+VALUES (
     tp_funcionario(
-        (SELECT REF(f) FROM funcionarios f WHERE f.cpf = '11122233344'), -- Referência ao oid de Ana
+        (SELECT REF(f) FROM funcionario f WHERE f.cpf = '11122233344'),
         '22233344455',
         'Maria',
         'Almeida',
-        TO_DATE('1983-09-20', 'YYYY-MM-DD'),
+        789012,
         40,
-        '(11) 98765-4321',
+        TO_DATE('1983-09-20', 'YYYY-MM-DD'),
+        nt_fones(tp_fone('11', '987654321')),
         'maria.supervisor@zoo.com'
     )
 );
 
+--------------------------------------------------------------------------------
+-- Inserindo dados na tabela tratadores
+--------------------------------------------------------------------------------
+
+-- Inserir Carlos (Tratador, supervisionado por Maria)
+INSERT INTO tratadores
+VALUES (
+    tp_tratador(
+        (SELECT REF(f) FROM funcionario f WHERE f.cpf = '22233344455'),
+        '33344455566',
+        'Carlos',
+        'Santos',
+        345678,
+        28,
+        TO_DATE('1996-02-10', 'YYYY-MM-DD'),
+        nt_fones(tp_fone('11', '912345678')),
+        'carlos.tratador@zoo.com'
+    )
+);
+
+--------------------------------------------------------------------------------
+-- Inserindo dados na tabela veterinarios
+--------------------------------------------------------------------------------
+
+-- Inserir Ana (Veterinária, supervisionada por Maria)
+INSERT INTO veterinarios
+VALUES (
+    tp_veterinario(
+        (SELECT REF(f) FROM funcionario f WHERE f.cpf = '22233344455'),
+        '44455566677',
+        'Ana',
+        'Mendes',
+        567890,
+        35,
+        TO_DATE('1989-08-22', 'YYYY-MM-DD'),
+        nt_fones(tp_fone('11', '923456789')),
+        'ana.veterinaria@zoo.com'
+    )
+);
 --------------------------------------------------------------------------------
 -- Inserindo dados na animal
 --------------------------------------------------------------------------------
@@ -154,21 +195,6 @@ BEGIN
     tp_alimentacao.obter_ultima_refeicao('ANIM001');
 END;
 
---------------------------------------------------------------------------------
--- Inserindo dados na tabela veterinario
---------------------------------------------------------------------------------
-INSERT INTO veterinarios VALUES (
-    tp_veterinario(
-        NULL, 
-        '12345678901', 
-        'Carlos', 
-        'Silva', 
-        TO_DATE('2022-06-15', 'YYYY-MM-DD'),
-        35, 
-        '11987654321',
-        'carlos.silva@email.com' 
-    )
-);
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela consulta
 --------------------------------------------------------------------------------
