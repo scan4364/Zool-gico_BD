@@ -89,7 +89,7 @@ CREATE OR REPLACE TYPE tp_funcionario AS OBJECT (
     ) RETURN SELF AS RESULT,
     MEMBER FUNCTION exibir_dados RETURN VARCHAR2
 ) NOT INSTANTIABLE NOT FINAL;
-
+/
 CREATE OR REPLACE TYPE BODY tp_funcionario AS
     CONSTRUCTOR FUNCTION tp_funcionario (
         cpf VARCHAR2,
@@ -118,29 +118,29 @@ CREATE OR REPLACE TYPE BODY tp_funcionario AS
         RETURN 'Funcionário: ' || SELF.nome || ' ' || SELF.sobrenome || ' CPF: ' || SELF.cpf;
     END;
 END;
-
+/
 CREATE OR REPLACE TYPE tp_tratador UNDER tp_funcionario (
     OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2
 );
-
+/
 CREATE OR REPLACE TYPE BODY tp_tratador AS
     OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2 IS
     BEGIN
         RETURN 'Tratador: ' || SELF.nome || ' ' || SELF.sobrenome || ' CPF: ' || SELF.cpf;
     END;
 END;
-    
+/
 CREATE OR REPLACE TYPE tp_veterinario UNDER tp_funcionario (
     OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2
 );
-
+/
 CREATE OR REPLACE TYPE BODY tp_veterinario AS
     OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2 IS
     BEGIN
         RETURN 'Veterinário: ' || SELF.nome || ' ' || SELF.sobrenome || ' CPF: ' || SELF.cpf;
     END;
 END;
-
+/
 create or replace TYPE tp_habitat AS OBJECT (
     id INTEGER,
     tamanho DECIMAL(10, 2),
