@@ -445,3 +445,83 @@ VALUES (
     345678, -- Número da carteira de trabalho do tratador Carlos
     TO_DATE('2024-01-01', 'YYYY-MM-DD')
 );
+
+-- Inserção de dados na tabela HABITAT 
+
+-- Habitat 1: Savana Africana (Leões)
+COMMENT ON TABLE habitat IS 'Tabela de habitats do zoológico';
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        1500.50, 
+        TO_DATE('15-03-2023', 'DD-MM-YYYY'), 
+        90, 
+        12
+    )
+);
+
+-- Habitat 2: Planície Africana (Girafas)
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        800.75, 
+        TO_DATE('05-05-2023', 'DD-MM-YYYY'), 
+        60, 
+        8
+    )
+);
+
+-- Habitat 3: Floresta de Bambu (Pandas)
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        2500.00, 
+        TO_DATE('22-01-2023', 'DD-MM-YYYY'), 
+        120, 
+        5
+    )
+);
+
+-- Habitat 4: Recinto Aquático (Golfinhos)
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        350.25, 
+        TO_DATE('10-06-2023', 'DD-MM-YYYY'), 
+        45, 
+        15
+    )
+);
+
+-- Habitat 5: Floresta Tropical Asiática (Tigres)
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        5000.00, 
+        TO_DATE('30-04-2023', 'DD-MM-YYYY'), 
+        180, 
+        3
+    )
+);
+
+-- Habitat 6: Aviário Tropical (Araras)
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        750.50, 
+        TO_DATE('12-02-2023', 'DD-MM-YYYY'), 
+        60, 
+        10
+    )
+);
+
+-- Habitat 7: Pântano Africano (Hipopótamos)
+INSERT INTO habitat VALUES(
+    tp_habitat(
+        habitat_seq.NEXTVAL, 
+        1200.00, 
+        TO_DATE('25-05-2023', 'DD-MM-YYYY'), 
+        90, 
+        6
+    )
+);
