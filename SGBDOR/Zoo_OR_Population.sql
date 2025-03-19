@@ -393,6 +393,358 @@ BEGIN
     tp_alimentacao.obter_ultima_refeicao('ANIM001');
 END;
 
+-- Inserção de dados na tabela ALIMENTAÇÃO com chamadas ao procedimento de rastreamento
+
+-- Alimentações dos Leões (Habitat 1)
+-- Simba (ID 1)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        1,
+        'Carne bovina premium', 
+        '10:00', 
+        'Alimentação matinal com carne fresca - 4kg de costela e 2kg de acém',
+        15.5
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('1');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        1,
+        'Carne bovina com suplementos', 
+        '16:00', 
+        'Alimentação vespertina - Enriquecida com cálcio e vitaminas',
+        12.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('1');
+END;
+/
+
+-- Nala (ID 2)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        2,
+        'Carne bovina selecionada', 
+        '10:30', 
+        'Alimentação matinal - Cortes magros para manter o peso ideal',
+        12.5
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('2');
+END;
+/
+
+-- Mufasa (ID 3)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        3,
+        'Carne bovina e suína mista', 
+        '11:00', 
+        'Dieta especial para leão mais velho - Inclui suplementos articulares',
+        14.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('3');
+END;
+/
+
+-- Alimentações das Girafas (Habitat 2)
+-- Melman (ID 4)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        4,
+        'Folhas de acácia frescas', 
+        '09:00', 
+        'Colhidas diariamente - Alimento preferido da espécie',
+        25.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('4');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        4,
+        'Mix de folhagens e vegetais', 
+        '15:00', 
+        'Variedade de folhas, feno e vegetais para balanceamento nutricional',
+        20.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('4');
+END;
+/
+
+-- Mel (ID 5)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        5,
+        'Folhas e brotos altos', 
+        '09:30', 
+        'Folhas de árvores altas simulando alimentação natural',
+        22.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('5');
+END;
+/
+
+-- Alimentação do Panda (Habitat 3)
+-- Po (ID 6)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        6,
+        'Bambu fresco variedade Phyllostachys', 
+        '08:00', 
+        'Bambu colhido diariamente - Variedade preferida',
+        18.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('6');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        6,
+        'Bambu e brotos tenros', 
+        '13:00', 
+        'Brotos jovens ricos em nutrientes',
+        15.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('6');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        6,
+        'Bambu fresco com frutas sazonais', 
+        '18:00', 
+        'Complemento com maçãs e outras frutas para variedade nutricional',
+        12.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('6');
+END;
+/
+
+-- Alimentação do Golfinho (Habitat 4)
+-- Flipper (ID 7)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        7,
+        'Peixes variados frescos', 
+        '11:00', 
+        'Mix de arenque, sardinha e lula - Rica em ômega 3',
+        8.5
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('7');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        7,
+        'Peixes enriquecidos', 
+        '16:00', 
+        'Peixes com suplementos vitamínicos inseridos',
+        7.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('7');
+END;
+/
+
+-- Alimentação do Tigre (Habitat 5)
+-- Rajah (ID 8)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        8,
+        'Carne bovina com ossos', 
+        '09:30', 
+        'Alimentação que simula caça natural - Inclui ossos para saúde dental',
+        20.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('8');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        8,
+        'Carne de aves inteiras', 
+        '17:30', 
+        'Frangos inteiros para estimular comportamento de caça',
+        15.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('8');
+END;
+/
+
+-- Alimentação da Arara (Habitat 6)
+-- Blu (ID 9)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        9,
+        'Mix de sementes tropicais', 
+        '08:30', 
+        'Sementes de girassol, nozes e castanhas brasileiras',
+        1.5
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('9');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        9,
+        'Frutas tropicais frescas', 
+        '16:30', 
+        'Manga, mamão, banana e outras frutas nativas da região amazônica',
+        1.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('9');
+END;
+/
+
+-- Alimentação do Hipopótamo (Habitat 7)
+-- Gloria (ID 10)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        10,
+        'Vegetação aquática e gramíneas', 
+        '10:00', 
+        'Plantas aquáticas, capim e vegetação ribeirinha',
+        45.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('10');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        10,
+        'Feno, melancia e vegetais', 
+        '17:00', 
+        'Mix de vegetais com melancia para hidratação adicional',
+        35.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('10');
+END;
+/
+
+-- Alimentação dos Filhotes
+-- Kiara - Filhote de leão (ID 11)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        11,
+        'Carne moída macia', 
+        '11:00', 
+        'Carne moída com alto teor de proteína para desenvolvimento',
+        5.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('11');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        11,
+        'Leite enriquecido e carne', 
+        '17:30', 
+        'Fórmula láctea especial com carne moída para transição alimentar',
+        2.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('11');
+END;
+/
+
+-- Spots - Filhote de girafa (ID 12)
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        12,
+        'Folhas tenras selecionadas', 
+        '09:30', 
+        'Folhas jovens de baixa altura para facilitar acesso',
+        8.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('12');
+END;
+/
+
+INSERT INTO alimentacao VALUES(
+    tp_alimentacao(
+        12,
+        'Fórmula láctea especial para girafas', 
+        '15:30', 
+        'Suplementação nutricional rica em cálcio para crescimento ósseo',
+        3.0
+    )
+);
+
+BEGIN
+    tp_alimentacao.obter_ultima_refeicao('12');
+END;
+/
+
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela consulta
 --------------------------------------------------------------------------------
