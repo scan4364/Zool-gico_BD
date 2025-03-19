@@ -273,11 +273,13 @@ CREATE TABLE funcionario OF tp_funcionario (
 /
 
 CREATE TABLE tratadores OF tp_tratador (
-    cpf PRIMARY KEY
+    cpf PRIMARY KEY,
+    num_carteira_trabalho UNIQUE
 ) NESTED TABLE telefones STORE AS tabela_telefones_tratadores;
 /
 CREATE TABLE veterinarios OF tp_veterinario (
-    cpf PRIMARY KEY
+    cpf PRIMARY KEY,
+    num_carteira_trabalho UNIQUE
 ) NESTED TABLE telefones STORE AS tabela_telefones_veterinarios;
 /
 CREATE TABLE habitat OF tp_habitat (
@@ -318,7 +320,7 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
 
 CREATE TABLE data_contrato OF tp_contrato (
     CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira),
-    CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES funcionario(num_carteira_trabalho)
+    CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES tratadores(num_carteira_trabalho)
 );
  
 CREATE TABLE alimentacao OF tp_alimentacao(
@@ -327,7 +329,7 @@ CREATE TABLE alimentacao OF tp_alimentacao(
 );
  
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
-    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
+    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER) IS
         v_horario VARCHAR2(5);
     BEGIN
         SELECT MAX(horario_refeicao)

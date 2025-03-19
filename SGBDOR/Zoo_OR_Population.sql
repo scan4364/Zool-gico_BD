@@ -8,55 +8,56 @@ values (tp_visitante(
     '12345678901', 
     TO_DATE('2013-05-10', 'YYYY-MM-DD')
 ));
-
+/
 insert into visitante 
 values (tp_visitante(
     'Timoteo', 
     '38517646589', 
     TO_DATE('1995-12-27', 'YYYY-MM-DD')
 ));
-
+/
 INSERT INTO visitante 
 VALUES (tp_visitante(
     'Maria',
     '98765432101',
     TO_DATE('1995-08-25', 'YYYY-MM-DD')
 ));
-
+/
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela promoção
 --------------------------------------------------------------------------------
 
-CREATE SEQUENCE promocao_seq START WITH 1 INCREMENT BY 1;
-
+-- CREATE SEQUENCE promocao_seq START WITH 1 INCREMENT BY 1;
+-- /
 INSERT INTO promocao (id, requisito, data_de_inicio, data_de_termino, desconto) 
 VALUES (
     promocao_seq.NEXTVAL, 'estudantes', TO_DATE('2024-07-01', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 20
 );
-
+/
 INSERT INTO promocao (id, requisito, data_de_inicio, data_de_termino, desconto) 
 VALUES (
     promocao_seq.NEXTVAL, 'Nenhum requisito', TO_DATE('2024-01-01', 'YYYY-MM-DD'), TO_DATE('2030-01-01', 'YYYY-MM-DD'), 0
 );
-
+/
 INSERT INTO promocao (id, requisito, data_de_inicio, data_de_termino, desconto) 
 VALUES (
     promocao_seq.NEXTVAL, 'Idade < 12', TO_DATE('2024-03-01', 'YYYY-MM-DD'), TO_DATE('2024-03-31', 'YYYY-MM-DD'), 50
 );
+/
 
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela entrada
 --------------------------------------------------------------------------------
 
 CREATE SEQUENCE entrada_seq START WITH 1 INCREMENT BY 1;
-
+/
 insert into entrada (data_visita, numero_entrada, tipo_entrada, hora_entrada) values (
     TO_DATE('2024-03-01', 'YYYY-MM-DD'),
     entrada_seq.NEXTVAL,
     1,
     '10:00'
 );
-
+/
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela compra
 --------------------------------------------------------------------------------
@@ -65,9 +66,9 @@ INSERT INTO compra (cpf_visitante, numero_entrada, data_visita, id_promocao) VAL
     '12345678901',
     (SELECT MAX(numero_entrada) FROM entrada WHERE data_visita = TO_DATE('2024-03-01', 'YYYY-MM-DD')),
     TO_DATE('2024-03-01', 'YYYY-MM-DD'),
-    NULL
+    1
 );
-
+/
 
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela veterinarios
@@ -88,7 +89,7 @@ VALUES (
         'joao.funcionario@zoo.com'
     )
 );
-
+/
 -- Inserir Maria (supervisionada por João)
 INSERT INTO veterinarios
 VALUES (
@@ -106,7 +107,7 @@ VALUES (
         'maria.supervisor@zoo.com'
     )
 );
-
+/
 -- Inserir Ana (Veterinária, supervisionada por Maria)
 INSERT INTO veterinarios
 VALUES (
@@ -124,7 +125,7 @@ VALUES (
         'ana.veterinaria@zoo.com'
     )
 );
-
+/
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela tratadores
 --------------------------------------------------------------------------------
@@ -146,7 +147,7 @@ VALUES (
         'carlos.tratador@zoo.com'
     )
 );
-
+/
 --------------------------------------------------------------------------------
 -- Inserindo dados na animal
 --------------------------------------------------------------------------------
@@ -154,33 +155,37 @@ VALUES (
 INSERT INTO animal
 VALUES (
     tp_animal(
-        'ANIM001', 
+        animal_seq.NEXTVAL,
+    	NULL,
         'Panthera leo', 
-        nt_nome_popular( 
+        varray_nome_popular( 
             tp_nome_popular('Leão', 'Brasil'),
             tp_nome_popular('Lion', 'Estados Unidos'),
             tp_nome_popular('León', 'Espanha')
         ),
         'Simba', 
-        'Mamífero' 
+        'Mamífero',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 1)
     )
 );
-
+/
 INSERT INTO animal
 VALUES (
     tp_animal(
-        'ANIM002', 
+        animal_seq.NEXTVAL, 
+    	NULL,
         'Elephas maximus', 
-        nt_nome_popular(
+        varray_nome_popular(
             tp_nome_popular('Elefante', 'Brasil'),
             tp_nome_popular('Elephant', 'Estados Unidos'),
             tp_nome_popular('Elefante asiático', 'Portugal')
         ),
         'Dumbo', 
-        'Mamífero' 
+        'Mamífero',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 1)
     )
 );
-
+/
 -- Inserção de dados na tabela ANIMAL
 
 -- Leões (Habitat 1)
@@ -198,7 +203,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 1)
     )
 );
-
+/
 INSERT INTO animal VALUES(
     tp_animal(
         animal_seq.NEXTVAL,
@@ -213,7 +218,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 1)
     )
 );
-
+/
 INSERT INTO animal VALUES(
     tp_animal(
         animal_seq.NEXTVAL,
@@ -228,7 +233,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 1)
     )
 );
-
+/
 -- Girafas (Habitat 2)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -244,7 +249,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 2)
     )
 );
-
+/
 INSERT INTO animal VALUES(
     tp_animal(
         animal_seq.NEXTVAL,
@@ -259,7 +264,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 2)
     )
 );
-
+/
 -- Panda (Habitat 3)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -276,7 +281,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 3)
     )
 );
-
+/
 -- Golfinho (Habitat 4)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -293,7 +298,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 4)
     )
 );
-
+/
 -- Tigre (Habitat 5)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -310,7 +315,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 5)
     )
 );
-
+/
 -- Arara (Habitat 6)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -327,7 +332,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 6)
     )
 );
-
+/
 -- Hipopótamo (Habitat 7)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -344,7 +349,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 7)
     )
 );
-
+/
 -- Adicionando filhotes com referência às mães
 -- Filhote de leão (Kiara - filha de Nala)
 INSERT INTO animal VALUES(
@@ -361,7 +366,7 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 1)
     )
 );
-
+/
 -- Filhote de girafa (Spots - filho de Mel)
 INSERT INTO animal VALUES(
     tp_animal(
@@ -377,24 +382,24 @@ INSERT INTO animal VALUES(
         (SELECT REF(h) FROM habitat h WHERE h.id = 2)
     )
 );
-
+/
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela Alimentacao
 --------------------------------------------------------------------------------
 INSERT INTO alimentacao VALUES (
     tp_alimentacao(
-        (SELECT REF(a) FROM animal a WHERE a.id = 'ANIM001'),
+        1,
         'Ração seca',
         '08:00',
         'Sem restrições',
         250.50
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('ANIM001');
+    tp_alimentacao.obter_ultima_refeicao(1);
 END;
-
+/
 -- Inserção de dados na tabela ALIMENTAÇÃO com chamadas ao procedimento de rastreamento
 
 -- Alimentações dos Leões (Habitat 1)
@@ -408,9 +413,9 @@ INSERT INTO alimentacao VALUES(
         15.5
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('1');
+    tp_alimentacao.obter_ultima_refeicao(1);
 END;
 /
 
@@ -423,9 +428,9 @@ INSERT INTO alimentacao VALUES(
         12.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('1');
+    tp_alimentacao.obter_ultima_refeicao(1);
 END;
 /
 
@@ -439,9 +444,9 @@ INSERT INTO alimentacao VALUES(
         12.5
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('2');
+    tp_alimentacao.obter_ultima_refeicao(2);
 END;
 /
 
@@ -455,9 +460,9 @@ INSERT INTO alimentacao VALUES(
         14.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('3');
+    tp_alimentacao.obter_ultima_refeicao(3);
 END;
 /
 
@@ -472,9 +477,9 @@ INSERT INTO alimentacao VALUES(
         25.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('4');
+    tp_alimentacao.obter_ultima_refeicao(4);
 END;
 /
 
@@ -487,9 +492,9 @@ INSERT INTO alimentacao VALUES(
         20.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('4');
+    tp_alimentacao.obter_ultima_refeicao(4);
 END;
 /
 
@@ -503,9 +508,9 @@ INSERT INTO alimentacao VALUES(
         22.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('5');
+    tp_alimentacao.obter_ultima_refeicao(5);
 END;
 /
 
@@ -520,9 +525,9 @@ INSERT INTO alimentacao VALUES(
         18.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('6');
+    tp_alimentacao.obter_ultima_refeicao(6);
 END;
 /
 
@@ -535,9 +540,9 @@ INSERT INTO alimentacao VALUES(
         15.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('6');
+    tp_alimentacao.obter_ultima_refeicao(6);
 END;
 /
 
@@ -550,9 +555,9 @@ INSERT INTO alimentacao VALUES(
         12.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('6');
+    tp_alimentacao.obter_ultima_refeicao(6);
 END;
 /
 
@@ -567,9 +572,9 @@ INSERT INTO alimentacao VALUES(
         8.5
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('7');
+    tp_alimentacao.obter_ultima_refeicao(7);
 END;
 /
 
@@ -582,9 +587,9 @@ INSERT INTO alimentacao VALUES(
         7.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('7');
+    tp_alimentacao.obter_ultima_refeicao(7);
 END;
 /
 
@@ -599,9 +604,9 @@ INSERT INTO alimentacao VALUES(
         20.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('8');
+    tp_alimentacao.obter_ultima_refeicao(8);
 END;
 /
 
@@ -614,9 +619,9 @@ INSERT INTO alimentacao VALUES(
         15.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('8');
+    tp_alimentacao.obter_ultima_refeicao(8);
 END;
 /
 
@@ -631,9 +636,9 @@ INSERT INTO alimentacao VALUES(
         1.5
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('9');
+    tp_alimentacao.obter_ultima_refeicao(9);
 END;
 /
 
@@ -646,9 +651,9 @@ INSERT INTO alimentacao VALUES(
         1.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('9');
+    tp_alimentacao.obter_ultima_refeicao(9);
 END;
 /
 
@@ -663,9 +668,9 @@ INSERT INTO alimentacao VALUES(
         45.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('10');
+    tp_alimentacao.obter_ultima_refeicao(10);
 END;
 /
 
@@ -678,9 +683,9 @@ INSERT INTO alimentacao VALUES(
         35.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('10');
+    tp_alimentacao.obter_ultima_refeicao(10);
 END;
 /
 
@@ -695,9 +700,9 @@ INSERT INTO alimentacao VALUES(
         5.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('11');
+    tp_alimentacao.obter_ultima_refeicao(11);
 END;
 /
 
@@ -710,9 +715,9 @@ INSERT INTO alimentacao VALUES(
         2.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('11');
+    tp_alimentacao.obter_ultima_refeicao(11);
 END;
 /
 
@@ -726,9 +731,9 @@ INSERT INTO alimentacao VALUES(
         8.0
     )
 );
-
+/
 BEGIN
-    tp_alimentacao.obter_ultima_refeicao('12');
+    tp_alimentacao.obter_ultima_refeicao(12);
 END;
 /
 
@@ -741,7 +746,7 @@ INSERT INTO alimentacao VALUES(
         3.0
     )
 );
-
+/
 BEGIN
     tp_alimentacao.obter_ultima_refeicao('12');
 END;
@@ -757,49 +762,48 @@ VALUES (
     TO_TIMESTAMP('2023-10-10 10:00:00', 'YYYY-MM-DD HH24:MI:SS'),
     'Infecção respiratória'
 );
-
+/
 
 -- Inserindo dados na tabela medicamento
-INSERT INTO medicamento (nome, dosagem)
-VALUES 
-    ('Antibiótico', '500mg'),
-    ('Vermífugo', '10ml'),
-    ('Anti-inflamatório', '200mg');
-
+INSERT INTO medicamento (nome, dosagem) VALUES ('Antibiótico', '500mg');
+INSERT INTO medicamento (nome, dosagem) VALUES ('Vermífugo', '10ml');
+INSERT INTO medicamento (nome, dosagem) VALUES ('Anti-inflamatório', '200mg');
+/
 
 -- Inserindo dados na tabela tratamento
 INSERT INTO tratamento (id_animal, cpf_veterinario, nome, dosagem, data_hora)
 VALUES (
-    (SELECT id FROM animal WHERE nome_proprio = 'Simba'), 
+    1, 
     '44455566677', -- CPF da veterinária Ana
     'Antibiótico', 
     '500mg', 
     TO_TIMESTAMP('2024-03-15 14:00:00', 'YYYY-MM-DD HH24:MI:SS')
 );
-
+/
 
 -- Inserindo dados na tabela manutencao
-INSERT INTO manutencao (id_habitat)
+INSERT INTO manutencao (id_habitat, tipo)
 VALUES (
-    (SELECT id FROM habitat WHERE tamanho = 500.00)
+    1,
+    'mata atlântica'
 );
-
+/
 
 -- inserindo dados na tabela manutencao_tratadores
 INSERT INTO manutencao_tratadores (id_habitat, cpf_tratador)
 VALUES (
-    (SELECT id FROM habitat WHERE tamanho = 500.00),
+    1,
     '33344455566' -- CPF do tratador Carlos
 );
 
-
+/
 -- inserindo dados na tabela contrato
 INSERT INTO data_contrato (num_carteira, data_contrato)
 VALUES (
     345678, -- Número da carteira de trabalho do tratador Carlos
     TO_DATE('2024-01-01', 'YYYY-MM-DD')
 );
-
+/
 -- Inserção de dados na tabela HABITAT 
 
 -- Habitat 1: Savana Africana (Leões)
@@ -813,7 +817,7 @@ INSERT INTO habitat VALUES(
         12
     )
 );
-
+/
 -- Habitat 2: Planície Africana (Girafas)
 INSERT INTO habitat VALUES(
     tp_habitat(
@@ -824,7 +828,7 @@ INSERT INTO habitat VALUES(
         8
     )
 );
-
+/
 -- Habitat 3: Floresta de Bambu (Pandas)
 INSERT INTO habitat VALUES(
     tp_habitat(
@@ -835,7 +839,7 @@ INSERT INTO habitat VALUES(
         5
     )
 );
-
+/
 -- Habitat 4: Recinto Aquático (Golfinhos)
 INSERT INTO habitat VALUES(
     tp_habitat(
@@ -846,7 +850,7 @@ INSERT INTO habitat VALUES(
         15
     )
 );
-
+/
 -- Habitat 5: Floresta Tropical Asiática (Tigres)
 INSERT INTO habitat VALUES(
     tp_habitat(
@@ -857,7 +861,7 @@ INSERT INTO habitat VALUES(
         3
     )
 );
-
+/
 -- Habitat 6: Aviário Tropical (Araras)
 INSERT INTO habitat VALUES(
     tp_habitat(
@@ -868,7 +872,7 @@ INSERT INTO habitat VALUES(
         10
     )
 );
-
+/
 -- Habitat 7: Pântano Africano (Hipopótamos)
 INSERT INTO habitat VALUES(
     tp_habitat(
@@ -879,3 +883,4 @@ INSERT INTO habitat VALUES(
         6
     )
 );
+/
