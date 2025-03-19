@@ -60,8 +60,7 @@ create or replace TYPE tp_fone AS OBJECT (
 
 create or replace TYPE nt_fones AS table OF tp_fone;
 
-
-create or replace TYPE tp_funcionario AS OBJECT (
+CREATE OR REPLACE TYPE tp_funcionario AS OBJECT (
     supervisor REF tp_funcionario,
     cpf VARCHAR2(11),
     nome VARCHAR2(100),
@@ -80,14 +79,60 @@ create or replace TYPE tp_funcionario AS OBJECT (
         data_nascimento DATE,
         telefones nt_fones,
         email VARCHAR2
-    ) RETURN SELF AS RESULT
+    ) RETURN SELF AS RESULT,
+    MEMBER FUNCTION exibir_dados RETURN VARCHAR2
 ) NOT INSTANTIABLE NOT FINAL;
 
-create or replace TYPE tp_tratador UNDER tp_funcionario (
-);
+CREATE OR REPLACE TYPE BODY tp_funcionario AS
+    CONSTRUCTOR FUNCTION tp_funcionario (
+        cpf VARCHAR2,
+        nome VARCHAR2,
+        sobrenome VARCHAR2,
+        num_carteira_trabalho INTEGER,
+        idade INTEGER,
+        data_nascimento DATE,
+        telefones nt_fones,
+        email VARCHAR2
+    ) RETURN SELF AS RESULT IS
+    BEGIN
+        SELF.cpf := cpf;
+        SELF.nome := nome;
+        SELF.sobrenome := sobrenome;
+        SELF.num_carteira_trabalho := num_carteira_trabalho;
+        SELF.idade := idade;
+        SELF.data_nascimento := data_nascimento;
+        SELF.telefones := telefones;
+        SELF.email := email;
+        RETURN;
+    END;
     
-create or replace TYPE tp_veterinario UNDER tp_funcionario (
+    MEMBER FUNCTION exibir_dados RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Funcionário: ' || SELF.nome || ' ' || SELF.sobrenome || ' CPF: ' || SELF.cpf;
+    END;
+END;
+
+CREATE OR REPLACE TYPE tp_tratador UNDER tp_funcionario (
+    OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2
 );
+
+CREATE OR REPLACE TYPE BODY tp_tratador AS
+    OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Tratador: ' || SELF.nome || ' ' || SELF.sobrenome || ' CPF: ' || SELF.cpf;
+    END;
+END;
+    
+CREATE OR REPLACE TYPE tp_veterinario UNDER tp_funcionario (
+    OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY tp_veterinario AS
+    OVERRIDING MEMBER FUNCTION exibir_dados RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Veterinário: ' || SELF.nome || ' ' || SELF.sobrenome || ' CPF: ' || SELF.cpf;
+    END;
+END;
 
 create or replace TYPE tp_habitat AS OBJECT (
     id INTEGER,
@@ -120,7 +165,7 @@ CREATE OR REPLACE TYPE tp_animal AS OBJECT (
         nomes_populares varray_nome_popular, 
         nome_proprio VARCHAR2, 
         genero VARCHAR2,
-        habitat REF tp_habitat,
+        habitat REF tp_habitat
     ) RETURN SELF AS RESULT
 );
 
@@ -152,7 +197,7 @@ END;
 CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
     nome VARCHAR2(50),
     dosagem VARCHAR2(20)
-)
+);
 
 CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
     id_animal INTEGER,       
@@ -179,12 +224,18 @@ END;
 CREATE OR REPLACE TYPE tp_manutencao AS OBJECT (
     id_habitat INTEGER,
     tipo VARCHAR2(100)
-)
+);
 
 CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
     id_habitat INTEGER,
     cpf_tratador VARCHAR2(11)
-)
+);
+
+CREATE OR REPLACE TYPE tp_contrato AS OBJECT (
+    num_carteira INTEGER,
+    data_contrato DATE
+);
+
 
 --------------------------------------------------------------------------------
 -- Criação de Tabelas
@@ -254,8 +305,19 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
     CONSTRAINT pk_man_trat PRIMARY KEY (id_habitat, cpf_tratador),
     CONSTRAINT fk1_man_trat FOREIGN KEY (id_habitat) REFERENCES habitat(id),
     CONSTRAINT fk2_man_trat FOREIGN KEY (cpf_tratador) REFERENCES tratadores(cpf)
-ERENCES funcionario(num_carteira_trabalho)
-o AS
+);
+
+CREATE TABLE data_contrato OF tp_contrato (
+    CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira),
+    CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES funcionario(num_carteira_trabalho)
+);
+ 
+CREATE TABLE alimentacao OF tp_alimentacao(
+    CONSTRAINT pk_alimentacao PRIMARY KEY (id_animal, horario_refeicao),
+    CONSTRAINT fk_alimentecao FOREIGN KEY (id_animal) REFERENCES animal(id)
+);
+ 
+CREATE OR REPLACE TYPE BODY tp_alimentacao AS
     STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
         v_horario VARCHAR2(5);
     BEGIN
@@ -263,7 +325,7 @@ o AS
         INTO v_horario
         FROM alimentacao a
         WHERE DEREF(a.id_animal).id = p_id_animal;
-
+ 
         IF v_horario IS NOT NULL THEN
             DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || p_id_animal || ': ' || v_horario);
         ELSE
