@@ -179,6 +179,203 @@ VALUES (
     )
 );
 
+-- Inserção de dados na tabela ANIMAL
+
+-- Leões (Habitat 1)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Panthera leo',
+        varray_nome_popular(
+            tp_nome_popular('Leão', 'África Oriental'),
+            tp_nome_popular('Rei da Selva', 'Global')
+        ),
+        'Simba',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 1)
+    )
+);
+
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Panthera leo',
+        varray_nome_popular(
+            tp_nome_popular('Leoa', 'África Oriental'),
+            tp_nome_popular('Rainha da Savana', 'Quênia')
+        ),
+        'Nala',
+        'Fêmea',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 1)
+    )
+);
+
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Panthera leo',
+        varray_nome_popular(
+            tp_nome_popular('Leão', 'África Oriental'),
+            tp_nome_popular('Rei da Savana', 'Tanzânia')
+        ),
+        'Mufasa',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 1)
+    )
+);
+
+-- Girafas (Habitat 2)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Giraffa camelopardalis',
+        varray_nome_popular(
+            tp_nome_popular('Girafa', 'África'),
+            tp_nome_popular('Girafa-reticulada', 'Leste Africano')
+        ),
+        'Melman',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 2)
+    )
+);
+
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Giraffa camelopardalis',
+        varray_nome_popular(
+            tp_nome_popular('Girafa', 'África'),
+            tp_nome_popular('Girafa-masai', 'Quênia/Tanzânia')
+        ),
+        'Mel',
+        'Fêmea',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 2)
+    )
+);
+
+-- Panda (Habitat 3)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Ailuropoda melanoleuca',
+        varray_nome_popular(
+            tp_nome_popular('Panda-gigante', 'China'),
+            tp_nome_popular('Urso-panda', 'Global'),
+            tp_nome_popular('Panda', 'Ásia')
+        ),
+        'Po',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 3)
+    )
+);
+
+-- Golfinho (Habitat 4)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Tursiops truncatus',
+        varray_nome_popular(
+            tp_nome_popular('Golfinho', 'Oceanos'),
+            tp_nome_popular('Boto', 'Brasil'),
+            tp_nome_popular('Nariz-de-garrafa', 'Atlântico')
+        ),
+        'Flipper',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 4)
+    )
+);
+
+-- Tigre (Habitat 5)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Panthera tigris',
+        varray_nome_popular(
+            tp_nome_popular('Tigre-de-bengala', 'Índia'),
+            tp_nome_popular('Tigre-real', 'Bengala'),
+            tp_nome_popular('Tigre-indiano', 'Subcontinente')
+        ),
+        'Rajah',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 5)
+    )
+);
+
+-- Arara (Habitat 6)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Ara ararauna',
+        varray_nome_popular(
+            tp_nome_popular('Arara-azul', 'Brasil'),
+            tp_nome_popular('Arara-canindé', 'Amazônia'),
+            tp_nome_popular('Arara-amarela', 'Pantanal')
+        ),
+        'Blu',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 6)
+    )
+);
+
+-- Hipopótamo (Habitat 7)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        NULL,
+        'Hippopotamus amphibius',
+        varray_nome_popular(
+            tp_nome_popular('Hipopótamo', 'África'),
+            tp_nome_popular('Hipopótamo-comum', 'Rios africanos'),
+            tp_nome_popular('Hippo', 'Global')
+        ),
+        'Gloria',
+        'Fêmea',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 7)
+    )
+);
+
+-- Adicionando filhotes com referência às mães
+-- Filhote de leão (Kiara - filha de Nala)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        (SELECT REF(a) FROM animal a WHERE a.nome_proprio = 'Nala'),
+        'Panthera leo',
+        varray_nome_popular(
+            tp_nome_popular('Leão', 'África'),
+            tp_nome_popular('Leãozinho', 'Zoológico')
+        ),
+        'Kiara',
+        'Fêmea',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 1)
+    )
+);
+
+-- Filhote de girafa (Spots - filho de Mel)
+INSERT INTO animal VALUES(
+    tp_animal(
+        animal_seq.NEXTVAL,
+        (SELECT REF(a) FROM animal a WHERE a.nome_proprio = 'Mel'),
+        'Giraffa camelopardalis',
+        varray_nome_popular(
+            tp_nome_popular('Girafa', 'África'),
+            tp_nome_popular('Girafinha', 'Zoológico')
+        ),
+        'Spots',
+        'Macho',
+        (SELECT REF(h) FROM habitat h WHERE h.id = 2)
+    )
+);
+
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela Alimentacao
 --------------------------------------------------------------------------------
