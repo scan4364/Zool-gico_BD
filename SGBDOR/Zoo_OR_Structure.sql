@@ -335,7 +335,7 @@ CREATE OR REPLACE TYPE BODY tp_alimentacao AS
         SELECT MAX(horario_refeicao)
         INTO v_horario
         FROM alimentacao a
-        WHERE DEREF(a.id_animal).id = p_id_animal;
+        WHERE a.id_animal = p_id_animal;
  
         IF v_horario IS NOT NULL THEN
             DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || p_id_animal || ': ' || v_horario);
