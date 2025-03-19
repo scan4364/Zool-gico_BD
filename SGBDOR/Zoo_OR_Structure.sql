@@ -81,7 +81,7 @@ create or replace TYPE tp_funcionario AS OBJECT (
         telefones nt_fones,
         email VARCHAR2
     ) RETURN SELF AS RESULT
-) NOT FINAL;
+) NOT INSTANTIABLE NOT FINAL;
 
 create or replace TYPE tp_tratador UNDER tp_funcionario (
 );
