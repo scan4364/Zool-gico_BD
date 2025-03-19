@@ -327,13 +327,13 @@ CREATE TABLE alimentacao OF tp_alimentacao(
 );
  
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
-    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2) IS
+    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER) IS
         v_horario VARCHAR2(5);
     BEGIN
         SELECT MAX(horario_refeicao)
         INTO v_horario
         FROM alimentacao a
-        WHERE DEREF(a.id_animal).id = p_id_animal;
+        WHERE a.id_animal = p_id_animal;
  
         IF v_horario IS NOT NULL THEN
             DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || p_id_animal || ': ' || v_horario);
