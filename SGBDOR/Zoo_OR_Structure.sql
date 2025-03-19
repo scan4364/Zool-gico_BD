@@ -152,7 +152,7 @@ END;
 CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
     nome VARCHAR2(50),
     dosagem VARCHAR2(20)
-)
+);
 
 CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
     id_animal INTEGER,       
@@ -160,22 +160,22 @@ CREATE OR REPLACE TYPE tp_tratamento AS OBJECT (
     nome VARCHAR2(50),
     dosagem VARCHAR2(20),
     data_hora TIMESTAMP
-)
+);
 
 CREATE OR REPLACE TYPE tp_manutencao AS OBJECT (
     id_habitat INTEGER,
     tipo VARCHAR2(100)
-)
+);
 
 CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
     id_habitat INTEGER,
     cpf_tratador VARCHAR2(11)
-)
+);
 
 CREATE OR REPLACE TYPE tp_contrato AS OBJECT (
     num_carteira INTEGER,
     data_contrato DATE
-)
+);
 
 --------------------------------------------------------------------------------
 -- Criação de Tabelas

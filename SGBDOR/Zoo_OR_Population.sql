@@ -16,12 +16,12 @@ values (tp_visitante(
     TO_DATE('1995-12-27', 'YYYY-MM-DD')
 ));
 
-insert into visitante (cpf,nome, data_de_visita, email)
-values (
-    '98765432101',
+INSERT INTO visitante 
+VALUES (tp_visitante(
     'Maria',
+    '98765432101',
     TO_DATE('1995-08-25', 'YYYY-MM-DD')
-);
+));
 
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela promoção
@@ -61,10 +61,10 @@ insert into entrada (data_visita, numero_entrada, tipo_entrada, hora_entrada) va
 -- Inserindo dados na tabela compra
 --------------------------------------------------------------------------------
 
-insert into compra (cpf_visitante, numero_entrada, id_promocao) values (
-    (SELECT REF(v) FROM visitante v WHERE v.cpf = '12345678901'),
-    (SELECT REF(e) FROM entrada e WHERE e.data_visita = TO_DATE('2024-03-01', 'YYYY-MM-DD') 
-      AND e.numero_entrada = (SELECT MAX(numero_entrada) FROM entrada WHERE data_visita = TO_DATE('2024-03-01', 'YYYY-MM-DD'))),
+INSERT INTO compra (cpf_visitante, numero_entrada, data_visita, id_promocao) VALUES (
+    '12345678901',
+    (SELECT MAX(numero_entrada) FROM entrada WHERE data_visita = TO_DATE('2024-03-01', 'YYYY-MM-DD')),
+    TO_DATE('2024-03-01', 'YYYY-MM-DD'),
     NULL
 );
 
@@ -144,6 +144,7 @@ VALUES (
         'ana.veterinaria@zoo.com'
     )
 );
+
 --------------------------------------------------------------------------------
 -- Inserindo dados na animal
 --------------------------------------------------------------------------------
@@ -198,61 +199,52 @@ END;
 --------------------------------------------------------------------------------
 -- Inserindo dados na tabela consulta
 --------------------------------------------------------------------------------
-INSERT INTO consulta VALUES (
-    tp_consulta(
-        (SELECT REF(a) FROM animal a WHERE a.id = 'ANIM001'), 
-        (SELECT REF(v) FROM veterinario v WHERE v.cpf = '12345678901'), 
-        TO_DATE('2023-10-10', 'YYYY-MM-DD'), 
-        'Infecção respiratória', 
-        'Prescrever antibióticos' 
-    )
-)
+INSERT INTO consulta (id_animal, cpf_veterinario, data_hora, observacoes)
+VALUES (
+    (SELECT id FROM animal WHERE nome_proprio = 'Simba'),
+    '44455566677', -- CPF da veterinária Ana
+    TO_TIMESTAMP('2023-10-10 10:00:00', 'YYYY-MM-DD HH24:MI:SS'),
+    'Infecção respiratória'
+);
 
--- Inserção de dados na tabela PROMOCAO
-INSERT INTO Promocao (id_promocao, descricao, data_inicio, data_fim, desconto)
+
+-- Inserindo dados na tabela medicamento
+INSERT INTO medicamento (nome, dosagem)
 VALUES 
-    (1, 'Promoção Inverno', '2025-06-01', '2025-08-31', 15),
-    (2, 'Promoção Verão', '2025-12-01', '2026-02-28', 20),
-    (3, 'Promoção Outono', '2025-03-15', '2025-05-15', 10),
-    (4, 'Promoção Primavera', '2025-09-01', '2025-11-30', 25);
+    ('Antibiótico', '500mg'),
+    ('Vermífugo', '10ml'),
+    ('Anti-inflamatório', '200mg');
 
--- Inserção de dados na tabela CONSULTA
-INSERT INTO Consulta (id_consulta, id_animal, id_veterinario, data_consulta, observacoes)
-VALUES 
-    (1, 101, 201, '2025-03-01', 'Consulta de rotina'),
-    (2, 102, 202, '2025-03-02', 'Avaliação pós-cirúrgica'),
-    (3, 103, 203, '2025-03-03', 'Check-up anual'),
-    (4, 104, 204, '2025-03-04', 'Avaliação de comportamento');
 
--- Inserção de dados na tabela TRATAMENTO
-INSERT INTO Tratamento (id_tratamento, id_consulta, medicamento, dosagem, data_inicio, data_fim)
-VALUES 
-    (1, 1, 'Antibiótico', '50mg', '2025-03-02', '2025-03-09'),
-    (2, 2, 'Analgésico', '100mg', '2025-03-03', '2025-03-10'),
-    (3, 3, 'Anti-inflamatório', '75mg', '2025-03-04', '2025-03-11'),
-    (4, 4, 'Antipirético', '200mg', '2025-03-05', '2025-03-12');
+-- Inserindo dados na tabela tratamento
+INSERT INTO tratamento (id_animal, cpf_veterinario, nome, dosagem, data_hora)
+VALUES (
+    (SELECT id FROM animal WHERE nome_proprio = 'Simba'), 
+    '44455566677', -- CPF da veterinária Ana
+    'Antibiótico', 
+    '500mg', 
+    TO_TIMESTAMP('2024-03-15 14:00:00', 'YYYY-MM-DD HH24:MI:SS')
+);
 
--- Inserção de dados na tabela MANUTENCAO
-INSERT INTO Manutencao (id_manutencao, descricao, data_manutencao, custo)
-VALUES 
-    (1, 'Limpeza do habitat', '2025-03-05', 150.00),
-    (2, 'Reparação de cercas', '2025-03-06', 200.00),
-    (3, 'Pintura das instalações', '2025-03-07', 300.00),
-    (4, 'Verificação do sistema de segurança', '2025-03-08', 250.00);
 
--- Inserção de dados na tabela MANUTENCAO_TRATADORES
-INSERT INTO Manutencao_tratadores (id_manutencao_tratador, id_tratador, id_manutencao, descricao, data_execucao)
-VALUES 
-    (1, 301, 1, 'Treinamento para manutenção do habitat', '2025-03-06'),
-    (2, 302, 2, 'Revisão dos equipamentos de segurança', '2025-03-07'),
-    (3, 303, 3, 'Acompanhamento na pintura das instalações', '2025-03-08'),
-    (4, 304, 4, 'Inspeção de rotina pós-manutencao', '2025-03-09');
+-- Inserindo dados na tabela manutencao
+INSERT INTO manutencao (id_habitat)
+VALUES (
+    (SELECT id FROM habitat WHERE tamanho = 500.00)
+);
 
--- Inserção de dados na tabela COMPRA
-INSERT INTO Compra (id_compra, item, quantidade, data_compra, valor)
-VALUES 
-    (1, 'Ração para leões', 10, '2025-03-07', 500.00),
-    (2, 'Suplementos vitamínicos', 5, '2025-03-08', 250.00),
-    (3, 'Medicamentos para animais', 20, '2025-03-09', 750.00),
-    (4, 'Equipamentos de limpeza', 2, '2025-03-10', 300.00);
 
+-- inserindo dados na tabela manutencao_tratadores
+INSERT INTO manutencao_tratadores (id_habitat, cpf_tratador)
+VALUES (
+    (SELECT id FROM habitat WHERE tamanho = 500.00),
+    '33344455566' -- CPF do tratador Carlos
+);
+
+
+-- inserindo dados na tabela contrato
+INSERT INTO data_contrato (num_carteira, data_contrato)
+VALUES (
+    345678, -- Número da carteira de trabalho do tratador Carlos
+    TO_DATE('2024-01-01', 'YYYY-MM-DD')
+);
