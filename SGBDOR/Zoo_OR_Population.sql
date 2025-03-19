@@ -208,3 +208,51 @@ INSERT INTO consulta VALUES (
     )
 )
 
+-- Inserção de dados na tabela PROMOCAO
+INSERT INTO Promocao (id_promocao, descricao, data_inicio, data_fim, desconto)
+VALUES 
+    (1, 'Promoção Inverno', '2025-06-01', '2025-08-31', 15),
+    (2, 'Promoção Verão', '2025-12-01', '2026-02-28', 20),
+    (3, 'Promoção Outono', '2025-03-15', '2025-05-15', 10),
+    (4, 'Promoção Primavera', '2025-09-01', '2025-11-30', 25);
+
+-- Inserção de dados na tabela CONSULTA
+INSERT INTO Consulta (id_consulta, id_animal, id_veterinario, data_consulta, observacoes)
+VALUES 
+    (1, 101, 201, '2025-03-01', 'Consulta de rotina'),
+    (2, 102, 202, '2025-03-02', 'Avaliação pós-cirúrgica'),
+    (3, 103, 203, '2025-03-03', 'Check-up anual'),
+    (4, 104, 204, '2025-03-04', 'Avaliação de comportamento');
+
+-- Inserção de dados na tabela TRATAMENTO
+INSERT INTO Tratamento (id_tratamento, id_consulta, medicamento, dosagem, data_inicio, data_fim)
+VALUES 
+    (1, 1, 'Antibiótico', '50mg', '2025-03-02', '2025-03-09'),
+    (2, 2, 'Analgésico', '100mg', '2025-03-03', '2025-03-10'),
+    (3, 3, 'Anti-inflamatório', '75mg', '2025-03-04', '2025-03-11'),
+    (4, 4, 'Antipirético', '200mg', '2025-03-05', '2025-03-12');
+
+-- Inserção de dados na tabela MANUTENCAO
+INSERT INTO Manutencao (id_manutencao, descricao, data_manutencao, custo)
+VALUES 
+    (1, 'Limpeza do habitat', '2025-03-05', 150.00),
+    (2, 'Reparação de cercas', '2025-03-06', 200.00),
+    (3, 'Pintura das instalações', '2025-03-07', 300.00),
+    (4, 'Verificação do sistema de segurança', '2025-03-08', 250.00);
+
+-- Inserção de dados na tabela MANUTENCAO_TRATADORES
+INSERT INTO Manutencao_tratadores (id_manutencao_tratador, id_tratador, id_manutencao, descricao, data_execucao)
+VALUES 
+    (1, 301, 1, 'Treinamento para manutenção do habitat', '2025-03-06'),
+    (2, 302, 2, 'Revisão dos equipamentos de segurança', '2025-03-07'),
+    (3, 303, 3, 'Acompanhamento na pintura das instalações', '2025-03-08'),
+    (4, 304, 4, 'Inspeção de rotina pós-manutencao', '2025-03-09');
+
+-- Inserção de dados na tabela COMPRA
+INSERT INTO Compra (id_compra, item, quantidade, data_compra, valor)
+VALUES 
+    (1, 'Ração para leões', 10, '2025-03-07', 500.00),
+    (2, 'Suplementos vitamínicos', 5, '2025-03-08', 250.00),
+    (3, 'Medicamentos para animais', 20, '2025-03-09', 750.00),
+    (4, 'Equipamentos de limpeza', 2, '2025-03-10', 300.00);
+
