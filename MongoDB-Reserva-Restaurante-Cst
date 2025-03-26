@@ -1,0 +1,113 @@
+use ReservaRestaurantes;
+
+db.Clientes.find({});
+
+db.Reservas.find({ "Convidados": { $size: { $gt: 2 } } });
+
+db.Restaurantes.aggregate([
+    { $group: { _id: null, Capacidade_Total: { $sum: "$Capacidade_Lotacao" } } }
+]);
+
+db.Reservas.aggregate([
+    { $match: { Status: "Confirmada" } }
+]);
+
+db.Clientes.find({}, { Nome: 1, Num_Tel: 1, _id: 0 });
+
+db.Mesas.find({ Capacidade: { $gte: 4 } });
+
+db.Reservas.aggregate([
+    { $group: { _id: "$Status", Total: { $sum: 1 } } }
+]);
+
+db.Reservas.aggregate([
+    { $unwind: "$Mesas" },
+    { $group: { _id: null, Total_Mesas_Reservadas: { $sum: 1 } } }
+]);
+
+db.Clientes.countDocuments({});
+
+db.Restaurantes.aggregate([
+    { $group: { _id: null, Maior_Capacidade: { $max: "$Capacidade_Lotacao" } } }
+]);
+
+db.Restaurantes.aggregate([
+    { $group: { _id: null, Maior_Capacidade: { $max: "$Capacidade_Lotacao" } } }
+]);
+
+db.Mesas.aggregate([
+    { $group: { _id: null, Capacidade_Media: { $avg: "$Capacidade" } } }
+]);
+
+db.Reservas.find({ "Convidados.0": { $exists: true } });
+
+db.Cardapio.find().sort({ Nome_Prato: 1 });
+
+db.Clientes.find().limit(5);
+
+db.Reservas.find({ $where: "this.Hora > '20:00'" });
+
+db.Reservas.mapReduce(
+    function() { emit(this.ID_Restaurante, 1); },
+    function(key, values) { return Array.sum(values); },
+    { out: "ReservasPorRestaurante" }
+);
+
+function buscarReservasPorCliente(cpf) {
+    return db.Reservas.find({ CPF_C: cpf }).toArray();
+}
+
+db.Clientes.find().pretty();
+
+db.Reservas.find({ Mesas: { $all: [1, 2] } });
+
+db.Reservas.find({ Mesas: { $all: [1, 2] } });
+
+db.Clientes.updateOne(
+    { CPF: "12345678900" },
+    { $set: { Num_Tel: "11955557777" } }
+);
+
+db.Cardapio.createIndex({ Nome_Prato: "text" });
+db.Cardapio.find({ $text: { $search: "Pizza" } });
+
+db.Restaurantes.find({ "Endereco.Rua": { $regex: "Avenida", $options: "i" } });
+
+db.Cardapio.find({ status: "Disponível" });
+
+db.Reservas.updateOne(
+    { _id: 2 },
+    { $set: { Status: "Confirmada" } }
+);
+
+db.Clientes.updateOne(
+    { CPF: "55544433300" },
+    { $set: { Nome: "Rodrigo Lima", Email: "rodrigo@gmail.com", Num_Tel: "11933334444" } },
+    { upsert: true }
+);
+
+db.Clientes.renameCollection("Usuarios");
+
+db.Restaurantes.aggregate([
+    { $project: {
+        Nome_Gerente: 1, 
+        Capacidade_Lotacao: 1, 
+        Alta_Capacidade: { $cond: { if: { $gte: ["$Capacidade_Lotacao", 70] }, then: "Sim", else: "Não" } }
+    }}
+]);
+
+db.Reservas.aggregate([
+    { $lookup: {
+        from: "Restaurantes",
+        localField: "ID_Restaurante",
+        foreignField: "ID",
+        as: "Detalhes_Restaurante"
+    }}
+]);
+
+db.Clientes.findOne({ CPF: "12345678900" });
+
+db.Reservas.updateOne(
+    { _id: 1 },
+    { $addToSet: { Mesas: 3 } }
+);
