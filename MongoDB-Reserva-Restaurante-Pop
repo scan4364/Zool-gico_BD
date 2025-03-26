@@ -1,0 +1,84 @@
+use ReservaRestaurantes;
+
+db.createCollection("Mesas");
+db.createCollection("Restaurantes");
+db.createCollection("Clientes");
+db.createCollection("Cardapio");
+db.createCollection("Reservas");
+db.createCollection("Convidados");
+
+db.Mesas.insertMany([
+    { _id: 1, Numero: 10, Capacidade: 4, Localizacao: "Terraço" },
+    { _id: 2, Numero: 5, Capacidade: 2, Localizacao: "Salão Principal" },
+    { _id: 3, Numero: 15, Capacidade: 6, Localizacao: "Varanda" },
+    { _id: 4, Numero: 8, Capacidade: 4, Localizacao: "Salão Privativo" }
+]);
+
+db.Restaurantes.insertMany([
+    { _id: 1, CNPJ: "12345678000199", Nome_Gerente: "Carlos Silva", num_Tel: "11987654321", 
+      Email: "contato@restaurante1.com", 
+      Endereco: { Numero: 100, Rua: "Rua A", Cidade: "São Paulo", CEP: "01001000", Complemento: "Loja 1" }, 
+      Horario_Funcionamento: "08:00 - 23:00", Capacidade_Lotacao: 50 
+    },
+    { _id: 2, CNPJ: "22345678000288", Nome_Gerente: "Fernanda Souza", num_Tel: "21987651234", 
+      Email: "contato@restaurante2.com", 
+      Endereco: { Numero: 200, Rua: "Avenida B", Cidade: "Rio de Janeiro", CEP: "22021010", Complemento: "Loja 5" }, 
+      Horario_Funcionamento: "10:00 - 22:00", Capacidade_Lotacao: 80 
+    }
+]);
+
+db.Clientes.insertMany([
+    { CPF: "12345678900", Nome: "Ana Souza", Email: "ana@gmail.com", Num_Tel: "11999998888", 
+      Endereco: { Numero: 25, Rua: "Av. Brasil", Cidade: "Rio de Janeiro", CEP: "22041001", Complemento: "Apto 202" } 
+    },
+    { CPF: "98765432100", Nome: "Marcos Pereira", Email: "marcos@gmail.com", Num_Tel: "11988887777", 
+      Endereco: { Numero: 50, Rua: "Rua das Flores", Cidade: "São Paulo", CEP: "01310920", Complemento: "Casa" } 
+    },
+    { CPF: "65432198700", Nome: "Juliana Costa", Email: "juliana@gmail.com", Num_Tel: "21977776666", 
+      Endereco: { Numero: 80, Rua: "Avenida Central", Cidade: "Belo Horizonte", CEP: "30110010", Complemento: "Bloco B" } 
+    }
+]);
+
+db.Cardapio.insertMany([
+    { _id: 1, Nome_Prato: "Pizza Margherita", Ingredientes: ["Massa", "Molho de Tomate", "Queijo"], 
+      horarios: "12:00 - 22:00", status: "Disponível" 
+    },
+    { _id: 2, Nome_Prato: "Salmão Grelhado", Ingredientes: ["Salmão", "Limão", "Ervas Finas"], 
+      horarios: "11:00 - 23:00", status: "Disponível" 
+    },
+    { _id: 3, Nome_Prato: "Risoto de Camarão", Ingredientes: ["Arroz Arbóreo", "Camarão", "Queijo Parmesão"], 
+      horarios: "12:00 - 21:00", status: "Indisponível" 
+    },
+    { _id: 4, Nome_Prato: "Hambúrguer Artesanal", Ingredientes: ["Pão Brioche", "Carne Angus", "Queijo Cheddar"], 
+      horarios: "12:00 - 02:00", status: "Disponível" 
+    },
+    { _id: 5, Nome_Prato: "Filé Mignon ao Molho Madeira", Ingredientes: ["Filé Mignon", "Molho Madeira", "Purê de Batata"], 
+      horarios: "12:00 - 23:00", status: "Disponível" 
+    },
+    { _id: 6, Nome_Prato: "Tacos Mexicanos", Ingredientes: ["Tortilla", "Carne Moída", "Queijo", "Pimenta"], 
+      horarios: "13:00 - 22:00", status: "Disponível" 
+    }
+]);
+
+db.Reservas.insertMany([
+    { _id: 1, CPF_C: "12345678900", ID_Restaurante: 1, Dia: "2025-03-27", Hora: "19:30", Status: "Confirmada", 
+      Mesas: [1, 2], 
+      Convidados: [{ ID: 1, Nome: "João Pereira" }, { ID: 2, Nome: "Fernanda Lima" }]
+    },
+    { _id: 2, CPF_C: "98765432100", ID_Restaurante: 2, Dia: "2025-03-28", Hora: "20:00", Status: "Pendente", 
+      Mesas: [3], 
+      Convidados: [{ ID: 3, Nome: "Carlos Almeida" }]
+    },
+    { _id: 3, CPF_C: "65432198700", ID_Restaurante: 1, Dia: "2025-04-01", Hora: "21:00", Status: "Cancelada", 
+      Mesas: [4], 
+      Convidados: []
+    },
+    { _id: 4, CPF_C: "12345678900", ID_Restaurante: 2, Dia: "2025-04-02", Hora: "18:00", Status: "Confirmada", 
+      Mesas: [2, 3], 
+      Convidados: [{ ID: 4, Nome: "Ricardo Mendes" }, { ID: 5, Nome: "Sofia Martins" }]
+    },
+    { _id: 5, CPF_C: "98765432100", ID_Restaurante: 1, Dia: "2025-04-05", Hora: "19:45", Status: "Pendente", 
+      Mesas: [1], 
+      Convidados: [{ ID: 6, Nome: "Tatiane Oliveira" }]
+    }
+]);
