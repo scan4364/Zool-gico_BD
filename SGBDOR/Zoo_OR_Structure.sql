@@ -16,10 +16,16 @@ CREATE SEQUENCE habitat_seq
 CREATE SEQUENCE animal_seq
     MINVALUE 1
     START WITH 1
-    INCREMENT BY 1
+    INCREMENT BY 1.
     CACHE 20;
 
 CREATE SEQUENCE manutencao_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
+CREATE SEQUENCE entrada_seq
     MINVALUE 1
     START WITH 1
     INCREMENT BY 1
@@ -184,7 +190,7 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
     observacoes VARCHAR2(255),
     quantidade DECIMAL(10, 2),
 
-    MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER)
+    MEMBER PROCEDURE obter_ultima_refeicao
 );
 /
 create or replace TYPE tp_consulta AS OBJECT (
@@ -329,18 +335,18 @@ CREATE TABLE alimentacao OF tp_alimentacao(
 );
 /
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
-    MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER) IS
+    MEMBER PROCEDURE obter_ultima_refeicao IS
         v_horario VARCHAR2(5);
     BEGIN
-        SELECT MAX(horario_refeicao)
+        SELECT MAX(a.horario_refeicao)
         INTO v_horario
         FROM alimentacao a
-        WHERE a.id_animal = p_id_animal;
+        WHERE a.id_animal = SELF.id_animal;
  
         IF v_horario IS NOT NULL THEN
-            DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || TO_CHAR(p_id_animal) || ': ' || v_horario);
+            DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' ||  SELF.id_animal || ': ' || v_horario);
         ELSE
-            DBMS_OUTPUT.PUT_LINE('Nenhuma refeição encontrada para o animal ' || p_id_animal);
+            DBMS_OUTPUT.PUT_LINE('Nenhuma refeição encontrada para o animal ' || SELF.id_animal);
         END IF;
     END;
 END;
