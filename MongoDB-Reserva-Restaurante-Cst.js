@@ -1,4 +1,3 @@
-```javascript
 /* 1. USE */
 use ReservaRestaurantes;
 
@@ -261,4 +260,3 @@ try {
 } finally {
   session.endSession();
 }
-```
