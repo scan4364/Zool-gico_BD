@@ -1,4 +1,3 @@
-```javascript
 use ReservaRestaurantes;
 
 db.createCollection("Restaurantes");
@@ -583,4 +582,3 @@ db.Convidados.insertMany([
     { _id: 19, Nome: "Camila Martins", CPF: "99900011122", Email: "camila2@protonmail.com", Telefone: "31943210987" },
     { _id: 20, Nome: "Gustavo Nascimento", CPF: "00011122233", Email: "gustavo2@icloud.com", Telefone: "41943210987" }
 ]);
-```
