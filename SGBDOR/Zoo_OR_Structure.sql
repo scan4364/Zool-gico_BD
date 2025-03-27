@@ -184,7 +184,7 @@ CREATE OR REPLACE TYPE tp_alimentacao AS OBJECT (
     observacoes VARCHAR2(255),
     quantidade DECIMAL(10, 2),
 
-    MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal VARCHAR2)
+    MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER)
 );
 /
 create or replace TYPE tp_consulta AS OBJECT (
@@ -338,7 +338,7 @@ CREATE OR REPLACE TYPE BODY tp_alimentacao AS
         WHERE a.id_animal = p_id_animal;
  
         IF v_horario IS NOT NULL THEN
-            DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || p_id_animal || ': ' || v_horario);
+            DBMS_OUTPUT.PUT_LINE('Última refeição do animal ' || TO_CHAR(p_id_animal) || ': ' || v_horario);
         ELSE
             DBMS_OUTPUT.PUT_LINE('Nenhuma refeição encontrada para o animal ' || p_id_animal);
         END IF;
