@@ -16,7 +16,7 @@ CREATE SEQUENCE habitat_seq
 CREATE SEQUENCE animal_seq
     MINVALUE 1
     START WITH 1
-    INCREMENT BY 1.
+    INCREMENT BY 1
     CACHE 20;
 
 CREATE SEQUENCE manutencao_seq
@@ -247,6 +247,7 @@ CREATE OR REPLACE TYPE tp_manutencao_tratadores AS OBJECT (
 /
 CREATE OR REPLACE TYPE tp_contrato AS OBJECT (
     num_carteira INTEGER,
+    funcionario REF tp_funcionario,
     data_contrato DATE
 );
 
@@ -325,8 +326,7 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
 );
 /
 CREATE TABLE data_contrato OF tp_contrato (
-    CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira),
-    CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES tratadores(num_carteira_trabalho)
+    CONSTRAINT pk_dt_cont PRIMARY KEY (num_carteira)
 );
 /
 CREATE TABLE alimentacao OF tp_alimentacao(
