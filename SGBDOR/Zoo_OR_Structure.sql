@@ -317,19 +317,19 @@ CREATE TABLE manutencao_tratadores OF tp_manutencao_tratadores (
     CONSTRAINT fk1_man_trat FOREIGN KEY (id_habitat) REFERENCES habitat(id),
     CONSTRAINT fk2_man_trat FOREIGN KEY (cpf_tratador) REFERENCES tratadores(cpf)
 );
-
+/
 CREATE TABLE data_contrato OF tp_contrato (
     CONSTRAINT pf_dt_cont PRIMARY KEY (num_carteira),
     CONSTRAINT fk_dt_cont FOREIGN KEY (num_carteira) REFERENCES tratadores(num_carteira_trabalho)
 );
- 
+/
 CREATE TABLE alimentacao OF tp_alimentacao(
     CONSTRAINT pk_alimentacao PRIMARY KEY (id_animal, horario_refeicao),
     CONSTRAINT fk_alimentecao FOREIGN KEY (id_animal) REFERENCES animal(id)
 );
- 
+/
 CREATE OR REPLACE TYPE BODY tp_alimentacao AS
-    STATIC PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER) IS
+    MEMBER PROCEDURE obter_ultima_refeicao (p_id_animal INTEGER) IS
         v_horario VARCHAR2(5);
     BEGIN
         SELECT MAX(horario_refeicao)
