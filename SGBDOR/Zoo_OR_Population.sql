@@ -841,7 +841,7 @@ VALUES (
 INSERT INTO data_contrato (num_carteira, funcionario, data_contrato)
 VALUES (
     345678,
-    SELECT REF(*) FROM tratadores T, veterinarios V  WHERE T.num_carteira = 345678 or V.num_carteira = 345678, -- Número da carteira de trabalho do tratador Carlos
+    (SELECT REF(T) FROM tratadores T WHERE T.num_carteira_trabalho = 345678), -- Número da carteira de trabalho do tratador Carlos
     TO_DATE('2024-01-01', 'YYYY-MM-DD')
 );
 /
