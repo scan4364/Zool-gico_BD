@@ -216,3 +216,173 @@ WHERE EXISTS (
     WHERE v2.supervisor = REF(v)
 );
 /
+
+-- Análise de distribuição de funcionários por tipo e experiência
+SELECT 
+    'Veterinários' AS tipo_funcionario,
+    COUNT(*) AS quantidade,
+    ROUND(AVG(idade)) AS idade_media,
+    MIN(idade) AS idade_minima,
+    MAX(idade) AS idade_maxima
+FROM 
+    veterinarios
+UNION ALL
+SELECT 
+    'Tratadores' AS tipo_funcionario,
+    COUNT(*) AS quantidade,
+    ROUND(AVG(idade)) AS idade_media,
+    MIN(idade) AS idade_minima,
+    MAX(idade) AS idade_maxima
+FROM 
+    tratadores;
+/
+-- Análise de contratos por período e tipo de funcionário
+SELECT 
+    EXTRACT(YEAR FROM dc.data_contrato) AS ano_contratacao,
+    EXTRACT(MONTH FROM dc.data_contrato) AS mes_contratacao,
+    COUNT(CASE WHEN EXISTS (SELECT 1 FROM veterinarios v WHERE v.num_carteira_trabalho = dc.num_carteira) THEN 1 END) AS veterinarios_contratados,
+    COUNT(CASE WHEN EXISTS (SELECT 1 FROM tratadores t WHERE t.num_carteira_trabalho = dc.num_carteira) THEN 1 END) AS tratadores_contratados,
+    COUNT(*) AS total_contratacoes
+FROM 
+    data_contrato dc
+GROUP BY 
+    EXTRACT(YEAR FROM dc.data_contrato),
+    EXTRACT(MONTH FROM dc.data_contrato)
+ORDER BY 
+    ano_contratacao DESC, 
+    mes_contratacao DESC;
+/
+-- Histórico médico completo dos animais
+SELECT 
+    a.nome_proprio AS nome_animal,
+    a.nome_cientifico,
+    c.data_hora,
+    v.nome || ' ' || v.sobrenome AS veterinario,
+    c.observacoes AS diagnostico,
+    t.nome AS medicamento,
+    t.dosagem
+FROM 
+    consulta c
+JOIN 
+    animal a ON c.id_animal = a.id
+JOIN 
+    veterinarios v ON c.cpf_veterinario = v.cpf
+LEFT JOIN 
+    tratamento t ON c.id_animal = t.id_animal 
+                AND c.cpf_veterinario = t.cpf_veterinario 
+                AND c.data_hora = t.data_hora
+ORDER BY 
+    a.nome_proprio, 
+    c.data_hora DESC;
+/
+
+-- Análise de manutenções por habitat com tratamento de valores negativos
+SELECT 
+    h.id AS id_habitat,
+    h.tamanho,
+    m.tipo AS tipo_manutencao,
+    COUNT(mt.cpf_tratador) AS numero_tratadores,
+    LISTAGG(t.nome || ' ' || t.sobrenome, ', ') 
+        WITHIN GROUP (ORDER BY t.nome) AS tratadores_responsaveis,
+    h.data_ultima_manutencao,
+    CASE 
+        WHEN ROUND(SYSDATE - h.data_ultima_manutencao) < 0 THEN NULL
+        ELSE ROUND(SYSDATE - h.data_ultima_manutencao)
+    END AS dias_desde_ultima_manutencao,
+    CASE 
+        WHEN ROUND(h.intervalo_manutencao - (SYSDATE - h.data_ultima_manutencao)) < 0 THEN NULL
+        ELSE ROUND(h.intervalo_manutencao - (SYSDATE - h.data_ultima_manutencao))
+    END AS dias_ate_proxima_manutencao
+FROM 
+    habitat h
+JOIN 
+    manutencao m ON h.id = m.id_habitat
+LEFT JOIN 
+    manutencao_tratadores mt ON h.id = mt.id_habitat
+LEFT JOIN 
+    tratadores t ON mt.cpf_tratador = t.cpf
+GROUP BY 
+    h.id, h.tamanho, m.tipo, h.data_ultima_manutencao, h.intervalo_manutencao
+ORDER BY 
+    CASE 
+        WHEN ROUND(h.intervalo_manutencao - (SYSDATE - h.data_ultima_manutencao)) < 0 THEN 999999
+        ELSE ROUND(h.intervalo_manutencao - (SYSDATE - h.data_ultima_manutencao))
+    END;
+/
+
+-- Distribuição de carga de trabalho entre tratadores
+SELECT 
+    t.nome || ' ' || t.sobrenome AS tratador,
+    t.cpf,
+    COUNT(DISTINCT mt.id_habitat) AS num_habitats_responsavel,
+    LISTAGG(h.id || ' (' || m.tipo || ')', ', ') 
+        WITHIN GROUP (ORDER BY h.id) AS habitats_responsavel,
+    SUM(h.tamanho) AS area_total_manutencao,
+    MAX(h.data_ultima_manutencao) AS ultima_manutencao_realizada
+FROM 
+    tratadores t
+LEFT JOIN 
+    manutencao_tratadores mt ON t.cpf = mt.cpf_tratador
+LEFT JOIN 
+    habitat h ON mt.id_habitat = h.id
+LEFT JOIN 
+    manutencao m ON h.id = m.id_habitat
+GROUP BY 
+    t.nome, t.sobrenome, t.cpf
+ORDER BY 
+    num_habitats_responsavel DESC, area_total_manutencao DESC;
+/
+
+-- Saúde dos animais por habitat
+SELECT 
+    h.id AS id_habitat,
+    h.tamanho,
+    COUNT(DISTINCT a.id) AS total_animais,
+    ROUND(COUNT(DISTINCT a.id) / h.qtd_animais * 100, 2) AS percentual_ocupacao,
+    COUNT(DISTINCT c.data_hora) AS total_consultas,
+    COUNT(DISTINCT c.data_hora) / COUNT(DISTINCT a.id) AS media_consultas_por_animal,
+    COUNT(DISTINCT t.data_hora) AS total_tratamentos,
+    LISTAGG(DISTINCT a.nome_proprio, ', ') WITHIN GROUP (ORDER BY a.nome_proprio) AS animais_residentes
+FROM 
+    habitat h
+LEFT JOIN 
+    animal a ON DEREF(a.habitat).id = h.id
+LEFT JOIN 
+    consulta c ON a.id = c.id_animal
+LEFT JOIN 
+    tratamento t ON c.id_animal = t.id_animal AND c.data_hora = t.data_hora
+GROUP BY 
+    h.id, h.tamanho, h.qtd_animais
+ORDER BY 
+    id_habitat;
+/
+
+-- Perfil demográfico completo de todos os visitantes
+SELECT 
+    CASE 
+        WHEN MONTHS_BETWEEN(SYSDATE, v.data_nascimento)/12 < 12 THEN 'Criança (0-11)'
+        WHEN MONTHS_BETWEEN(SYSDATE, v.data_nascimento)/12 < 18 THEN 'Adolescente (12-17)'
+        WHEN MONTHS_BETWEEN(SYSDATE, v.data_nascimento)/12 < 60 THEN 'Adulto (18-59)'
+        ELSE 'Idoso (60+)'
+    END AS faixa_etaria,
+    COUNT(v.cpf) AS total_visitantes,
+    ROUND(COUNT(v.cpf) * 100.0 / (SELECT COUNT(*) FROM visitante), 2) AS percentual,
+    ROUND(AVG(NVL(p.desconto, 0))) AS desconto_medio_obtido,
+    COUNT(DISTINCT e.data_visita) AS dias_com_visitas
+FROM 
+    visitante v
+LEFT JOIN 
+    compra c ON v.cpf = c.cpf_visitante
+LEFT JOIN 
+    entrada e ON c.numero_entrada = e.numero_entrada AND c.data_visita = e.data_visita
+LEFT JOIN 
+    promocao p ON c.id_promocao = p.id
+GROUP BY 
+    CASE 
+        WHEN MONTHS_BETWEEN(SYSDATE, v.data_nascimento)/12 < 12 THEN 'Criança (0-11)'
+        WHEN MONTHS_BETWEEN(SYSDATE, v.data_nascimento)/12 < 18 THEN 'Adolescente (12-17)'
+        WHEN MONTHS_BETWEEN(SYSDATE, v.data_nascimento)/12 < 60 THEN 'Adulto (18-59)'
+        ELSE 'Idoso (60+)'
+    END
+ORDER BY 
+    total_visitantes DESC;
