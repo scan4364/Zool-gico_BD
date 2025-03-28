@@ -148,3 +148,47 @@ SELECT
 FROM alimentacao
 WHERE horario_refeicao = '11:00';
 /
+
+SELECT a.nome_proprio,
+       t.nome AS nome_popular,
+       t.regiao
+FROM animal a,
+     TABLE(a.nomes_populares) t
+WHERE a.nome_cientifico = 'Panthera leo';
+/
+
+SELECT f.nome,
+       t.ddd || '-' || t.numero AS telefone
+FROM tratadores f,
+     TABLE(f.telefones) t;
+/
+
+SELECT v.nome,
+       t.ddd || '-' || t.numero AS telefone
+FROM veterinarios v,
+     TABLE(v.telefones) t;
+
+SELECT t.exibir_dados() AS dados
+FROM tratadores t;
+/
+
+SELECT v.exibir_dados() AS dados
+FROM veterinarios v;
+/
+
+DECLARE
+    a tp_alimentacao;
+BEGIN
+    SELECT VALUE(a) INTO a
+    FROM alimentacao a
+    WHERE id_animal = 1 AND horario_refeicao = '10:00';
+
+    a.obter_ultima_refeicao;
+END;
+/
+
+SELECT a.id_animal, MAX(a.horario_refeicao) AS ultima_refeicao
+FROM alimentacao a
+GROUP BY a.id_animal
+HAVING MAX(a.horario_refeicao) > '15:00';
+/
