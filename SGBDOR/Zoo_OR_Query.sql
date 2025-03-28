@@ -192,3 +192,27 @@ FROM alimentacao a
 GROUP BY a.id_animal
 HAVING MAX(a.horario_refeicao) > '15:00';
 /
+
+SELECT a.nome_proprio AS filho,
+       DEREF(a.mae).nome_proprio AS mae,
+       DEREF(a.habitat).id AS habitat_id
+FROM animal a
+WHERE a.mae IS NOT NULL
+  AND DEREF(a.habitat).id = DEREF(a.mae).habitat.id;
+/
+
+SELECT a.id_animal,
+       COUNT(*) AS total_refeicoes
+FROM alimentacao a
+GROUP BY a.id_animal
+HAVING COUNT(*) > 2;
+/
+
+SELECT v.nome AS supervisor
+FROM veterinarios v
+WHERE EXISTS (
+    SELECT 1
+    FROM veterinarios v2
+    WHERE v2.supervisor = REF(v)
+);
+/
