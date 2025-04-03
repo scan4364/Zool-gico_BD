@@ -49,7 +49,7 @@ db.Reservas.aggregate([{ $group: { _id: null, ultimaData: { $max: "$Dia" } } }])
 
 /* 12. AVG */
 db.Mesas.aggregate([{ $group: { _id: null, media: { $avg: "$Capacidade" } } }]);
-db.Reservas.aggregate([{ $project: { total: { $size: "$Convidados" } }, { $group: { _id: null, media: { $avg: "$total" } } }]);
+db.Reservas.aggregate([{ $project: { total: { $size: "$Convidados" } }}, { $group: { _id: null, media: { $avg: "$total" } } }]);
 db.Mesas.aggregate([{ $group: { _id: "$ID_Restaurante", mediaCapacidade: { $avg: "$Capacidade" } } }]);
 
 /* 13. EXISTS */
@@ -72,22 +72,22 @@ db.Reservas.find({ $where: "this.Hora < '19:00'" });
 
 /* 17. MAPREDUCE */
 db.Reservas.mapReduce(
-  function() { emit(this.ID_Restaurante, 1); },
-  function(key, values) { return Array.sum(values); },
+  function () { emit(this.ID_Restaurante, 1); },
+  function (key, values) { return Array.sum(values); },
   { out: "reservas_por_restaurante" }
 );
 
 /* 18. FUNCTION */
 const buscarReservas = (clienteId) => db.Reservas.find({ CPF_C: clienteId }).toArray();
-const gerarRelatorio = () => ({ 
-  clientes: db.Clientes.countDocuments(), 
+const gerarRelatorio = () => ({
+  clientes: db.Clientes.countDocuments(),
   reservas: db.Reservas.countDocuments(),
   restaurantes: db.Restaurantes.countDocuments()
 });
 
 /* 19. PRETTY */
 db.Clientes.find().pretty();
-db.Reservas.findOne().pretty();
+db.Reservas.find().pretty();
 
 /* 20. ALL */
 db.Reservas.find({ Mesas: { $all: [23, 56] } });
@@ -105,16 +105,16 @@ db.Cardapio.find({ $text: { $search: "Salmão -grelhado" } });
 db.Cardapio.find({ $text: { $search: "frango" } });
 
 /* 24. FILTER */
-db.Reservas.aggregate([{ 
-  $project: { 
-    ConvidadosVIP: { 
-      $filter: { 
-        input: "$Convidados", 
-        as: "conv", 
-        cond: { $eq: ["$$conv.Nome", "João Pereira"] } 
-      } 
-    } 
-  } 
+db.Reservas.aggregate([{
+  $project: {
+    ConvidadosVIP: {
+      $filter: {
+        input: "$Convidados",
+        as: "conv",
+        cond: { $eq: ["$$conv.Nome", "João Pereira"] }
+      }
+    }
+  }
 }]);
 db.Reservas.aggregate([
   {
@@ -136,9 +136,9 @@ db.Reservas.updateOne({ _id: 5 }, { $set: { Status: "Cancelada" } });
 db.Restaurantes.updateMany({ Capacidade_Lotacao: { $lt: 50 } }, { $set: { Pequeno: true } });
 
 /* 26. SAVE */
-db.Clientes.replaceOne({ CPF: "11122233344" }, { 
-  CPF: "11122233344", 
-  Nome: "João Pereira Atualizado", 
+db.Clientes.replaceOne({ CPF: "11122233344" }, {
+  CPF: "11122233344",
+  Nome: "João Pereira Atualizado",
   Email: "joao.novo@email.com",
   Num_Tel: "11999998888",
   Endereco: {
@@ -151,16 +151,16 @@ db.Clientes.replaceOne({ CPF: "11122233344" }, {
 }, { upsert: true });
 
 /* 28. COND */
-db.Restaurantes.aggregate([{ 
-  $project: { 
-    Tamanho: { 
-      $cond: { 
-        if: { $gte: ["$Capacidade_Lotacao", 100] }, 
-        then: "Grande", 
-        else: "Pequeno" 
-      } 
-    } 
-  } 
+db.Restaurantes.aggregate([{
+  $project: {
+    Tamanho: {
+      $cond: {
+        if: { $gte: ["$Capacidade_Lotacao", 100] },
+        then: "Grande",
+        else: "Pequeno"
+      }
+    }
+  }
 }]);
 db.Mesas.aggregate([
   {
@@ -184,13 +184,13 @@ db.Mesas.aggregate([
 ]);
 
 /* 29. LOOKUP */
-db.Reservas.aggregate([{ 
-  $lookup: { 
-    from: "Restaurantes", 
-    localField: "ID_Restaurante", 
-    foreignField: "_id", 
-    as: "Restaurante" 
-  } 
+db.Reservas.aggregate([{
+  $lookup: {
+    from: "Restaurantes",
+    localField: "ID_Restaurante",
+    foreignField: "_id",
+    as: "Restaurante"
+  }
 }]);
 db.Reservas.aggregate([
   {
