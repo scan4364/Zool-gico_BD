@@ -49,7 +49,7 @@ db.Reservas.aggregate([{ $group: { _id: null, ultimaData: { $max: "$Dia" } } }])
 
 /* 12. AVG */
 db.Mesas.aggregate([{ $group: { _id: null, media: { $avg: "$Capacidade" } } }]);
-db.Reservas.aggregate([{ $project: { total: { $size: "$Convidados" } }}, { $group: { _id: null, media: { $avg: "$total" } } }]);
+db.Reservas.aggregate([{ $project: { total: { $size: "$Convidados" } } }, { $group: { _id: null, media: { $avg: "$total" } } }]);
 db.Mesas.aggregate([{ $group: { _id: "$ID_Restaurante", mediaCapacidade: { $avg: "$Capacidade" } } }]);
 
 /* 13. EXISTS */
@@ -104,6 +104,20 @@ db.Cardapio.find({ $text: { $search: "Pizza" } });
 db.Cardapio.find({ $text: { $search: "Salmão -grelhado" } });
 db.Cardapio.find({ $text: { $search: "frango" } });
 
+/* 23. SEARCH */
+db.Reservas.createIndex({ ID_Restaurante: 1, Dia: 1 }, { name: "reservas_index" });
+db.Reservas.aggregate([
+  {
+    $search: {
+      index: "reservas_index",
+      text: {
+        query: 2,
+        path: "ID_Restaurante"
+      }
+    }
+  }
+])
+
 /* 24. FILTER */
 db.Reservas.aggregate([{
   $project: {
@@ -149,6 +163,12 @@ db.Clientes.replaceOne({ CPF: "11122233344" }, {
     Complemento: "Apto 301"
   }
 }, { upsert: true });
+
+/* 27. RENAMECOLLECTION */
+db.Clientes.renameCollection("Cl13nt35");
+db.Cl13nt35.find();
+db.Cl13nt35.renameCollection("Clientes");
+db.Clientes.find();
 
 /* 28. COND */
 db.Restaurantes.aggregate([{
@@ -244,10 +264,7 @@ db.Reservas.find({
   Dia: { $regex: /^2025-04/ }
 });
 
-/* 35. INDEX OPERATIONS */
-db.Reservas.createIndex({ ID_Restaurante: 1, Dia: 1 });
-
-/* 36. TRANSACTIONS */
+/* 35. TRANSACTIONS */
 const session = db.getMongo().startSession();
 session.startTransaction();
 try {
