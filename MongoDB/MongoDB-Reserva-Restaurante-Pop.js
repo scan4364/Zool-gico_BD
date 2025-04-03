@@ -1,4 +1,4 @@
-use ReservaRestaurantes;
+db = db.getSiblingDB("ReservaRestaurantes");
 
 db.createCollection("Restaurantes");
 db.createCollection("Mesas");
@@ -401,7 +401,7 @@ db.Cardapio.insertMany([
     { _id: 26, Nome_Prato: "Risoto de Cogumelos", Ingredientes: ["Arroz Arbóreo", "Cogumelos", "Queijo Parmesão"], horarios: "12:00 - 22:00", status: "Disponível", Restaurante_Id: 3 },
     { _id: 27, Nome_Prato: "Tartar de Atum", Ingredientes: ["Atum", "Alho", "Ervas", "Azeite"], horarios: "12:00 - 23:00", status: "Disponível", Restaurante_Id: 3 },
     { _id: 28, Nome_Prato: "Nhoque de Batata", Ingredientes: ["Batata", "Farinha de Trigo", "Queijo"], horarios: "12:00 - 22:00", status: "Disponível", Restaurante_Id: 3 },
-    
+
     { _id: 29, Nome_Prato: "Frango Assado", Ingredientes: ["Frango", "Ervas", "Alho", "Limão"], horarios: "12:00 - 23:00", status: "Disponível", Restaurante_Id: 4 },
     { _id: 30, Nome_Prato: "Picanha na Brasa", Ingredientes: ["Picanha", "Sal Grosso", "Carvão"], horarios: "12:00 - 23:00", status: "Disponível", Restaurante_Id: 4 },
     { _id: 31, Nome_Prato: "Coxinha de Frango", Ingredientes: ["Frango Desfiado", "Massa de Coxinha", "Requeijão"], horarios: "10:00 - 20:00", status: "Disponível", Restaurante_Id: 4 },
