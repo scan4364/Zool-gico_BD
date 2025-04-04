@@ -250,6 +250,33 @@ db.Mesas.insertMany([
     { _id: 195, Numero: 15, Capacidade: 6, Localizacao: "Piso Superior", ID_Restaurante: 10 }
 ]);
 
+db.Mesas.deleteMany({ ID_Restaurante: 10 });
+
+db.Mesas.insertMany([
+    { _id: 181, Numero: 1, Capacidade: 2, Localizacao: "Área Interna", ID_Restaurante: 100 },
+    { _id: 182, Numero: 2, Capacidade: 4, Localizacao: "Área Interna", ID_Restaurante: 100 },
+    { _id: 183, Numero: 3, Capacidade: 6, Localizacao: "Varanda", ID_Restaurante: 100 },
+    { _id: 184, Numero: 4, Capacidade: 8, Localizacao: "Área VIP", ID_Restaurante: 100 },
+    { _id: 185, Numero: 5, Capacidade: 4, Localizacao: "Bar", ID_Restaurante: 100 },
+    { _id: 186, Numero: 6, Capacidade: 6, Localizacao: "Jardim", ID_Restaurante: 100 },
+    { _id: 187, Numero: 7, Capacidade: 4, Localizacao: "Salão de Eventos", ID_Restaurante: 100 },
+    { _id: 188, Numero: 8, Capacidade: 6, Localizacao: "Terraço", ID_Restaurante: 100 },
+    { _id: 189, Numero: 9, Capacidade: 8, Localizacao: "Área Externa", ID_Restaurante: 100 },
+    { _id: 190, Numero: 10, Capacidade: 4, Localizacao: "Mezanino", ID_Restaurante: 100 },
+    { _id: 191, Numero: 11, Capacidade: 6, Localizacao: "Área Smoking", ID_Restaurante: 100 },
+    { _id: 192, Numero: 12, Capacidade: 4, Localizacao: "Lounge", ID_Restaurante: 100 },
+    { _id: 193, Numero: 13, Capacidade: 6, Localizacao: "Rooftop", ID_Restaurante: 100 },
+    { _id: 194, Numero: 14, Capacidade: 4, Localizacao: "Salão Privativo", ID_Restaurante: 100 },
+    { _id: 195, Numero: 15, Capacidade: 6, Localizacao: "Piso Superior", ID_Restaurante: 100 }
+]);
+
+db.Mesas.updateMany(
+    { ID_Restaurante: 100 },
+    {
+        $set: { ID_Restaurante: 10 }
+    }
+)
+
 db.Mesas.insertMany([
     { _id: 196, Numero: 1, Capacidade: 2, Localizacao: "Área Interna", ID_Restaurante: 11 },
     { _id: 197, Numero: 2, Capacidade: 4, Localizacao: "Área Interna", ID_Restaurante: 11 },
@@ -268,6 +295,34 @@ db.Mesas.insertMany([
     { _id: 210, Numero: 15, Capacidade: 4, Localizacao: "Piso Superior", ID_Restaurante: 11 },
     { _id: 211, Numero: 16, Capacidade: 6, Localizacao: "Área Interna", ID_Restaurante: 11 }
 ]);
+
+db.Mesas.deleteMany({ ID_Restaurante: 11 });
+
+db.Mesas.insertMany([
+    { _id: 196, Numero: 1, Capacidade: 2, Localizacao: "Área Interna", ID_Restaurante: 110 },
+    { _id: 197, Numero: 2, Capacidade: 4, Localizacao: "Área Interna", ID_Restaurante: 110 },
+    { _id: 198, Numero: 3, Capacidade: 6, Localizacao: "Varanda", ID_Restaurante: 110 },
+    { _id: 199, Numero: 4, Capacidade: 4, Localizacao: "Área VIP", ID_Restaurante: 110 },
+    { _id: 200, Numero: 5, Capacidade: 6, Localizacao: "Bar", ID_Restaurante: 110 },
+    { _id: 201, Numero: 6, Capacidade: 8, Localizacao: "Jardim", ID_Restaurante: 110 },
+    { _id: 202, Numero: 7, Capacidade: 4, Localizacao: "Salão de Eventos", ID_Restaurante: 110 },
+    { _id: 203, Numero: 8, Capacidade: 6, Localizacao: "Terraço", ID_Restaurante: 110 },
+    { _id: 204, Numero: 9, Capacidade: 8, Localizacao: "Área Externa", ID_Restaurante: 110 },
+    { _id: 205, Numero: 10, Capacidade: 4, Localizacao: "Mezanino", ID_Restaurante: 110 },
+    { _id: 206, Numero: 11, Capacidade: 6, Localizacao: "Área Smoking", ID_Restaurante: 110 },
+    { _id: 207, Numero: 12, Capacidade: 4, Localizacao: "Lounge", ID_Restaurante: 110 },
+    { _id: 208, Numero: 13, Capacidade: 6, Localizacao: "Rooftop", ID_Restaurante: 110 },
+    { _id: 209, Numero: 14, Capacidade: 8, Localizacao: "Salão Privativo", ID_Restaurante: 110 },
+    { _id: 210, Numero: 15, Capacidade: 4, Localizacao: "Piso Superior", ID_Restaurante: 110 },
+    { _id: 211, Numero: 16, Capacidade: 6, Localizacao: "Área Interna", ID_Restaurante: 110 }
+]);
+
+db.Mesas.updateMany(
+    { ID_Restaurante: 110 },
+    {
+        $set: { ID_Restaurante: 11 }
+    }
+)
 
 db.Mesas.insertMany([
     { _id: 212, Numero: 1, Capacidade: 2, Localizacao: "Área Interna", ID_Restaurante: 12 },
